@@ -23,6 +23,7 @@ public class SwitchConfig : MonoBehaviour
 	public float inkBlotStartAlpha = 0.5f;
 	public float inkBlotEndAlpha = 0.3f;
 	public Color switchOnColor;
+	public float animationDuration = 0.5f;
 
 	public Image switchImage;
 	public Image switchBackImage;
@@ -116,25 +117,25 @@ public class SwitchConfig : MonoBehaviour
 		
 		if (state == 1)	// Turning on
 		{
-			if (animDeltaTime <= 0.5f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = switchRect.localPosition;
-				tempVec3.x = Anims.EaseInOutQuint(switchPos, 8f, animDeltaTime, 0.5f);
+				tempVec3.x = Anims.EaseInOutQuint(switchPos, 8f, animDeltaTime, animationDuration);
 				tempVec3.z = 1f;
 				switchRect.localPosition = tempVec3;
 
 				Color tempColor = switchImage.color;
-				tempColor.r = Anims.EaseInOutQuint(color.r, switchOnColor.r, animDeltaTime, 0.5f);
-				tempColor.g = Anims.EaseInOutQuint(color.g, switchOnColor.g, animDeltaTime, 0.5f);
-				tempColor.b = Anims.EaseInOutQuint(color.b, switchOnColor.b, animDeltaTime, 0.5f);
-				tempColor.a = Anims.EaseInOutQuint(color.a, switchOnColor.a, animDeltaTime, 0.5f);
+				tempColor.r = Anims.EaseInOutQuint(color.r, switchOnColor.r, animDeltaTime, animationDuration);
+				tempColor.g = Anims.EaseInOutQuint(color.g, switchOnColor.g, animDeltaTime, animationDuration);
+				tempColor.b = Anims.EaseInOutQuint(color.b, switchOnColor.b, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseInOutQuint(color.a, switchOnColor.a, animDeltaTime, animationDuration);
 				switchImage.color = tempColor;
 
 				tempColor = switchBackImage.color;
-				tempColor.r = Anims.EaseInOutQuint(color2.r, switchOnColor.r, animDeltaTime, 0.5f);
-				tempColor.g = Anims.EaseInOutQuint(color2.g, switchOnColor.g, animDeltaTime, 0.5f);
-				tempColor.b = Anims.EaseInOutQuint(color2.b, switchOnColor.b, animDeltaTime, 0.5f);
-				tempColor.a = Anims.EaseInOutQuint(color2.a, switchOnColor.a, animDeltaTime, 0.5f);
+				tempColor.r = Anims.EaseInOutQuint(color2.r, switchOnColor.r, animDeltaTime, animationDuration);
+				tempColor.g = Anims.EaseInOutQuint(color2.g, switchOnColor.g, animDeltaTime, animationDuration);
+				tempColor.b = Anims.EaseInOutQuint(color2.b, switchOnColor.b, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseInOutQuint(color2.a, switchOnColor.a, animDeltaTime, animationDuration);
 				switchBackImage.color = tempColor;
 			}
 			else
@@ -147,25 +148,25 @@ public class SwitchConfig : MonoBehaviour
 		}
 		else if (state == 2)	// Turning off
 		{
-			if (animDeltaTime <= 0.5f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = switchRect.localPosition;
-				tempVec3.x = Anims.EaseInOutQuint(switchPos, -8f, animDeltaTime, 0.5f);
+				tempVec3.x = Anims.EaseInOutQuint(switchPos, -8f, animDeltaTime, animationDuration);
 				tempVec3.z = 1f;
 				switchRect.localPosition = tempVec3;
 				
 				Color tempColor = switchImage.color;
-				tempColor.r = Anims.EaseInOutQuint(color.r, switchOffColor.r, animDeltaTime, 0.5f);
-				tempColor.g = Anims.EaseInOutQuint(color.g, switchOffColor.g, animDeltaTime, 0.5f);
-				tempColor.b = Anims.EaseInOutQuint(color.b, switchOffColor.b, animDeltaTime, 0.5f);
-				tempColor.a = Anims.EaseInOutQuint(color.a, switchOffColor.a, animDeltaTime, 0.5f);
+				tempColor.r = Anims.EaseInOutQuint(color.r, switchOffColor.r, animDeltaTime, animationDuration);
+				tempColor.g = Anims.EaseInOutQuint(color.g, switchOffColor.g, animDeltaTime, animationDuration);
+				tempColor.b = Anims.EaseInOutQuint(color.b, switchOffColor.b, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseInOutQuint(color.a, switchOffColor.a, animDeltaTime, animationDuration);
 				switchImage.color = tempColor;
 				
 				tempColor = switchBackImage.color;
-				tempColor.r = Anims.EaseInOutQuint(color2.r, switchBackOffColor.r, animDeltaTime, 0.5f);
-				tempColor.g = Anims.EaseInOutQuint(color2.g, switchBackOffColor.g, animDeltaTime, 0.5f);
-				tempColor.b = Anims.EaseInOutQuint(color2.b, switchBackOffColor.b, animDeltaTime, 0.5f);
-				tempColor.a = Anims.EaseInOutQuint(color2.a, switchBackOffColor.a, animDeltaTime, 0.5f);
+				tempColor.r = Anims.EaseInOutQuint(color2.r, switchBackOffColor.r, animDeltaTime, animationDuration);
+				tempColor.g = Anims.EaseInOutQuint(color2.g, switchBackOffColor.g, animDeltaTime, animationDuration);
+				tempColor.b = Anims.EaseInOutQuint(color2.b, switchBackOffColor.b, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseInOutQuint(color2.a, switchBackOffColor.a, animDeltaTime, animationDuration);
 				switchBackImage.color = tempColor;
 			}
 			else

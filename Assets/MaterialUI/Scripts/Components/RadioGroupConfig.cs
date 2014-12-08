@@ -21,6 +21,7 @@ public class RadioGroupConfig : MonoBehaviour
 	public Color inkBlotColor = Color.black;
 	public float inkBlotStartAlpha = 0.5f;
 	public float inkBlotEndAlpha = 0.3f;
+	public float animationDuration = 0.5f;
 	public Color radioOnColor = Color.black;
 
 	void Start ()
@@ -28,12 +29,13 @@ public class RadioGroupConfig : MonoBehaviour
 		foreach (RadioConfig config in gameObject.GetComponentsInChildren<RadioConfig> ())
 		{
 			config.inkBlotEnabled = inkBlotEnabled;
-			config.autoInkBlotSize =  autoInkBlotSize;
-			config.inkBlotSize =  inkBlotSize;
-			config.inkBlotSpeed =  inkBlotSpeed;
-			config.inkBlotColor =  inkBlotColor;
-			config.inkBlotStartAlpha =  inkBlotStartAlpha;
-			config.inkBlotEndAlpha =  inkBlotEndAlpha;
+			config.autoInkBlotSize = autoInkBlotSize;
+			config.inkBlotSize = inkBlotSize;
+			config.inkBlotSpeed = inkBlotSpeed;
+			config.inkBlotColor = inkBlotColor;
+			config.inkBlotStartAlpha = inkBlotStartAlpha;
+			config.inkBlotEndAlpha = inkBlotEndAlpha;
+			config.animationDuration = animationDuration;
 			config.radioOnColor = radioOnColor;
 
 			config.Setup ();

@@ -21,6 +21,7 @@ public class CheckboxConfig : MonoBehaviour
 	public Color inkBlotColor = Color.black;
 	public float inkBlotStartAlpha = 0.5f;
 	public float inkBlotEndAlpha = 0.3f;
+	public float animationDuration = 0.3f;
 
 	public Image frameImage;
 	public Image boxImage;
@@ -119,16 +120,16 @@ public class CheckboxConfig : MonoBehaviour
 
 		if (state == 1)    // Turning on
 		{
-			if (animDeltaTime <= 0.3f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = boxRect.localScale;
-				tempVec3.x = Anims.EaseOutQuint(boxSize, 1f, animDeltaTime, 0.3f);
+				tempVec3.x = Anims.EaseOutQuint(boxSize, 1f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = 1f;
 				boxRect.localScale = tempVec3;
 
 				tempVec3 = checkRect.localScale;
-				tempVec3.x = Anims.EaseInQuint(checkSize, 1f, animDeltaTime, 0.3f);
+				tempVec3.x = Anims.EaseInQuint(checkSize, 1f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = 1f;
 				checkRect.localScale = tempVec3;
@@ -143,16 +144,16 @@ public class CheckboxConfig : MonoBehaviour
 		}
 		else if (state == 2)    // Turning off
 		{
-			if (animDeltaTime <= 0.3f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = boxRect.localScale;
-				tempVec3.x = Anims.EaseInQuint(boxSize, 0f, animDeltaTime, 0.3f);
+				tempVec3.x = Anims.EaseInQuint(boxSize, 0f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = 1f;
 				boxRect.localScale = tempVec3;
 				
 				tempVec3 = checkRect.localScale;
-				tempVec3.x = Anims.EaseOutQuint(checkSize, 0f, animDeltaTime, 0.3f);
+				tempVec3.x = Anims.EaseOutQuint(checkSize, 0f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = 1f;
 				checkRect.localScale = tempVec3;

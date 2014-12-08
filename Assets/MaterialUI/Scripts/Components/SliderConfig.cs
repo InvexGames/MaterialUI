@@ -18,6 +18,7 @@ public class SliderConfig : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 	public Color textColor;
 	public bool textHasDecimal;
 	public bool hasPopup = true;
+	public float animationDuration = 0.5f;
 
 	public RectTransform handle;
 	public RectTransform popup;
@@ -53,10 +54,10 @@ public class SliderConfig : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;
 
-			if (animDeltaTime <= 0.5f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = handle.localScale;
-				tempVec3.x = Anims.EaseOutQuint(currentHandleScale, 1f, animDeltaTime, 0.5f);
+				tempVec3.x = Anims.EaseOutQuint(currentHandleScale, 1f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = tempVec3.x;
 				handle.localScale = tempVec3;
@@ -64,13 +65,13 @@ public class SliderConfig : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 				if (hasPopup)
 				{
 					tempVec3 = popup.localScale;
-					tempVec3.x = Anims.EaseOutQuint(currentPopupScale, 1f, animDeltaTime, 0.5f);
+					tempVec3.x = Anims.EaseOutQuint(currentPopupScale, 1f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = tempVec3.x;
 					popup.localScale = tempVec3;
 
 					tempVec3 = popup.localPosition;
-					tempVec3.y = Anims.EaseOutQuint(currentPos, 12f, animDeltaTime, 0.5f);
+					tempVec3.y = Anims.EaseOutQuint(currentPos, 12f, animDeltaTime, animationDuration);
 					popup.localPosition = tempVec3;
 				}
 			}
@@ -83,10 +84,10 @@ public class SliderConfig : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;
 			
-			if (animDeltaTime <= 0.5f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = handle.localScale;
-				tempVec3.x = Anims.EaseOutQuint(currentHandleScale, 0.6f, animDeltaTime, 0.5f);
+				tempVec3.x = Anims.EaseOutQuint(currentHandleScale, 0.6f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = tempVec3.x;
 				handle.localScale = tempVec3;
@@ -94,13 +95,13 @@ public class SliderConfig : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 				if (hasPopup)
 				{
 					tempVec3 = popup.localScale;
-					tempVec3.x = Anims.EaseOutQuint(currentPopupScale, 0f, animDeltaTime, 0.5f);
+					tempVec3.x = Anims.EaseOutQuint(currentPopupScale, 0f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = tempVec3.x;
 					popup.localScale = tempVec3;
 				
 					tempVec3 = popup.localPosition;
-					tempVec3.y = Anims.EaseOutQuint(currentPos, 0f, animDeltaTime, 0.5f);
+					tempVec3.y = Anims.EaseOutQuint(currentPos, 0f, animDeltaTime, animationDuration);
 					popup.localPosition = tempVec3;
 				}
 			}

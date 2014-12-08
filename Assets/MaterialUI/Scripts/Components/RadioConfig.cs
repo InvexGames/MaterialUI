@@ -28,6 +28,8 @@ public class RadioConfig : MonoBehaviour
 	public float inkBlotStartAlpha;
 	[HideInInspector()]
 	public float inkBlotEndAlpha;
+	[HideInInspector()]
+	public float animationDuration;
 
 	Color radioOffColor;
 	[HideInInspector()]
@@ -122,19 +124,19 @@ public class RadioConfig : MonoBehaviour
 		
 		if (state == 1)	// Turning on
 		{
-			if (animDeltaTime <= 0.5f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = dotRect.localScale;
-				tempVec3.x = Anims.EaseOutQuint(dotSize, 1f, animDeltaTime, 0.5f);
+				tempVec3.x = Anims.EaseOutQuint(dotSize, 1f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = 1f;
 				dotRect.localScale = tempVec3;
 
 				tempColor = dotImage.color;
-				tempColor.r = Anims.EaseOutQuint (color.r, radioOnColor.r, animDeltaTime, 0.5f);
-				tempColor.g = Anims.EaseOutQuint (color.g, radioOnColor.g, animDeltaTime, 0.5f);
-				tempColor.b = Anims.EaseOutQuint (color.b, radioOnColor.b, animDeltaTime, 0.5f);
-				tempColor.a = Anims.EaseOutQuint (color.a, radioOnColor.a, animDeltaTime, 0.5f);
+				tempColor.r = Anims.EaseOutQuint (color.r, radioOnColor.r, animDeltaTime, animationDuration);
+				tempColor.g = Anims.EaseOutQuint (color.g, radioOnColor.g, animDeltaTime, animationDuration);
+				tempColor.b = Anims.EaseOutQuint (color.b, radioOnColor.b, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseOutQuint (color.a, radioOnColor.a, animDeltaTime, animationDuration);
 				dotImage.color = tempColor;
 				ringImage.color = tempColor;
 			}
@@ -147,19 +149,19 @@ public class RadioConfig : MonoBehaviour
 		}
 		else if (state == 2)	// Turning off
 		{
-			if (animDeltaTime <= 0.5f)
+			if (animDeltaTime <= animationDuration)
 			{
 				tempVec3 = dotRect.localScale;
-				tempVec3.x = Anims.EaseOutQuint(dotSize, 0f, animDeltaTime, 0.5f);
+				tempVec3.x = Anims.EaseOutQuint(dotSize, 0f, animDeltaTime, animationDuration);
 				tempVec3.y = tempVec3.x;
 				tempVec3.z = 1f;
 				dotRect.localScale = tempVec3;
 				
 				tempColor = dotImage.color;
-				tempColor.r = Anims.EaseOutQuint (color.r, radioOffColor.r, animDeltaTime, 0.5f);
-				tempColor.g = Anims.EaseOutQuint (color.g, radioOffColor.g, animDeltaTime, 0.5f);
-				tempColor.b = Anims.EaseOutQuint (color.b, radioOffColor.b, animDeltaTime, 0.5f);
-				tempColor.a = Anims.EaseOutQuint (color.a, radioOffColor.a, animDeltaTime, 0.5f);
+				tempColor.r = Anims.EaseOutQuint (color.r, radioOffColor.r, animDeltaTime, animationDuration);
+				tempColor.g = Anims.EaseOutQuint (color.g, radioOffColor.g, animDeltaTime, animationDuration);
+				tempColor.b = Anims.EaseOutQuint (color.b, radioOffColor.b, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseOutQuint (color.a, radioOffColor.a, animDeltaTime, animationDuration);
 				dotImage.color = tempColor;
 				ringImage.color = tempColor;
 			}

@@ -24,6 +24,7 @@ public class SelectionBoxConfig : MonoBehaviour
 	public float inkBlotEndAlpha = 0.3f;
 	public bool highlightOnClick = true;
 	public bool highlightOnHover = false;
+	public float animationDuration = 0.75f;
 
 	[Space(12f)]
 
@@ -62,6 +63,8 @@ public class SelectionBoxConfig : MonoBehaviour
 
 	Vector3 textPos;
 	Vector3 iconPos;
+
+	float listCanvasAlpha;
 
 	float animStartTime;
 	float animDeltaTime;
@@ -122,9 +125,13 @@ public class SelectionBoxConfig : MonoBehaviour
 		originalHeight = thisRect.sizeDelta.y;
 		originalPos = thisRect.position.y;
 
+
+
 		listLayer.SetActive (false);
 		listCanvasGroup.interactable = false;
 		listCanvasGroup.blocksRaycasts = false;
+
+		listCanvasGroup.alpha = 0f;
 	}
 
 	public void ExpandList ()
@@ -184,10 +191,13 @@ public class SelectionBoxConfig : MonoBehaviour
 						expandedPos = originalPos;
 
 		listLayer.SetActive (true);
-		listCanvasGroup.interactable = false;
-		listCanvasGroup.blocksRaycasts = false;
+		listCanvasGroup.interactable = true;
+		listCanvasGroup.blocksRaycasts = true;
+		cancelLayer.enabled = true;
 		icon.enabled = false;
 		selectedText.enabled = true;
+
+		listCanvasAlpha = listCanvasGroup.alpha;
 
 		animStartTime = Time.realtimeSinceStartup;
 		state = 1;
@@ -196,16 +206,20 @@ public class SelectionBoxConfig : MonoBehaviour
 	public void ContractList ()
 	{
 		icon.enabled = true;
-		
-		listCanvasGroup.interactable = false;
-		listCanvasGroup.blocksRaycasts = false;
 
 		shadowsControl.isEnabled = true;
 		shadowsControl.SetShadows (1);
 		inkBlotsControl.enabled = true;
 		thisButton.interactable = true;
+
+		listCanvasGroup.interactable = false;
+		listCanvasGroup.blocksRaycasts = false;
+		scrollbar.enabled = false;
 		
 		cancelLayer.enabled = false;
+
+		listheight = thisRect.sizeDelta.y;
+		listCanvasAlpha = listCanvasGroup.alpha;
 
 		animStartTime = Time.realtimeSinceStartup;
 		state = 2;
@@ -217,40 +231,40 @@ public class SelectionBoxConfig : MonoBehaviour
 
 		if (state == 1)
 		{
-			if (animDeltaTime <= 0.75f)
+			if (animDeltaTime <= animationDuration)
 			{
 				// Fade text out
 				Color tempColor = selectedText.color;
-				tempColor.a = Anims.EaseOutQuint (1f, 0f, animDeltaTime, 0.5f);
+				tempColor.a = Anims.EaseOutQuint (1f, 0f, animDeltaTime, animationDuration * 0.6f);
 				selectedText.color = tempColor;
 
 				// Fade icon out
 				tempColor = icon.color;
-				tempColor.a = Anims.EaseOutQuint (0.5f, 0f, animDeltaTime, 0.5f);
+				tempColor.a = Anims.EaseOutQuint (0.5f, 0f, animDeltaTime, animationDuration * 0.6f);
 				icon.color = tempColor;
 
 				// Make list expand
 				Vector2 tempVec2 = thisRect.sizeDelta;
-				tempVec2.y = Anims.EaseOutQuint(originalHeight, listheight, animDeltaTime, 0.75f);
+				tempVec2.y = Anims.EaseOutQuint(originalHeight, listheight, animDeltaTime, animationDuration);
 				thisRect.sizeDelta = tempVec2;
 
 				tempVec2 = listLayer.GetComponent<RectTransform>().sizeDelta;
-				tempVec2.y = Anims.EaseOutQuint(originalHeight, listLayerHeight, animDeltaTime, 0.75f);
+				tempVec2.y = Anims.EaseOutQuint(originalHeight, listLayerHeight, animDeltaTime, animationDuration);
 				listLayer.GetComponent<RectTransform>().sizeDelta = tempVec2;
 				
 				// Make list move
 				Vector3 tempVec3 = thisRect.position;
-				tempVec3.y = Anims.EaseOutQuint(originalPos, expandedPos, animDeltaTime, 0.75f);
+				tempVec3.y = Anims.EaseOutQuint(originalPos, expandedPos, animDeltaTime, animationDuration);
 				thisRect.position = tempVec3;
 
 				// Fade text in
-				listCanvasGroup.alpha = Anims.EaseInQuint (0f, 1f, animDeltaTime, 0.75f);
+				listCanvasGroup.alpha = Anims.EaseInQuint (listCanvasAlpha, 1f, animDeltaTime, animationDuration);
 
 				// Fade scrollbar in
 				if (scrollbarEnabled)
 				{
 					tempColor = scrollbar.color;
-					tempColor.a = Anims.EaseInQuint (0f, 0.1f, animDeltaTime, 0.75f);
+					tempColor.a = Anims.EaseInQuint (0f, 0.1f, animDeltaTime, animationDuration);
 					scrollbar.color = tempColor;
 				}
 				else
@@ -260,49 +274,45 @@ public class SelectionBoxConfig : MonoBehaviour
 			}
 			else
 			{
-				listCanvasGroup.interactable = true;
-				listCanvasGroup.blocksRaycasts = true;
-				cancelLayer.enabled = true;
-				
 				state = 0;
 			}
 		}
 		else if (state == 2)
 		{
-			if (animDeltaTime <= 0.75f)
+			if (animDeltaTime <= animationDuration)
 			{
 				// Fade text in
 				Color tempColor = selectedText.color;
-				tempColor.a = Anims.EaseInQuint (0f, 1f, animDeltaTime, 0.75f);
+				tempColor.a = Anims.EaseInQuint (0f, 1f, animDeltaTime, animationDuration);
 				selectedText.color = tempColor;
 				
 				// Fade icon in
 				tempColor = icon.color;
-				tempColor.a = Anims.EaseInQuint (0f, 0.5f, animDeltaTime, 0.75f);
+				tempColor.a = Anims.EaseInQuint (0f, 0.5f, animDeltaTime, animationDuration);
 				icon.color = tempColor;
 				
 				// Make list contract
 				Vector2 tempVec2 = thisRect.sizeDelta;
-				tempVec2.y = Anims.EaseInOutQuint(listheight, originalHeight, animDeltaTime, 0.75f);
+				tempVec2.y = Anims.EaseInOutQuint(listheight, originalHeight, animDeltaTime, animationDuration);
 				thisRect.sizeDelta = tempVec2;
 				
 				tempVec2 = listLayer.GetComponent<RectTransform>().sizeDelta;
-				tempVec2.y = Anims.EaseInOutQuint(listLayerHeight, originalHeight, animDeltaTime, 0.75f);
+				tempVec2.y = Anims.EaseInOutQuint(listLayerHeight, originalHeight, animDeltaTime, animationDuration);
 				listLayer.GetComponent<RectTransform>().sizeDelta = tempVec2;
 				
 				// Make list move
 				Vector3 tempVec3 = thisRect.position;
-				tempVec3.y = Anims.EaseInOutQuint(expandedPos, originalPos, animDeltaTime, 0.75f);
+				tempVec3.y = Anims.EaseInOutQuint(expandedPos, originalPos, animDeltaTime, animationDuration);
 				thisRect.position = tempVec3;
 				
 				// Fade text out
-				listCanvasGroup.alpha = Anims.EaseOutQuint (1f, 0f, animDeltaTime, 0.5f);
+				listCanvasGroup.alpha = Anims.EaseOutQuint (listCanvasAlpha, 0f, animDeltaTime, animationDuration * 0.6f);
 
 				// Fade scrollbar out
 				if (scrollbarEnabled)
 				{
 					tempColor = scrollbar.color;
-					tempColor.a = Anims.EaseOutQuint (0.1f, 0f, animDeltaTime, 0.5f);
+					tempColor.a = Anims.EaseOutQuint (0.1f, 0f, animDeltaTime, animationDuration * 0.6f);
 					scrollbar.color = tempColor;
 				}
 				else
