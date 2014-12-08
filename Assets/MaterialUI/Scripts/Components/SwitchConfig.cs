@@ -135,14 +135,14 @@ public class SwitchConfig : MonoBehaviour
 				tempColor.r = Anims.EaseInOutQuint(color2.r, switchOnColor.r, animDeltaTime, animationDuration);
 				tempColor.g = Anims.EaseInOutQuint(color2.g, switchOnColor.g, animDeltaTime, animationDuration);
 				tempColor.b = Anims.EaseInOutQuint(color2.b, switchOnColor.b, animDeltaTime, animationDuration);
-				tempColor.a = Anims.EaseInOutQuint(color2.a, switchOnColor.a, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseInOutQuint(color2.a, 0.5f, animDeltaTime, animationDuration);
 				switchBackImage.color = tempColor;
 			}
 			else
 			{
 				switchRect.localPosition = new Vector3 (8f, 0f, 0f);
 				switchImage.color = switchOnColor;
-				switchBackImage.color = switchOnColor;
+				switchBackImage.color = new Color (switchOnColor.r, switchOnColor.g, switchOnColor.b, 0.5f);
 				state = 0;
 			}
 		}
@@ -166,7 +166,7 @@ public class SwitchConfig : MonoBehaviour
 				tempColor.r = Anims.EaseInOutQuint(color2.r, switchBackOffColor.r, animDeltaTime, animationDuration);
 				tempColor.g = Anims.EaseInOutQuint(color2.g, switchBackOffColor.g, animDeltaTime, animationDuration);
 				tempColor.b = Anims.EaseInOutQuint(color2.b, switchBackOffColor.b, animDeltaTime, animationDuration);
-				tempColor.a = Anims.EaseInOutQuint(color2.a, switchBackOffColor.a, animDeltaTime, animationDuration);
+				tempColor.a = Anims.EaseInOutQuint(color2.a, 0.5f, animDeltaTime, animationDuration);
 				switchBackImage.color = tempColor;
 			}
 			else
