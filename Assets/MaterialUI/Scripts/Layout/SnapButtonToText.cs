@@ -19,11 +19,14 @@ public class SnapButtonToText : MonoBehaviour
 	public RectTransform buttonLayerRect;
 	public RectTransform textRect;
 
-	public bool buttonPadding = true;
+	public bool defaultButtonPadding = true;
+	public Vector2 customPadding;
 
 	RectTransform thisRect;
 	HorizontalLayoutGroup layoutGroup;
 	ContentSizeFitter sizeFitter;
+
+	bool isChanged;
 	
 	public void Snap ()
 	{
@@ -65,10 +68,10 @@ public class SnapButtonToText : MonoBehaviour
 		if (buttonSize.x < 88f)
 			buttonSize.x = 88f;
 
-		if (buttonPadding)
+		if (defaultButtonPadding)
 			thisRect.sizeDelta = new Vector2 (buttonSize.x + 32, buttonSize.y + 32);
 		else
-			thisRect.sizeDelta = buttonSize;
+			thisRect.sizeDelta = new Vector2 (buttonSize.x + customPadding.x, buttonSize.y + customPadding.y);
 
 		buttonLayerRect.sizeDelta = buttonSize;
 
@@ -79,5 +82,17 @@ public class SnapButtonToText : MonoBehaviour
 		buttonLayerRect.anchorMin = new Vector2 (0.5f, 0.5f);
 		buttonLayerRect.anchorMax = new Vector2 (0.5f, 0.5f);
 		buttonLayerRect.anchoredPosition = new Vector2 (0f, 0f);
+
+		StartCoroutine (DelayedSnap());
+	}
+
+	IEnumerator DelayedSnap()
+	{
+		yield return new WaitForEndOfFrame();
+
+		buttonLayerRect.anchorMin = new Vector2 (0f, 0f);
+		buttonLayerRect.anchorMax = new Vector2 (1f, 1f);
+
+		buttonLayerRect.sizeDelta = new Vector2(-32f, -32f);
 	}
 }

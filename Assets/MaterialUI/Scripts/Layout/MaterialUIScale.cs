@@ -41,24 +41,24 @@ public class MaterialUIScale : MonoBehaviour
 
 			scaleFactor *= baseResProduct;
 
-			if (scaleFactor >= 4f)
-				scaleFactor = 4f;
-			else if (scaleFactor >= 3.5f)
-				scaleFactor = 3.5f;
-			else if (scaleFactor >= 3f)
-				scaleFactor = 3f;
-			else if (scaleFactor >= 2.5f)
-				scaleFactor = 2.5f;
-			else if (scaleFactor >= 2f)
-				scaleFactor = 2f;
-			else if (scaleFactor >= 1.5f)
-				scaleFactor = 1.5f;
-			else if (scaleFactor >= 1f)
-				scaleFactor = 1f;
-			else if (scaleFactor >= 0.5f)
-				scaleFactor = 0.5f;
-			else
-				scaleFactor = 0.25f;
+//			if (scaleFactor >= 4f)
+//				scaleFactor = 4f;
+//			else if (scaleFactor >= 3.5f)
+//				scaleFactor = 3.5f;
+//			else if (scaleFactor >= 3f)
+//				scaleFactor = 3f;
+//			else if (scaleFactor >= 2.5f)
+//				scaleFactor = 2.5f;
+//			else if (scaleFactor >= 2f)
+//				scaleFactor = 2f;
+//			else if (scaleFactor >= 1.5f)
+//				scaleFactor = 1.5f;
+//			else if (scaleFactor >= 1f)
+//				scaleFactor = 1f;
+//			else if (scaleFactor >= 0.5f)
+//				scaleFactor = 0.5f;
+//			else
+//				scaleFactor = 0.25f;
 
 			scaler.scaleFactor = scaleFactor;
 
