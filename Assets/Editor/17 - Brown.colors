@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 17 - Brown
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Brown 50
+    m_Color: {r: .937254906, g: .921568632, b: .913725495, a: 1}
+  - m_Name: Brown 100
+    m_Color: {r: .843137264, g: .800000012, b: .784313738, a: 1}
+  - m_Name: Brown 200
+    m_Color: {r: .737254918, g: .666666687, b: .643137276, a: 1}
+  - m_Name: Brown 300
+    m_Color: {r: .631372571, g: .533333361, b: .498039216, a: 1}
+  - m_Name: Brown 400
+    m_Color: {r: .552941203, g: .431372553, b: .388235301, a: 1}
+  - m_Name: Brown 500
+    m_Color: {r: .474509805, g: .333333343, b: .282352954, a: 1}
+  - m_Name: Brown 600
+    m_Color: {r: .427450985, g: .298039228, b: .254901975, a: 1}
+  - m_Name: Brown 700
+    m_Color: {r: .36470589, g: .250980407, b: .215686277, a: 1}
+  - m_Name: Brown 800
+    m_Color: {r: .305882365, g: .203921571, b: .180392161, a: 1}
+  - m_Name: Brown 900
+    m_Color: {r: .243137255, g: .152941182, b: .137254909, a: 1}

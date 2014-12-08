@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 11 - Light Green
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Light Green 50
+    m_Color: {r: .945098042, g: .972549021, b: .913725495, a: 1}
+  - m_Name: Light Green 100
+    m_Color: {r: .862745106, g: .929411769, b: .784313738, a: 1}
+  - m_Name: Light Green 200
+    m_Color: {r: .772549033, g: .882352948, b: .647058845, a: 1}
+  - m_Name: Light Green 300
+    m_Color: {r: .68235296, g: .835294127, b: .505882382, a: 1}
+  - m_Name: Light Green 400
+    m_Color: {r: .611764729, g: .800000012, b: .396078438, a: 1}
+  - m_Name: Light Green 500
+    m_Color: {r: .545098066, g: .764705896, b: .290196091, a: 1}
+  - m_Name: Light Green 600
+    m_Color: {r: .486274511, g: .701960802, b: .258823544, a: 1}
+  - m_Name: Light Green 700
+    m_Color: {r: .407843143, g: .623529434, b: .219607845, a: 1}
+  - m_Name: Light Green 800
+    m_Color: {r: .333333343, g: .545098066, b: .184313729, a: 1}
+  - m_Name: Light Green 900
+    m_Color: {r: .200000003, g: .411764711, b: .117647059, a: 1}
+  - m_Name: Light Green A100
+    m_Color: {r: .800000012, g: 1, b: .564705908, a: 1}
+  - m_Name: Light Green A200
+    m_Color: {r: .698039234, g: 1, b: .349019617, a: 1}
+  - m_Name: Light Green A400
+    m_Color: {r: .4627451, g: 1, b: .0117647061, a: 1}
+  - m_Name: Light Green A700
+    m_Color: {r: .392156869, g: .866666675, b: .0901960805, a: 1}

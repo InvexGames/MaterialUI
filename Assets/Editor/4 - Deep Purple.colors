@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 4 - Deep Purple
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Deep Purple 50
+    m_Color: {r: .925490201, g: .90196079, b: .960784316, a: 1}
+  - m_Name: Deep Purple 100
+    m_Color: {r: .815686285, g: .764705896, b: .909803927, a: 1}
+  - m_Name: Deep Purple 200
+    m_Color: {r: .698039234, g: .611764729, b: .854901969, a: 1}
+  - m_Name: Deep Purple 300
+    m_Color: {r: .580392182, g: .454901963, b: .800000012, a: 1}
+  - m_Name: Deep Purple 400
+    m_Color: {r: .490196079, g: .34117648, b: .75686276, a: 1}
+  - m_Name: Deep Purple 500
+    m_Color: {r: .403921574, g: .227450982, b: .713725507, a: 1}
+  - m_Name: Deep Purple 600
+    m_Color: {r: .368627459, g: .20784314, b: .690196097, a: 1}
+  - m_Name: Deep Purple 700
+    m_Color: {r: .31764707, g: .176470593, b: .654901981, a: 1}
+  - m_Name: Deep Purple 800
+    m_Color: {r: .270588249, g: .152941182, b: .623529434, a: 1}
+  - m_Name: Deep Purple 900
+    m_Color: {r: .192156866, g: .105882354, b: .568627477, a: 1}
+  - m_Name: Deep Purple A100
+    m_Color: {r: .698039234, g: .529411793, b: .996078432, a: 1}
+  - m_Name: Deep Purple A200
+    m_Color: {r: .482352942, g: .301960796, b: .996078432, a: 1}
+  - m_Name: Deep Purple A400
+    m_Color: {r: .396078438, g: .121568628, b: .996078432, a: 1}
+  - m_Name: Deep Purple A700
+    m_Color: {r: .384313732, g: 0, b: .913725495, a: 1}

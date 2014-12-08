@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 5 - Indigo
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Indigo 50
+    m_Color: {r: .905882359, g: .913725495, b: .960784316, a: 1}
+  - m_Name: Indigo 100
+    m_Color: {r: .768627465, g: .788235307, b: .909803927, a: 1}
+  - m_Name: Indigo 200
+    m_Color: {r: .619607866, g: .654901981, b: .850980401, a: 1}
+  - m_Name: Indigo 300
+    m_Color: {r: .470588237, g: .521568656, b: .792156875, a: 1}
+  - m_Name: Indigo 400
+    m_Color: {r: .360784322, g: .419607848, b: .749019623, a: 1}
+  - m_Name: Indigo 500
+    m_Color: {r: .247058824, g: .31764707, b: .70588237, a: 1}
+  - m_Name: Indigo 600
+    m_Color: {r: .223529413, g: .286274523, b: .666666687, a: 1}
+  - m_Name: Indigo 700
+    m_Color: {r: .188235298, g: .247058824, b: .619607866, a: 1}
+  - m_Name: Indigo 800
+    m_Color: {r: .156862751, g: .20784314, b: .572549045, a: 1}
+  - m_Name: Indigo 900
+    m_Color: {r: .101960786, g: .137254909, b: .490196079, a: 1}
+  - m_Name: Indigo A100
+    m_Color: {r: .545098066, g: .615686297, b: .996078432, a: 1}
+  - m_Name: Indigo A200
+    m_Color: {r: .325490206, g: .427450985, b: .992156863, a: 1}
+  - m_Name: Indigo A400
+    m_Color: {r: .239215687, g: .352941185, b: .992156863, a: 1}
+  - m_Name: Indigo A700
+    m_Color: {r: .188235298, g: .309803933, b: .992156863, a: 1}

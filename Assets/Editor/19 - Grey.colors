@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 19 - Grey
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Grey 50
+    m_Color: {r: .97647059, g: .97647059, b: .97647059, a: 1}
+  - m_Name: Grey 100
+    m_Color: {r: .956862748, g: .956862748, b: .956862748, a: 1}
+  - m_Name: Grey 200
+    m_Color: {r: .933333337, g: .933333337, b: .933333337, a: 1}
+  - m_Name: Grey 300
+    m_Color: {r: .87843138, g: .87843138, b: .87843138, a: 1}
+  - m_Name: Grey 400
+    m_Color: {r: .741176486, g: .741176486, b: .741176486, a: 1}
+  - m_Name: Grey 500
+    m_Color: {r: .619607866, g: .619607866, b: .619607866, a: 1}
+  - m_Name: Grey 600
+    m_Color: {r: .458823532, g: .458823532, b: .458823532, a: 1}
+  - m_Name: Grey 700
+    m_Color: {r: .380392164, g: .380392164, b: .380392164, a: 1}
+  - m_Name: Grey 800
+    m_Color: {r: .258823544, g: .258823544, b: .258823544, a: 1}
+  - m_Name: Grey 900
+    m_Color: {r: .129411772, g: .129411772, b: .129411772, a: 1}

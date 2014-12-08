@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 9 - Teal
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Teal 50
+    m_Color: {r: .874509811, g: .945098042, b: .941176474, a: 1}
+  - m_Name: Teal 100
+    m_Color: {r: .694117665, g: .870588243, b: .854901969, a: 1}
+  - m_Name: Teal 200
+    m_Color: {r: .498039216, g: .792156875, b: .764705896, a: 1}
+  - m_Name: Teal 300
+    m_Color: {r: .301960796, g: .709803939, b: .670588255, a: 1}
+  - m_Name: Teal 400
+    m_Color: {r: .149019614, g: .647058845, b: .600000024, a: 1}
+  - m_Name: Teal 500
+    m_Color: {r: 0, g: .58431375, b: .529411793, a: 1}
+  - m_Name: Teal 600
+    m_Color: {r: 0, g: .533333361, b: .478431374, a: 1}
+  - m_Name: Teal 700
+    m_Color: {r: 0, g: .470588237, b: .419607848, a: 1}
+  - m_Name: Teal 800
+    m_Color: {r: 0, g: .411764711, b: .360784322, a: 1}
+  - m_Name: Teal 900
+    m_Color: {r: 0, g: .301960796, b: .250980407, a: 1}
+  - m_Name: Teal A100
+    m_Color: {r: .650980413, g: .996078432, b: .917647064, a: 1}
+  - m_Name: Teal A200
+    m_Color: {r: .392156869, g: .996078432, b: .850980401, a: 1}
+  - m_Name: Teal A400
+    m_Color: {r: .113725491, g: .909803927, b: .709803939, a: 1}
+  - m_Name: Teal A700
+    m_Color: {r: 0, g: .745098054, b: .643137276, a: 1}

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 10 - Green
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: Green 50
+    m_Color: {r: .909803927, g: .960784316, b: .913725495, a: 1}
+  - m_Name: Green 100
+    m_Color: {r: .784313738, g: .90196079, b: .788235307, a: 1}
+  - m_Name: Green 200
+    m_Color: {r: .647058845, g: .839215696, b: .654901981, a: 1}
+  - m_Name: Green 300
+    m_Color: {r: .505882382, g: .78039217, b: .517647088, a: 1}
+  - m_Name: Green 400
+    m_Color: {r: .400000006, g: .733333349, b: .41568628, a: 1}
+  - m_Name: Green 500
+    m_Color: {r: .298039228, g: .686274529, b: .313725501, a: 1}
+  - m_Name: Green 600
+    m_Color: {r: .262745112, g: .627451003, b: .278431386, a: 1}
+  - m_Name: Green 700
+    m_Color: {r: .219607845, g: .556862772, b: .235294119, a: 1}
+  - m_Name: Green 800
+    m_Color: {r: .180392161, g: .490196079, b: .196078435, a: 1}
+  - m_Name: Green 900
+    m_Color: {r: .105882354, g: .368627459, b: .125490203, a: 1}
+  - m_Name: Green A100
+    m_Color: {r: .725490212, g: .964705884, b: .792156875, a: 1}
+  - m_Name: Green A200
+    m_Color: {r: .411764711, g: .941176474, b: .68235296, a: 1}
+  - m_Name: Green A400
+    m_Color: {r: 0, g: .90196079, b: .4627451, a: 1}
+  - m_Name: Green A700
+    m_Color: {r: 0, g: .784313738, b: .325490206, a: 1}
