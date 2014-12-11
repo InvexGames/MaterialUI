@@ -36,6 +36,7 @@ public class SelectionBoxConfig : MonoBehaviour
 	public enum PopDirection {Popup, Center, Popdown};
 	public PopDirection expandDirection = PopDirection.Center;
 	public bool autoMaxItemHeight;
+	public float approxPercentageOfHeight = 50f;
 	public int maxItemHeight;
 
 	[Space(12f)]
@@ -202,7 +203,7 @@ public class SelectionBoxConfig : MonoBehaviour
 
 		if (autoMaxItemHeight)
 		{
-			float tempFloat = (Screen.height / 2f / 36f);
+			float tempFloat = (Screen.height / 100f * approxPercentageOfHeight / 36f);
 
 
 			if (tempFloat >= listItems.Length)
