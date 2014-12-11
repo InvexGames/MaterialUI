@@ -43,4 +43,12 @@ public class Anims : MonoBehaviour
 		time -= 2f;
 		return differenceValue / 2 * (time * time * time * time * time + 2) + startValue;
 	}
+
+	public static float Linear (float startValue, float endValue, float time, float duration)
+	{
+		float differenceValue = endValue - startValue;
+		time = Mathf.Clamp (time, 0f, duration);
+		time /= duration;
+		return differenceValue * time + startValue;
+	}
 }

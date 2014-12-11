@@ -63,15 +63,15 @@ public class CheckboxConfig : MonoBehaviour
 //			Calculate ink blot size based on RectTransform size
 			if (autoInkBlotSize)
 			{
-				Vector2 size = gameObject.GetComponent<RectTransform> ().sizeDelta;
+				Rect tempRect = gameObject.GetComponent<RectTransform> ().rect;
 				
-				if (size.x > size.y)
+				if (tempRect.width > tempRect.height)
 				{
-					inkBlotSize = Mathf.RoundToInt(size.x / 1.5f);
+					inkBlotSize = Mathf.RoundToInt(tempRect.width / 1.5f);
 				}
 				else
 				{
-					inkBlotSize =  Mathf.RoundToInt(size.y / 1.5f);
+					inkBlotSize =  Mathf.RoundToInt(tempRect.height / 1.5f);
 				}
 			}
 			

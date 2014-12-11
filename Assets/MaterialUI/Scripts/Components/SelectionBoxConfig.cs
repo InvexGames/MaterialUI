@@ -24,11 +24,14 @@ public class SelectionBoxConfig : MonoBehaviour
 	public float inkBlotEndAlpha = 0.3f;
 	public bool highlightOnClick = true;
 	public bool highlightOnHover = false;
+	public bool highlightLastSelected = true;
 	public float animationDuration = 0.75f;
 
 	[Space(12f)]
 
 	public string[] listItems;
+
+	GameObject[] listItemObjects;
 
 	public enum PopDirection {Popup, Center, Popdown};
 	public PopDirection expandDirection = PopDirection.Center;
@@ -57,6 +60,7 @@ public class SelectionBoxConfig : MonoBehaviour
 	GameObject listItem;
 	CanvasGroup listCanvasGroup;
 	RectTransform thisRect;
+	CanvasGroup scrollbarCanvasGroup;
 	float originalHeight;
 	float expandedPos;
 	float originalPos;
@@ -65,6 +69,9 @@ public class SelectionBoxConfig : MonoBehaviour
 	Vector3 iconPos;
 
 	float listCanvasAlpha;
+
+	Color normalColor;
+	Color highlightColor;
 
 	float animStartTime;
 	float animDeltaTime;
@@ -79,6 +86,7 @@ public class SelectionBoxConfig : MonoBehaviour
 	{
 		thisRect = gameObject.GetComponent<RectTransform> ();
 		listCanvasGroup = listLayer.GetComponent<CanvasGroup> ();
+		scrollbarCanvasGroup = scrollbar.GetComponent<CanvasGroup> ();
 
 		listItemPrefab = Resources.Load ("MaterialUI/SelectionListItem", typeof(GameObject)) as GameObject;
 		Setup ();
@@ -100,9 +108,15 @@ public class SelectionBoxConfig : MonoBehaviour
 			}
 		}
 
+		normalColor = gameObject.GetComponent<Image> ().color;
+
+		listItemObjects = new GameObject[listItems.Length];
+
 		for (int i = 0; i < listItems.Length; i++)
 		{
 			listItem = Instantiate(listItemPrefab) as GameObject;
+
+			listItemObjects[i] = listItem;
 
 			listItem.transform.SetParent(listLayer.transform);
 			listItem.GetComponent<RectTransform>().localScale = new Vector3 (1f, 1f, 1f);
@@ -119,8 +133,41 @@ public class SelectionBoxConfig : MonoBehaviour
 			tempConfig.highlightOnClick = highlightOnClick;
 			tempConfig.highlightOnHover = highlightOnHover;
 
+			listItem.GetComponent<Image>().color = normalColor;
+
 			listItem.GetComponent<SelectionListItemConfig>().Setup();
 		}
+
+		highlightColor = inkBlotColor;
+		
+		HSBColor highlightColorHSB = HSBColor.FromColor (highlightColor);
+		
+		
+		if (highlightColorHSB.s <= 0.05f)
+		{
+			highlightColorHSB.s = 0f;
+			highlightColorHSB.b = 0.9f;
+		}
+		else
+		{
+			highlightColorHSB.s = 0.1f;
+			highlightColorHSB.b = 1f;
+		}
+		
+		highlightColor = HSBColor.ToColor (highlightColorHSB);
+		
+		highlightColor.a = 1f;
+
+		Debug.Log (highlightColorHSB.h);
+		Debug.Log (highlightColorHSB.s);
+		Debug.Log (highlightColorHSB.b);
+
+		HSBColor normalColorHSB = HSBColor.FromColor (normalColor);
+
+		if (normalColorHSB.b > 0.1f)
+			highlightColor *= normalColor;
+		else
+			highlightColor.a = 0.2f;
 
 		originalHeight = thisRect.sizeDelta.y;
 		originalPos = thisRect.position.y;
@@ -148,7 +195,6 @@ public class SelectionBoxConfig : MonoBehaviour
 		inkBlotsControl.enabled = false;
 		thisButton.interactable = false;
 
-		scrollbar.enabled = true;
 		icon.enabled = false;
 		selectedText.enabled = false;
 
@@ -156,9 +202,8 @@ public class SelectionBoxConfig : MonoBehaviour
 
 		if (autoMaxItemHeight)
 		{
-			float tempFloat = (Screen.height - 16f) / (36f);
-				
-			tempFloat *= 0.75f;
+			float tempFloat = (Screen.height / 2f / 36f);
+
 
 			if (tempFloat >= listItems.Length)
 			{
@@ -166,15 +211,21 @@ public class SelectionBoxConfig : MonoBehaviour
 			}
 			else
 			{
-				listheight = (tempFloat * 36f) + 16f;
+				listheight = (tempFloat * 36f) - 8f;
 				scrollbarEnabled = true;
+				scrollbar.enabled = true;
+				scrollbarCanvasGroup.interactable = true;
+				scrollbarCanvasGroup.blocksRaycasts = true;
 			}
 		}
 		else if (maxItemHeight > 0)
 		{
 
-			listheight = (maxItemHeight * 36f) + 16f;
+			listheight = (maxItemHeight * 36f) - 8f;
 			scrollbarEnabled = true;
+			scrollbar.enabled = true;
+			scrollbarCanvasGroup.interactable = true;
+			scrollbarCanvasGroup.blocksRaycasts = true;
 		}
 		else
 		{
@@ -215,6 +266,8 @@ public class SelectionBoxConfig : MonoBehaviour
 		listCanvasGroup.interactable = false;
 		listCanvasGroup.blocksRaycasts = false;
 		scrollbar.enabled = false;
+		scrollbarCanvasGroup.interactable = false;
+		scrollbarCanvasGroup.blocksRaycasts = false;
 		
 		cancelLayer.enabled = false;
 
@@ -328,6 +381,8 @@ public class SelectionBoxConfig : MonoBehaviour
 				listCanvasGroup.interactable = false;
 				listCanvasGroup.blocksRaycasts = false;
 				scrollbar.enabled = false;
+				scrollbarCanvasGroup.interactable = false;
+				scrollbarCanvasGroup.blocksRaycasts = false;
 
 				state = 0;
 			}
@@ -336,11 +391,17 @@ public class SelectionBoxConfig : MonoBehaviour
 
 	public void Select (int selectionId)
 	{
+		if (currentSelection >= 0)
+			listItemObjects[currentSelection].GetComponent<Image>().color = normalColor;
+
 		currentSelection = selectionId;
 		selectedText.text = listItems[selectionId];
 		ContractList ();
 
 		if (ItemPicked != null)
 			ItemPicked (selectionId);
+
+		if (highlightLastSelected)
+			listItemObjects [selectionId].GetComponent<Image> ().color = highlightColor;
 	}
 }

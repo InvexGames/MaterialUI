@@ -67,15 +67,15 @@ public class RadioConfig : MonoBehaviour
 
 			if (autoInkBlotSize)
 			{
-				Vector2 size = gameObject.GetComponent<RectTransform> ().sizeDelta;
-				
-				if (size.x > size.y)
+				Rect tempRect = gameObject.GetComponent<RectTransform> ().rect;
+
+				if (tempRect.width > tempRect.height)
 				{
-					inkBlotSize = Mathf.RoundToInt(size.x / 1.5f);
+					inkBlotSize = Mathf.RoundToInt(tempRect.width / 1.5f);
 				}
 				else
 				{
-					inkBlotSize =  Mathf.RoundToInt(size.y / 1.5f);
+					inkBlotSize =  Mathf.RoundToInt(tempRect.height / 1.5f);
 				}
 			}
 			
