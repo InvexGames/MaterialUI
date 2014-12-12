@@ -160,10 +160,6 @@ public class SelectionBoxConfig : MonoBehaviour
 		
 		highlightColor.a = 1f;
 
-		Debug.Log (highlightColorHSB.h);
-		Debug.Log (highlightColorHSB.s);
-		Debug.Log (highlightColorHSB.b);
-
 		HSBColor normalColorHSB = HSBColor.FromColor (normalColor);
 
 		if (normalColorHSB.b > 0.1f)
