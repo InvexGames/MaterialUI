@@ -36,8 +36,9 @@ public class SelectionBoxConfig : MonoBehaviour
 	public enum PopDirection {Popup, Center, Popdown};
 	public PopDirection expandDirection = PopDirection.Center;
 	public bool autoMaxItemHeight;
-	public float approxPercentageOfHeight = 50f;
-	public int maxItemHeight;
+	public float percentageOfScreenHeight = 50f;
+	[Space(12f)]
+	public int manualMaxItemHeight;
 
 	[Space(12f)]
 
@@ -203,7 +204,7 @@ public class SelectionBoxConfig : MonoBehaviour
 
 		if (autoMaxItemHeight)
 		{
-			float tempFloat = (Screen.height / 100f * approxPercentageOfHeight / 36f);
+			float tempFloat = (Screen.height / 100f * percentageOfScreenHeight / 36f);
 
 
 			if (tempFloat >= listItems.Length)
@@ -219,10 +220,10 @@ public class SelectionBoxConfig : MonoBehaviour
 				scrollbarCanvasGroup.blocksRaycasts = true;
 			}
 		}
-		else if (maxItemHeight > 0)
+		else if (manualMaxItemHeight > 0)
 		{
 
-			listheight = (maxItemHeight * 36f) - 8f;
+			listheight = (manualMaxItemHeight * 36f) - 8f;
 			scrollbarEnabled = true;
 			scrollbar.enabled = true;
 			scrollbarCanvasGroup.interactable = true;
