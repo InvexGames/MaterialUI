@@ -194,4 +194,19 @@ public static class MaterialUIObjects
 			}
 		}
 	}
+	
+	[MenuItem("Component/MaterialUI/AnimTrigger")]
+	[MenuItem("MaterialUI/Add Component/AnimTrigger")]
+	static void AddAnimTrigger()
+	{
+		selectedObject = Selection.activeGameObject;
+		
+		if (selectedObject)
+		{
+			if (GameObject.Find(selectedObject.name))
+			{
+				selectedObject.AddComponent("AnimTrigger");
+			}
+		}
+	}
 }
