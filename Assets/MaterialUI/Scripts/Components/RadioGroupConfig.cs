@@ -12,33 +12,36 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class RadioGroupConfig : MonoBehaviour
+namespace MaterialUI
 {
-	public bool inkBlotEnabled = true;
-	public bool autoInkBlotSize = true;
-	public int inkBlotSize;
-	public float inkBlotSpeed = 8f;
-	public Color inkBlotColor = Color.black;
-	public float inkBlotStartAlpha = 0.5f;
-	public float inkBlotEndAlpha = 0.3f;
-	public float animationDuration = 0.5f;
-	public Color radioOnColor = Color.black;
-
-	void Start ()
+	public class RadioGroupConfig : MonoBehaviour
 	{
-		foreach (RadioConfig config in gameObject.GetComponentsInChildren<RadioConfig> ())
-		{
-			config.inkBlotEnabled = inkBlotEnabled;
-			config.autoInkBlotSize = autoInkBlotSize;
-			config.inkBlotSize = inkBlotSize;
-			config.inkBlotSpeed = inkBlotSpeed;
-			config.inkBlotColor = inkBlotColor;
-			config.inkBlotStartAlpha = inkBlotStartAlpha;
-			config.inkBlotEndAlpha = inkBlotEndAlpha;
-			config.animationDuration = animationDuration;
-			config.radioOnColor = radioOnColor;
+		public bool inkBlotEnabled = true;
+		public bool autoInkBlotSize = true;
+		public int inkBlotSize;
+		public float inkBlotSpeed = 8f;
+		public Color inkBlotColor = Color.black;
+		public float inkBlotStartAlpha = 0.5f;
+		public float inkBlotEndAlpha = 0.3f;
+		public float animationDuration = 0.5f;
+		public Color radioOnColor = Color.black;
 
-			config.Setup ();
+		void Start ()
+		{
+			foreach (RadioConfig config in gameObject.GetComponentsInChildren<RadioConfig> ())
+			{
+				config.inkBlotEnabled = inkBlotEnabled;
+				config.autoInkBlotSize = autoInkBlotSize;
+				config.inkBlotSize = inkBlotSize;
+				config.inkBlotSpeed = inkBlotSpeed;
+				config.inkBlotColor = inkBlotColor;
+				config.inkBlotStartAlpha = inkBlotStartAlpha;
+				config.inkBlotEndAlpha = inkBlotEndAlpha;
+				config.animationDuration = animationDuration;
+				config.radioOnColor = radioOnColor;
+
+				config.Setup ();
+			}
 		}
 	}
 }

@@ -12,57 +12,60 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class ShadowAnim : MonoBehaviour {
-
-	public bool isOn;
-	public bool anim;
-	CanvasGroup thisGroup;
-	Image[] shadows;
-
-	void Awake ()
+namespace MaterialUI
+{
+	public class ShadowAnim : MonoBehaviour
 	{
-		thisGroup = gameObject.GetComponent<CanvasGroup> ();
-		shadows = gameObject.GetComponentsInChildren<Image> ();
-	}
-	
-	void Update ()
-	{
-		if (anim)
+		public bool isOn;
+		public bool anim;
+		CanvasGroup thisGroup;
+		Image[] shadows;
+
+		void Awake ()
 		{
-			if (isOn)
+			thisGroup = gameObject.GetComponent<CanvasGroup> ();
+			shadows = gameObject.GetComponentsInChildren<Image> ();
+		}
+		
+		void Update ()
+		{
+			if (anim)
 			{
-				if (thisGroup.alpha < 1f)
+				if (isOn)
 				{
-					thisGroup.alpha = Mathf.Lerp(thisGroup.alpha, 1.1f, Time.deltaTime * 6);
+					if (thisGroup.alpha < 1f)
+					{
+						thisGroup.alpha = Mathf.Lerp(thisGroup.alpha, 1.1f, Time.deltaTime * 6);
+					}
+					else
+					{
+						thisGroup.alpha = 1f;
+						anim = false;
+					}
 				}
 				else
 				{
-					thisGroup.alpha = 1f;
-					anim = false;
-				}
-			}
-			else
-			{
-				if (thisGroup.alpha > 0f)
-				{
-					thisGroup.alpha = Mathf.Lerp(thisGroup.alpha, -0.1f, Time.deltaTime * 6);
-				}
-				else
-				{
-					thisGroup.alpha = 0f;
-					anim = false;
-					foreach (Image shadow in shadows)
-						shadow.enabled = false;
+					if (thisGroup.alpha > 0f)
+					{
+						thisGroup.alpha = Mathf.Lerp(thisGroup.alpha, -0.1f, Time.deltaTime * 6);
+					}
+					else
+					{
+						thisGroup.alpha = 0f;
+						anim = false;
+						foreach (Image shadow in shadows)
+							shadow.enabled = false;
+					}
 				}
 			}
 		}
-	}
 
-	public void SetShadow (bool set)
-	{
-		isOn = set;
-		anim = true;
-		foreach (Image shadow in shadows)
-			shadow.enabled = true;
+		public void SetShadow (bool set)
+		{
+			isOn = set;
+			anim = true;
+			foreach (Image shadow in shadows)
+				shadow.enabled = true;
+		}
 	}
 }

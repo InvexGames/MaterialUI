@@ -13,26 +13,29 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ToggleConfig : MonoBehaviour, IPointerUpHandler
+namespace MaterialUI
 {
-	Slider theSlider;
-	Toggle theToggle;
-
-	void Start ()
+	public class ToggleConfig : MonoBehaviour, IPointerUpHandler
 	{
-		theSlider = gameObject.GetComponentInChildren<Slider> ();
-		theToggle = gameObject.GetComponent<Toggle> ();
-	}
+		Slider theSlider;
+		Toggle theToggle;
 
-	public void OnPointerUp (PointerEventData data)
-	{
-		if (theSlider.value > 0.5f)
+		void Start ()
 		{
-			theToggle.isOn = true;
+			theSlider = gameObject.GetComponentInChildren<Slider> ();
+			theToggle = gameObject.GetComponent<Toggle> ();
 		}
-		else
+
+		public void OnPointerUp (PointerEventData data)
 		{
-			theToggle.isOn = false;
+			if (theSlider.value > 0.5f)
+			{
+				theToggle.isOn = true;
+			}
+			else
+			{
+				theToggle.isOn = false;
+			}
 		}
 	}
 }

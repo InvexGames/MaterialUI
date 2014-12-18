@@ -11,23 +11,26 @@
 using UnityEngine;
 using System.Collections;
 
-public class SelectionBoxSubscriber : MonoBehaviour
+namespace MaterialUI
 {
-	SelectionBoxConfig config;
-
-	void OnEnable ()
+	public class SelectionBoxSubscriber : MonoBehaviour
 	{
-		config = gameObject.GetComponent<SelectionBoxConfig> ();
-		config.ItemPicked += DoThing;
-	}
+		SelectionBoxConfig config;
 
-	void OnDisable ()
-	{
-		config.ItemPicked -= DoThing;
-	}
+		void OnEnable ()
+		{
+			config = gameObject.GetComponent<SelectionBoxConfig> ();
+			config.ItemPicked += DoThing;
+		}
 
-	void DoThing (int id)
-	{
-		Debug.Log ("'" + config.listItems[id] + "' picked, ID: " + id);
+		void OnDisable ()
+		{
+			config.ItemPicked -= DoThing;
+		}
+
+		void DoThing (int id)
+		{
+			Debug.Log ("'" + config.listItems[id] + "' picked, ID: " + id);
+		}
 	}
 }

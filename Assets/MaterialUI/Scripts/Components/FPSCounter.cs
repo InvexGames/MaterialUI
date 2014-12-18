@@ -12,39 +12,42 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class FPSCounter : MonoBehaviour
+namespace MaterialUI
 {
-	public float updateInterval = 0.5f;
-
-	float accum = 0f; // FPS accumulated over the interval
-	int frames = 0; // Frames drawn over the interval
-	float timeleft; // Left time for current interval
-
-	public Text theText;
-	
-	void Start()
+	public class FPSCounter : MonoBehaviour
 	{
-		timeleft = updateInterval;  
-	}
-	
-	void Update()
-	{
-		timeleft -= Time.deltaTime;
-		accum += Time.timeScale/Time.deltaTime;
-		++frames;
+		public float updateInterval = 0.5f;
+
+		float accum = 0f; // FPS accumulated over the interval
+		int frames = 0; // Frames drawn over the interval
+		float timeleft; // Left time for current interval
+
+		public Text theText;
 		
-		// Interval ended - update GUI text and start new interval
-		if( timeleft <= 0f )
+		void Start()
 		{
-			// display two fractional digits (f2 format)
-			theText.text = "" + (accum/frames).ToString("f2") + " FPS";
-			if ((accum/frames) < 1)
+			timeleft = updateInterval;  
+		}
+		
+		void Update()
+		{
+			timeleft -= Time.deltaTime;
+			accum += Time.timeScale/Time.deltaTime;
+			++frames;
+			
+			// Interval ended - update GUI text and start new interval
+			if( timeleft <= 0f )
 			{
-				guiText.text = "";
+				// display two fractional digits (f2 format)
+				theText.text = "" + (accum/frames).ToString("f2") + " FPS";
+				if ((accum/frames) < 1)
+				{
+					guiText.text = "";
+				}
+				timeleft = updateInterval;
+				accum = 0f;
+				frames = 0;
 			}
-			timeleft = updateInterval;
-			accum = 0f;
-			frames = 0;
 		}
 	}
 }
