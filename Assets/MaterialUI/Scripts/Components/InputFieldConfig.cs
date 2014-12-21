@@ -18,10 +18,19 @@ namespace MaterialUI
 	public class InputFieldConfig : MonoBehaviour, ISelectHandler, IDeselectHandler
 	{	
 		public Color activeColor = Color.black;
+		[Tooltip("Works best when Input Field is set to 'Multi Line'")]
+		bool dynamicHeight;
+		bool selected;
 		public float animationDuration = 0.75f;
 
+		public RectTransform parentRect;
 		public Text placeholderText;
+		public Text inputText;
+		public Text displayText;
 		public Image activeLine;
+
+		RectTransform textRect;
+		RectTransform displayTextRect;
 
 		InputField inputField;
 		RectTransform activeLineRect;
@@ -39,6 +48,8 @@ namespace MaterialUI
 		float animStartTime;
 		float animDeltaTime;
 
+		bool selectedBefore;
+
 		int state;
 
 		void Start ()
@@ -46,8 +57,30 @@ namespace MaterialUI
 			inputField = gameObject.GetComponent<InputField> ();
 			activeLineRect = activeLine.GetComponent<RectTransform> ();
 			placeholderRect = placeholderText.GetComponent<RectTransform> ();
+			textRect = inputText.GetComponent<RectTransform> ();
+			displayTextRect = displayText.GetComponent<RectTransform> ();
+
+			activeLineRect.sizeDelta = new Vector2 (placeholderRect.rect.width, activeLineRect.sizeDelta.y);
+
+			inputText.font = displayText.font;
+			inputText.fontStyle = displayText.fontStyle;
+			inputText.fontSize = displayText.fontSize;
+			inputText.lineSpacing = displayText.lineSpacing;
+			inputText.supportRichText = displayText.supportRichText;
+			inputText.alignment = displayText.alignment;
+			inputText.horizontalOverflow = displayText.horizontalOverflow;
+			inputText.resizeTextForBestFit = displayText.resizeTextForBestFit;
+			inputText.material = displayText.material;
+			inputText.color = displayText.color;
 
 			placeholderOffColor = placeholderText.color;
+
+			if (inputField.lineType == InputField.LineType.MultiLineNewline || inputField.lineType == InputField.LineType.MultiLineSubmit)
+			{
+				dynamicHeight = true;
+			}
+
+//			inputField.
 		}
 
 		public void OnSelect (BaseEventData data)
@@ -57,6 +90,8 @@ namespace MaterialUI
 			placeholderScale = placeholderRect.localScale.x;
 
 			activeLine.color = activeColor;
+
+			selected = true;
 
 			activeLineRect.position = Input.mousePosition;
 			activeLineRect.localPosition = new Vector3 (activeLineRect.localPosition.x, 0.5f, 0f);
@@ -72,9 +107,16 @@ namespace MaterialUI
 			placeholderColor = placeholderText.color;
 			placeholderPivot = placeholderRect.pivot.y;
 			placeholderScale = placeholderRect.localScale.x;
-			
+
+			selected = false;
+
 			animStartTime = Time.realtimeSinceStartup;
 			state = 2;
+		}
+
+		public void CalculateHeight ()
+		{
+			StartCoroutine (DelayedHeight());
 		}
 		
 		void Update ()
@@ -147,6 +189,30 @@ namespace MaterialUI
 				{
 					state = 0;
 				}
+			}
+
+			if (selected)
+			{
+				if (dynamicHeight)
+				{
+					textRect.sizeDelta = displayTextRect.sizeDelta;
+					displayText.text = inputField.text;
+				}
+				else
+				{
+					displayText.text = inputText.text;
+				}
+			}
+		}
+
+		IEnumerator DelayedHeight ()
+		{
+			yield return new WaitForEndOfFrame();
+			if (!selectedBefore)
+			{
+				inputText.color = Color.clear;
+				
+				selectedBefore = true;
 			}
 		}
 	}
