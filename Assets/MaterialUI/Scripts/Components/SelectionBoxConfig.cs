@@ -124,6 +124,7 @@ namespace MaterialUI
 
 				listItem.transform.SetParent(listLayer.transform);
 				listItem.GetComponent<RectTransform>().localScale = new Vector3 (1f, 1f, 1f);
+				listItem.transform.localPosition = new Vector3(listItem.transform.localPosition.x, listItem.transform.localPosition.y, 0f);
 				listItem.GetComponentInChildren<Text>().text = listItems[i];
 
 				SelectionListItemConfig tempConfig = listItem.GetComponent<SelectionListItemConfig>();

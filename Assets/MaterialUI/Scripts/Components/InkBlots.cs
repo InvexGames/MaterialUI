@@ -36,6 +36,8 @@ namespace MaterialUI
 			else
 				currentInkBlot.GetComponent<RectTransform>().localPosition = Vector3.zero;
 			
+			currentInkBlot.GetComponent<RectTransform> ().localRotation = new Quaternion (0f, 0f, 0f, 0f);
+			
 			currentInkBlot.GetComponent<InkBlot> ().MakeInkBlot (size, 6f, 0.5f, 0.3f, color, new Vector3 (0, 0, 0));
 			
 			return currentInkBlot;
@@ -53,6 +55,8 @@ namespace MaterialUI
 				currentInkBlot.GetComponent<RectTransform>().position = position;
 			else
 				currentInkBlot.GetComponent<RectTransform>().localPosition = Vector3.zero;
+			
+			currentInkBlot.GetComponent<RectTransform> ().localRotation = new Quaternion (0f, 0f, 0f, 0f);
 
 			currentInkBlot.GetComponent<InkBlot> ().MakeInkBlot (size, animSpeed, startAlpha, endAlpha, color, new Vector3 (0, 0, 0));
 
@@ -66,11 +70,15 @@ namespace MaterialUI
 			currentInkBlot.transform.SetParent (parent);
 			
 			Canvas parentCanvas = parent.GetComponentInParent<Canvas> ();
-			
+
+			Debug.Log (position);
+
 			if (parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay)
 				currentInkBlot.GetComponent<RectTransform>().position = position;
 			else
 				currentInkBlot.GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+			currentInkBlot.GetComponent<RectTransform> ().localRotation = new Quaternion (0f, 0f, 0f, 0f);
 			
 			currentInkBlot.GetComponent<InkBlot> ().MakeInkBlot (size, animSpeed, startAlpha, endAlpha, color, endPosition);
 			

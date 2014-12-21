@@ -83,7 +83,9 @@ namespace MaterialUI
 				inkBlotsControl.inkBlotStartAlpha = inkBlotStartAlpha;
 				inkBlotsControl.inkBlotEndAlpha = inkBlotEndAlpha;
 				inkBlotsControl.moveTowardCenter = true;
-				
+
+//				inkBlotsControl.TurnOffMask ();
+
 				InkBlots.InitializeInkBlots ();
 				ToggleCheckbox (false);
 			}

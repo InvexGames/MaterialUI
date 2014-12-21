@@ -36,7 +36,7 @@ namespace MaterialUI
 		InkBlot currentInkBlot;
 		Mask thisMask;
 		
-		void OnEnable ()
+		void Awake ()
 		{
 			if (!moveTowardCenter)
 			{
@@ -47,7 +47,6 @@ namespace MaterialUI
 				
 				thisMask.enabled = false;
 			}
-
 			if (gameObject.GetComponent<SelectionBoxConfig> ())
 			{
 				dontTurnOffMask = true;
@@ -60,6 +59,8 @@ namespace MaterialUI
 		public void OnPointerDown (PointerEventData data)
 		{
 			MakeInkBlot (data.position);
+			if (thisMask && !moveTowardCenter)
+				thisMask.enabled = true;
 		}
 		
 		public void OnPointerUp (PointerEventData data)

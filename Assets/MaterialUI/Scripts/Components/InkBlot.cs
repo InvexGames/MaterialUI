@@ -99,7 +99,7 @@ namespace MaterialUI
 				endPos = endPosition;
 			}
 
-//			startPos = thisRect.position;
+			startPos = thisRect.position;
 
 			startColorAlpha = startAlpha;
 			endColorAlpha = endAlpha;
