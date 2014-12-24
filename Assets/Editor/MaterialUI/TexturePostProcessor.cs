@@ -47,6 +47,5 @@ public class TexturePostProcessor : AssetPostprocessor
 				importer.textureType  = TextureImporterType.Advanced;
 			}
 		}
-		
 	}
 }

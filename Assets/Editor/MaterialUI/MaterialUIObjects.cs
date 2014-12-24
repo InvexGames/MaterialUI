@@ -17,26 +17,56 @@ public static class MaterialUIObjects
 {
 	static GameObject theThing;
 	static GameObject selectedObject;
+	static bool notCanvas;
 
 	static void SetupObject (string objectName)
 	{
+		selectedObject = Selection.activeGameObject;
 		theThing.name = objectName;
+
 		if (selectedObject)
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				theThing.transform.SetParent(selectedObject.transform);
+				if (selectedObject.GetComponentInParent<Canvas>())
+					notCanvas = false;
+				else
+					notCanvas = true;
+			}
+			else
+				notCanvas = true;
+		}
+		else
+			notCanvas = true;
+
+		if (notCanvas)
+		{
+			if (!GameObject.FindObjectOfType<UnityEngine.EventSystems.EventSystem>())
+			{
+				GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/EventSystem.prefab", typeof(GameObject))).name = "EventSystem";
+			}
+
+			if (GameObject.FindObjectOfType<Canvas>())
+			{
+				selectedObject = GameObject.FindObjectOfType<Canvas>().gameObject as GameObject;
+			}
+			else
+			{
+				selectedObject = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Canvas.prefab", typeof(GameObject))) as GameObject;
+				selectedObject.name = "Canvas";
 			}
 		}
+
+		theThing.transform.SetParent(selectedObject.transform);
 		theThing.transform.localPosition = Vector3.zero;
 		theThing.transform.localScale = new Vector3 (1, 1, 1);
+		Selection.activeGameObject = theThing;
 	}
 
 	[MenuItem("GameObject/Create Other/MaterialUI/Panel", false, 1)]
 	[MenuItem("MaterialUI/Create/Panel", false, 1)]
 	static void CreatePanel()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Panel.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Panel");
 	}
@@ -45,7 +75,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Button - Flat", false, 2)]
 	static void CreateButtonFlat()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Button - Flat.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Button - Flat");
 	}
@@ -54,7 +83,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Button - Raised", false, 3)]
 	static void CreateButtonRaised()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Button - Raised.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Button - Raised");
 	}
@@ -63,7 +91,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Round Button - Flat", false, 4)]
 	static void CreateRoundButtonFlat()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Round Button - Flat.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Round Button - Flat");
 	}
@@ -72,7 +99,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Round Button - Raised", false, 5)]
 	static void CreateRoundButtonRaised()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Round Button - Raised.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Round Button - Raised");
 	}
@@ -81,7 +107,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Small Round Button - Flat", false, 6)]
 	static void CreateSmallRoundButtonFlat()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Round Button - Small - Flat.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Small Round Button - Flat");
 	}
@@ -90,7 +115,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Small Round Button - Raised", false, 7)]
 	static void CreateSmallRoundButtonRaised()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Round Button - Small - Raised.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Small Round Button - Raised");
 	}
@@ -99,7 +123,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Checkbox", false, 8)]
 	static void CreateCheckbox()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Checkbox.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Checkbox");
 	}
@@ -108,7 +131,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Radio Buttons", false, 9)]
 	static void CreateRadioButtons()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/RadioGroup.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Radio Buttons");
 	}
@@ -117,7 +139,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Switch", false, 10)]
 	static void CreateSwitch()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Switch.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Switch");
 	}
@@ -126,7 +147,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Text Input", false, 11)]
 	static void CreateTextInput()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/TextInput.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Text Input");
 	}
@@ -135,7 +155,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Slider", false, 12)]
 	static void CreateSlider()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Slider.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Slider");
 	}
@@ -144,7 +163,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Create/Selection Box", false, 13)]
 	static void CreateSelectionBox()
 	{
-		selectedObject = Selection.activeGameObject;
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/SelectionBox.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Selection Box");
 	}
@@ -154,8 +172,6 @@ public static class MaterialUIObjects
 	[MenuItem("MaterialUI/Add Component/Shadow Snapper")]
 	static void AddShadowSnap()
 	{
-		selectedObject = Selection.activeGameObject;
-		
 		if (selectedObject)
 		{
 			if (GameObject.Find(selectedObject.name))
