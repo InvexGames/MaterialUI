@@ -5,7 +5,6 @@ MaterialUI is a UI kit for Unity that follows Google's official material design 
 Please see the wiki and forum (http://forum.unity3d.com/threads/materialui-a-unity-4-6-ui-kit-that-follows-googles-material-design-guidelines.284500/) for more information.
 
 TODO:
-- Make InkBlots appear at pointer position when canvas is in screen space (camera) or world space
 - Finish proper scaling system to work for mobile and desktop form factors
 - Clean up unused scaled images (and other assets)
 - Add DialogBox control
