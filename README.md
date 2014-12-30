@@ -8,6 +8,7 @@ TODO:
 - Finish proper scaling system to work for mobile and desktop form factors
 - Clean up unused scaled images (and other assets)
 - Add DialogBox control
+- Finish / fix AnimTrigger system
 - Add to wiki and documentation (have basic info on all controls and tools, how they work)
 - Start work on 'screens' system, allowing for easy multiple screens and transitions
 - Start work on global theming system
