@@ -15,4 +15,4 @@ TODO:
 - Start work on 'screens' system, allowing for easy multiple screens and transitions
 - Start work on global theming system
 - Try to break stuff, clean up and refactor code, improving where possible
-- Flesh out wiki and documentation, add more demos
+- Flesh out wiki and documentation, add more demos and how-tos
