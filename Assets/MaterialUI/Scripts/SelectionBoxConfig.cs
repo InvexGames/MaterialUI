@@ -28,6 +28,13 @@ namespace MaterialUI
 		public bool highlightOnHover = false;
 		public bool highlightLastSelected = true;
 		public float animationDuration = 0.75f;
+		public Color expandedListColor = Color.white;
+		private Color contractedListColor;
+		private Color currentColor;
+		public int expandedListShadowLevel = 2;
+		private ButtonConfig buttonConfig;
+		private int contractedNormalShadow;
+		private int contractedHoverShadow;
 
 		[Space(12f)]
 
@@ -53,21 +60,28 @@ namespace MaterialUI
 		public Image cancelLayer;
 		public Image scrollbar;
 		public Image icon;
+		public Image textLine;
+		private float textLineAlpha;
 		
 		float listheight;
 		float listLayerHeight;
 		float listPos;
 		ShadowsControl shadowsControl;
+		private bool hasShadows;
+		private int contractedShadowLevel;
 		InkBlotsControl inkBlotsControl;
 		Button thisButton;
 		GameObject listItemPrefab;
 		GameObject listItem;
 		CanvasGroup listCanvasGroup;
 		RectTransform thisRect;
+		private Image thisImage;
 		CanvasGroup scrollbarCanvasGroup;
 		float originalHeight;
 		float expandedPos;
 		float originalPos;
+
+		
 
 		Vector3 textPos;
 		Vector3 iconPos;
@@ -89,8 +103,10 @@ namespace MaterialUI
 		void Start ()
 		{
 			thisRect = gameObject.GetComponent<RectTransform> ();
+			thisImage = gameObject.GetComponent<Image>();
 			listCanvasGroup = listLayer.GetComponent<CanvasGroup> ();
 			scrollbarCanvasGroup = scrollbar.GetComponent<CanvasGroup> ();
+			buttonConfig = gameObject.GetComponent<ButtonConfig>();
 
 			listItemPrefab = Resources.Load ("MaterialUI/SelectionListItem", typeof(GameObject)) as GameObject;
 			Setup ();
@@ -112,7 +128,15 @@ namespace MaterialUI
 				}
 			}
 
-			normalColor = gameObject.GetComponent<Image> ().color;
+			
+			contractedListColor = thisImage.color;
+			normalColor = expandedListColor;
+
+			contractedNormalShadow = buttonConfig.shadowNormalSize;
+			contractedHoverShadow = buttonConfig.shadowHoverSize;
+
+			if (textLine)
+				textLineAlpha = textLine.color.a;
 
 			listItemObjects = new GameObject[listItems.Length];
 
@@ -184,22 +208,34 @@ namespace MaterialUI
 
 		public void ExpandList ()
 		{
-			if (!shadowsControl)
-				shadowsControl = gameObject.GetComponent<ShadowsControl> ();
+			if (gameObject.GetComponent<ShadowsControl>())
+			{
+				hasShadows = true;
+				if (!shadowsControl)
+					shadowsControl = gameObject.GetComponent<ShadowsControl>();
+			}
+			else
+			{
+				hasShadows = false;
+			}
+
+			contractedShadowLevel = buttonConfig.shadowNormalSize;
+
 			if (!inkBlotsControl)
 				inkBlotsControl = gameObject.GetComponent<InkBlotsControl> ();
 			if (!thisButton)
 				thisButton = gameObject.GetComponent<Button> ();
 
-			shadowsControl.isEnabled = false;
-			shadowsControl.SetShadows (2);
+			shadowsControl.shadowNormalSize = expandedListShadowLevel;
+			shadowsControl.shadowHoverSize = expandedListShadowLevel;
+			
 			inkBlotsControl.enabled = false;
 			thisButton.interactable = false;
 
 			icon.enabled = false;
 			selectedText.enabled = false;
 
-
+			currentColor = thisImage.color;
 
 			if (autoMaxItemHeight)
 			{
@@ -259,10 +295,19 @@ namespace MaterialUI
 		{
 			icon.enabled = true;
 
-			shadowsControl.isEnabled = true;
-			shadowsControl.SetShadows (1);
+			if (hasShadows)
+			{
+				shadowsControl.isEnabled = true;
+				shadowsControl.SetShadows(contractedShadowLevel);
+			}
+
+			currentColor = thisImage.color;
+
 			inkBlotsControl.enabled = true;
 			thisButton.interactable = true;
+
+			shadowsControl.shadowNormalSize = contractedNormalShadow;
+			shadowsControl.shadowHoverSize = contractedHoverShadow;
 
 			listCanvasGroup.interactable = false;
 			listCanvasGroup.blocksRaycasts = false;
@@ -311,6 +356,14 @@ namespace MaterialUI
 					tempVec3.y = Anim.Quint.Out(originalPos, expandedPos, animDeltaTime, animationDuration);
 					thisRect.position = tempVec3;
 
+					// Color list
+					tempColor = thisImage.color;
+					tempColor.r = Anim.Quint.Out(currentColor.r, expandedListColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.Out(currentColor.g, expandedListColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.Out(currentColor.b, expandedListColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.Out(currentColor.a, expandedListColor.a, animDeltaTime, animationDuration);
+					thisImage.color = tempColor;
+
 					// Fade text in
 					listCanvasGroup.alpha = Anim.Quint.In (listCanvasAlpha, 1f, animDeltaTime, animationDuration);
 
@@ -324,6 +377,14 @@ namespace MaterialUI
 					else
 					{
 						scrollbar.color = Color.clear;
+					}
+
+					// Fade text line out
+					if (textLine)
+					{
+						tempColor = textLine.color;
+						tempColor.a = Anim.Quint.Out(1f, 0f, animDeltaTime, animationDuration / 2f);
+						textLine.color = tempColor;
 					}
 				}
 				else
@@ -358,7 +419,15 @@ namespace MaterialUI
 					Vector3 tempVec3 = thisRect.position;
 					tempVec3.y = Anim.Quint.InOut(expandedPos, originalPos, animDeltaTime, animationDuration);
 					thisRect.position = tempVec3;
-					
+
+					// Color list
+					tempColor = thisImage.color;
+					tempColor.r = Anim.Quint.In(currentColor.r, contractedListColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.In(currentColor.g, contractedListColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.In(currentColor.b, contractedListColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.In(currentColor.a, contractedListColor.a, animDeltaTime, animationDuration);
+					thisImage.color = tempColor;
+
 					// Fade text out
 					listCanvasGroup.alpha = Anim.Quint.Out (listCanvasAlpha, 0f, animDeltaTime, animationDuration * 0.6f);
 
@@ -372,6 +441,14 @@ namespace MaterialUI
 					else
 					{
 						scrollbar.color = Color.clear;
+					}
+
+					// Fade text line in
+					if (textLine)
+					{
+						tempColor = textLine.color;
+						tempColor.a = Anim.Quint.In(0f, textLineAlpha, animDeltaTime, animationDuration);
+						textLine.color = tempColor;
 					}
 				}
 				else

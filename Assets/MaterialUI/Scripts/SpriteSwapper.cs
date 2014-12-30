@@ -25,14 +25,16 @@ namespace MaterialUI
 
 	    void Start()
 	    {
-		    thisImage = gameObject.GetComponent<Image>();
+		    if (gameObject.GetComponentInParent<MaterialUIScaler>())
+		    {
+				thisImage = gameObject.GetComponent<Image>();
+				scaleFactor = gameObject.GetComponentInParent<MaterialUIScaler>().scaleFactor;
 
-		    scaleFactor = gameObject.GetComponentInParent<MaterialUIScaler>().scaleFactor;
-			
-		    if (scaleFactor > 2f && sprite4x)
-                thisImage.sprite = sprite4x;
-            else if (scaleFactor > 1f && sprite2x)
-                thisImage.sprite = sprite2x;
+				if (scaleFactor > 2f && sprite4x)
+					thisImage.sprite = sprite4x;
+				else if (scaleFactor > 1f && sprite2x)
+					thisImage.sprite = sprite2x;
+		    }
         }
     }
 }
