@@ -462,31 +462,31 @@ namespace MaterialUI
 			switch (animationType)
 			{
 				case AnimationType.Linear:
-					return Anims.Linear(initialValue, targetValue, time, duration);
+					return Anim.Linear(initialValue, targetValue, time, duration);
 				case AnimationType.EaseOutCubed:
-					return Anims.EaseOutCubed(initialValue, targetValue, time, duration);
+					return Anim.Cube.Out(initialValue, targetValue, time, duration);
 				case AnimationType.EaseOutQuint:
-					return Anims.EaseOutQuint(initialValue, targetValue, time, duration);
+					return Anim.Quint.Out(initialValue, targetValue, time, duration);
 				case AnimationType.EaseOutSept:
-					return Anims.EaseOutSept(initialValue, targetValue, time, duration);
+					return Anim.Sept.Out(initialValue, targetValue, time, duration);
 				case AnimationType.EaseInCubed:
-					return Anims.EaseInCubed(initialValue, targetValue, time, duration);
+					return Anim.Cube.In(initialValue, targetValue, time, duration);
 				case AnimationType.EaseInQuint:
-					return Anims.EaseInQuint(initialValue, targetValue, time, duration);
+					return Anim.Quint.In(initialValue, targetValue, time, duration);
 				case AnimationType.EaseInSept:
-					return Anims.EaseInSept(initialValue, targetValue, time, duration);
+					return Anim.Sept.In(initialValue, targetValue, time, duration);
 				case AnimationType.EaseInOutCubed:
-					return Anims.EaseInOutCubed(initialValue, targetValue, time, duration);
+					return Anim.Cube.InOut(initialValue, targetValue, time, duration);
 				case AnimationType.EaseInOutQuint:
-					return Anims.EaseInOutQuint(initialValue, targetValue, time, duration);
+					return Anim.Quint.InOut(initialValue, targetValue, time, duration);
 				case AnimationType.EaseInOutSept:
-					return Anims.EaseInOutSept(initialValue, targetValue, time, duration);
+					return Anim.Sept.InOut(initialValue, targetValue, time, duration);
 				case AnimationType.SoftEaseOutCubed:
-					return Anims.SoftEaseOutCubed(initialValue, targetValue, time, duration);
+					return Anim.Cube.SoftOut(initialValue, targetValue, time, duration);
 				case AnimationType.SoftEaseOutQuint:
-					return Anims.SoftEaseOutQuint(initialValue, targetValue, time, duration);
+					return Anim.Quint.SoftOut(initialValue, targetValue, time, duration);
 				case AnimationType.SoftEaseOutSept:
-					return Anims.SoftEaseOutSept(initialValue, targetValue, time, duration);
+					return Anim.Sept.SoftOut(initialValue, targetValue, time, duration);
 			}
 
 			return 0f;

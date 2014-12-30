@@ -48,8 +48,8 @@ namespace MaterialUI
 			canvasGroup.alpha = 0;
 			state = 1;
 
-	//		if (gameObject.GetComponentInChildren<SpriteSwapperScale> ())
-	//			gameObject.GetComponentInChildren<SpriteSwapperScale> ().Refresh (gameObject.GetComponentInParent<MaterialUIScale>().scaleFactor);
+	//		if (gameObject.GetComponentInChildren<SpriteSwapper> ())
+	//			gameObject.GetComponentInChildren<SpriteSwapper> ().Refresh (gameObject.GetComponentInParent<Scaler>().scaleFactor);
 		}
 
 		void Update ()

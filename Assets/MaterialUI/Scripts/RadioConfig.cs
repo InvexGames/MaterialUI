@@ -129,16 +129,16 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = dotRect.localScale;
-					tempVec3.x = Anims.EaseOutQuint(dotSize, 1f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out(dotSize, 1f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = 1f;
 					dotRect.localScale = tempVec3;
 
 					tempColor = dotImage.color;
-					tempColor.r = Anims.EaseOutQuint (color.r, radioOnColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseOutQuint (color.g, radioOnColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseOutQuint (color.b, radioOnColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseOutQuint (color.a, radioOnColor.a, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.Out (color.r, radioOnColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.Out (color.g, radioOnColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.Out (color.b, radioOnColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.Out (color.a, radioOnColor.a, animDeltaTime, animationDuration);
 					dotImage.color = tempColor;
 					ringImage.color = tempColor;
 				}
@@ -154,16 +154,16 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = dotRect.localScale;
-					tempVec3.x = Anims.EaseOutQuint(dotSize, 0f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out(dotSize, 0f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = 1f;
 					dotRect.localScale = tempVec3;
 					
 					tempColor = dotImage.color;
-					tempColor.r = Anims.EaseOutQuint (color.r, radioOffColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseOutQuint (color.g, radioOffColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseOutQuint (color.b, radioOffColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseOutQuint (color.a, radioOffColor.a, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.Out (color.r, radioOffColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.Out (color.g, radioOffColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.Out (color.b, radioOffColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.Out (color.a, radioOffColor.a, animDeltaTime, animationDuration);
 					dotImage.color = tempColor;
 					ringImage.color = tempColor;
 				}

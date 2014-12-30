@@ -13,25 +13,9 @@ using System.Collections;
 
 namespace MaterialUI
 {
-	public class SelectionBoxSubscriber : MonoBehaviour
-	{
-		SelectionBoxConfig config;
-
-		void OnEnable ()
-		{
-			//	Example of what you can do when an item is selected
-			config = gameObject.GetComponent<SelectionBoxConfig> ();
-			config.ItemPicked += DoThing;
-		}
-
-		void OnDisable ()
-		{
-			config.ItemPicked -= DoThing;
-		}
-
-		void DoThing (int id)
-		{
-			Debug.Log ("'" + config.listItems[id] + "' picked, ID: " + id);
-		}
-	}
+    public class MaterialGlobals : MonoBehaviour
+    {
+        public static Vector4 shadowSpriteBorder;
+        public static float uiScale;
+    }
 }

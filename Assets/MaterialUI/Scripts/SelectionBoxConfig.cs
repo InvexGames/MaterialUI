@@ -289,36 +289,36 @@ namespace MaterialUI
 				{
 					// Fade text out
 					Color tempColor = selectedText.color;
-					tempColor.a = Anims.EaseOutQuint (1f, 0f, animDeltaTime, animationDuration * 0.6f);
+					tempColor.a = Anim.Quint.Out (1f, 0f, animDeltaTime, animationDuration * 0.6f);
 					selectedText.color = tempColor;
 
 					// Fade icon out
 					tempColor = icon.color;
-					tempColor.a = Anims.EaseOutQuint (0.5f, 0f, animDeltaTime, animationDuration * 0.6f);
+					tempColor.a = Anim.Quint.Out (0.5f, 0f, animDeltaTime, animationDuration * 0.6f);
 					icon.color = tempColor;
 
 					// Make list expand
 					Vector2 tempVec2 = thisRect.sizeDelta;
-					tempVec2.y = Anims.EaseOutQuint(originalHeight, listheight, animDeltaTime, animationDuration);
+					tempVec2.y = Anim.Quint.Out(originalHeight, listheight, animDeltaTime, animationDuration);
 					thisRect.sizeDelta = tempVec2;
 
 					tempVec2 = listLayer.GetComponent<RectTransform>().sizeDelta;
-					tempVec2.y = Anims.EaseOutQuint(originalHeight, listLayerHeight, animDeltaTime, animationDuration);
+					tempVec2.y = Anim.Quint.Out(originalHeight, listLayerHeight, animDeltaTime, animationDuration);
 					listLayer.GetComponent<RectTransform>().sizeDelta = tempVec2;
 					
 					// Make list move
 					Vector3 tempVec3 = thisRect.position;
-					tempVec3.y = Anims.EaseOutQuint(originalPos, expandedPos, animDeltaTime, animationDuration);
+					tempVec3.y = Anim.Quint.Out(originalPos, expandedPos, animDeltaTime, animationDuration);
 					thisRect.position = tempVec3;
 
 					// Fade text in
-					listCanvasGroup.alpha = Anims.EaseInQuint (listCanvasAlpha, 1f, animDeltaTime, animationDuration);
+					listCanvasGroup.alpha = Anim.Quint.In (listCanvasAlpha, 1f, animDeltaTime, animationDuration);
 
 					// Fade scrollbar in
 					if (scrollbarEnabled)
 					{
 						tempColor = scrollbar.color;
-						tempColor.a = Anims.EaseInQuint (0f, 0.1f, animDeltaTime, animationDuration);
+						tempColor.a = Anim.Quint.In (0f, 0.1f, animDeltaTime, animationDuration);
 						scrollbar.color = tempColor;
 					}
 					else
@@ -337,36 +337,36 @@ namespace MaterialUI
 				{
 					// Fade text in
 					Color tempColor = selectedText.color;
-					tempColor.a = Anims.EaseInQuint (0f, 1f, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.In (0f, 1f, animDeltaTime, animationDuration);
 					selectedText.color = tempColor;
 					
 					// Fade icon in
 					tempColor = icon.color;
-					tempColor.a = Anims.EaseInQuint (0f, 0.5f, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.In (0f, 0.5f, animDeltaTime, animationDuration);
 					icon.color = tempColor;
 					
 					// Make list contract
 					Vector2 tempVec2 = thisRect.sizeDelta;
-					tempVec2.y = Anims.EaseInOutQuint(listheight, originalHeight, animDeltaTime, animationDuration);
+					tempVec2.y = Anim.Quint.InOut(listheight, originalHeight, animDeltaTime, animationDuration);
 					thisRect.sizeDelta = tempVec2;
 					
 					tempVec2 = listLayer.GetComponent<RectTransform>().sizeDelta;
-					tempVec2.y = Anims.EaseInOutQuint(listLayerHeight, originalHeight, animDeltaTime, animationDuration);
+					tempVec2.y = Anim.Quint.InOut(listLayerHeight, originalHeight, animDeltaTime, animationDuration);
 					listLayer.GetComponent<RectTransform>().sizeDelta = tempVec2;
 					
 					// Make list move
 					Vector3 tempVec3 = thisRect.position;
-					tempVec3.y = Anims.EaseInOutQuint(expandedPos, originalPos, animDeltaTime, animationDuration);
+					tempVec3.y = Anim.Quint.InOut(expandedPos, originalPos, animDeltaTime, animationDuration);
 					thisRect.position = tempVec3;
 					
 					// Fade text out
-					listCanvasGroup.alpha = Anims.EaseOutQuint (listCanvasAlpha, 0f, animDeltaTime, animationDuration * 0.6f);
+					listCanvasGroup.alpha = Anim.Quint.Out (listCanvasAlpha, 0f, animDeltaTime, animationDuration * 0.6f);
 
 					// Fade scrollbar out
 					if (scrollbarEnabled)
 					{
 						tempColor = scrollbar.color;
-						tempColor.a = Anims.EaseOutQuint (0.1f, 0f, animDeltaTime, animationDuration * 0.6f);
+						tempColor.a = Anim.Quint.Out (0.1f, 0f, animDeltaTime, animationDuration * 0.6f);
 						scrollbar.color = tempColor;
 					}
 					else

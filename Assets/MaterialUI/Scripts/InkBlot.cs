@@ -65,8 +65,8 @@ namespace MaterialUI
 			thisRect.sizeDelta = new Vector2 (size * 1.5f, size * 1.5f);
 			thisRect.localScale = new Vector3(0f, 0f, 1f);
 
-			if (gameObject.GetComponentInParent<MaterialUIScale> ())
-				scaledSize = Mathf.RoundToInt(gameObject.GetComponentInParent<MaterialUIScale> ().scaleFactor * size);
+			if (gameObject.GetComponentInParent<MaterialUIScaler> ())
+				scaledSize = Mathf.RoundToInt(gameObject.GetComponentInParent<MaterialUIScaler>().scaleFactor * size);
 			else
 				scaledSize = size;
 
@@ -134,22 +134,22 @@ namespace MaterialUI
 				{
 	//				Expand
 					tempRect = thisRect.localScale;
-					tempRect.x = Anims.EaseOutQuint(0f, 1f, animDeltaTime, 4 / animationSpeed);
+					tempRect.x = Anim.Quint.Out(0f, 1f, animDeltaTime, 4 / animationSpeed);
 					tempRect.y = tempRect.x;
 					tempRect.z = 1f;
 					thisRect.localScale = tempRect;
 
 	//				Fade
 					tempColor = thisImage.color;
-					tempColor.a = Anims.EaseOutQuint(startColorAlpha, endColorAlpha, animDeltaTime, 3 / animationSpeed);
+					tempColor.a = Anim.Quint.Out(startColorAlpha, endColorAlpha, animDeltaTime, 3 / animationSpeed);
 					thisImage.color = tempColor;
 
 	//				Move toward center of parent
 					if (moveTowardCenter)
 					{
 						Vector3 tempVec3 = thisRect.position;
-						tempVec3.x = Anims.EaseOutQuint(startPos.x, endPos.x, animDeltaTime, 3 / animationSpeed);
-						tempVec3.y = Anims.EaseOutQuint(startPos.y, endPos.y, animDeltaTime, 3 / animationSpeed);
+						tempVec3.x = Anim.Quint.Out(startPos.x, endPos.x, animDeltaTime, 3 / animationSpeed);
+						tempVec3.y = Anim.Quint.Out(startPos.y, endPos.y, animDeltaTime, 3 / animationSpeed);
 						thisRect.position = tempVec3;
 					}
 	//				Keep still in case parent is moving
@@ -171,14 +171,14 @@ namespace MaterialUI
 				{			
 	//				Expand
 					tempRect = thisRect.localScale;
-					tempRect.x = Anims.EaseOutQuint(clearInkSize, endScale, animDeltaTime, 6 / animationSpeed);
+					tempRect.x = Anim.Quint.Out(clearInkSize, endScale, animDeltaTime, 6 / animationSpeed);
 					tempRect.y = tempRect.x;
 					tempRect.z = 1f;
 					thisRect.localScale = tempRect;
 
 	//				Fade
 					tempColor = thisImage.color;
-					tempColor.a = Anims.EaseOutQuint(clearInkAlpha, 0f, animDeltaTime, 6 / animationSpeed);
+					tempColor.a = Anim.Quint.Out(clearInkAlpha, 0f, animDeltaTime, 6 / animationSpeed);
 					thisImage.color = tempColor;
 					
 	//				Keep still in case parent is moving

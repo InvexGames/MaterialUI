@@ -127,13 +127,13 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = boxRect.localScale;
-					tempVec3.x = Anims.EaseOutQuint(boxSize, 1f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out(boxSize, 1f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = 1f;
 					boxRect.localScale = tempVec3;
 
 					tempVec3 = checkRect.localScale;
-					tempVec3.x = Anims.EaseInQuint(checkSize, 1f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.In(checkSize, 1f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = 1f;
 					checkRect.localScale = tempVec3;
@@ -151,13 +151,13 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = boxRect.localScale;
-					tempVec3.x = Anims.EaseInQuint(boxSize, 0f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.In(boxSize, 0f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = 1f;
 					boxRect.localScale = tempVec3;
 					
 					tempVec3 = checkRect.localScale;
-					tempVec3.x = Anims.EaseOutQuint(checkSize, 0f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out(checkSize, 0f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = 1f;
 					checkRect.localScale = tempVec3;

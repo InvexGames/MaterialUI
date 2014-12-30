@@ -121,22 +121,22 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = switchRect.localPosition;
-					tempVec3.x = Anims.EaseInOutQuint(switchPos, 8f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.InOut(switchPos, 8f, animDeltaTime, animationDuration);
 					tempVec3.z = 1f;
 					switchRect.localPosition = tempVec3;
 
 					Color tempColor = switchImage.color;
-					tempColor.r = Anims.EaseInOutQuint(color.r, switchOnColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseInOutQuint(color.g, switchOnColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseInOutQuint(color.b, switchOnColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseInOutQuint(color.a, switchOnColor.a, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.InOut(color.r, switchOnColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.InOut(color.g, switchOnColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.InOut(color.b, switchOnColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.InOut(color.a, switchOnColor.a, animDeltaTime, animationDuration);
 					switchImage.color = tempColor;
 
 					tempColor = switchBackImage.color;
-					tempColor.r = Anims.EaseInOutQuint(color2.r, switchOnColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseInOutQuint(color2.g, switchOnColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseInOutQuint(color2.b, switchOnColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseInOutQuint(color2.a, 0.5f, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.InOut(color2.r, switchOnColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.InOut(color2.g, switchOnColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.InOut(color2.b, switchOnColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.InOut(color2.a, 0.5f, animDeltaTime, animationDuration);
 					switchBackImage.color = tempColor;
 				}
 				else
@@ -152,22 +152,22 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = switchRect.localPosition;
-					tempVec3.x = Anims.EaseInOutQuint(switchPos, -8f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.InOut(switchPos, -8f, animDeltaTime, animationDuration);
 					tempVec3.z = 1f;
 					switchRect.localPosition = tempVec3;
 					
 					Color tempColor = switchImage.color;
-					tempColor.r = Anims.EaseInOutQuint(color.r, switchOffColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseInOutQuint(color.g, switchOffColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseInOutQuint(color.b, switchOffColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseInOutQuint(color.a, switchOffColor.a, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.InOut(color.r, switchOffColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.InOut(color.g, switchOffColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.InOut(color.b, switchOffColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.InOut(color.a, switchOffColor.a, animDeltaTime, animationDuration);
 					switchImage.color = tempColor;
 					
 					tempColor = switchBackImage.color;
-					tempColor.r = Anims.EaseInOutQuint(color2.r, switchBackOffColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseInOutQuint(color2.g, switchBackOffColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseInOutQuint(color2.b, switchBackOffColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseInOutQuint(color2.a, 0.5f, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.InOut(color2.r, switchBackOffColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.InOut(color2.g, switchBackOffColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.InOut(color2.b, switchBackOffColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.InOut(color2.a, 0.5f, animDeltaTime, animationDuration);
 					switchBackImage.color = tempColor;
 				}
 				else

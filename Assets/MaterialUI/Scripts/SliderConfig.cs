@@ -59,7 +59,7 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = handle.localScale;
-					tempVec3.x = Anims.EaseOutQuint(currentHandleScale, 1f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out(currentHandleScale, 1f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = tempVec3.x;
 					handle.localScale = tempVec3;
@@ -67,13 +67,13 @@ namespace MaterialUI
 					if (hasPopup)
 					{
 						tempVec3 = popup.localScale;
-						tempVec3.x = Anims.EaseOutQuint(currentPopupScale, 1f, animDeltaTime, animationDuration);
+						tempVec3.x = Anim.Quint.Out(currentPopupScale, 1f, animDeltaTime, animationDuration);
 						tempVec3.y = tempVec3.x;
 						tempVec3.z = tempVec3.x;
 						popup.localScale = tempVec3;
 
 						tempVec3 = popup.localPosition;
-						tempVec3.y = Anims.EaseOutQuint(currentPos, 12f, animDeltaTime, animationDuration);
+						tempVec3.y = Anim.Quint.Out(currentPos, 12f, animDeltaTime, animationDuration);
 						popup.localPosition = tempVec3;
 					}
 				}
@@ -89,7 +89,7 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					tempVec3 = handle.localScale;
-					tempVec3.x = Anims.EaseOutQuint(currentHandleScale, 0.6f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out(currentHandleScale, 0.6f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = tempVec3.x;
 					handle.localScale = tempVec3;
@@ -97,13 +97,13 @@ namespace MaterialUI
 					if (hasPopup)
 					{
 						tempVec3 = popup.localScale;
-						tempVec3.x = Anims.EaseOutQuint(currentPopupScale, 0f, animDeltaTime, animationDuration);
+						tempVec3.x = Anim.Quint.Out(currentPopupScale, 0f, animDeltaTime, animationDuration);
 						tempVec3.y = tempVec3.x;
 						tempVec3.z = tempVec3.x;
 						popup.localScale = tempVec3;
 					
 						tempVec3 = popup.localPosition;
-						tempVec3.y = Anims.EaseOutQuint(currentPos, 0f, animDeltaTime, animationDuration);
+						tempVec3.y = Anim.Quint.Out(currentPos, 0f, animDeltaTime, animationDuration);
 						popup.localPosition = tempVec3;
 					}
 				}

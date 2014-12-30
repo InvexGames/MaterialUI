@@ -68,12 +68,12 @@ namespace MaterialUI
 				{
 					Vector2 tempVec2;
 					tempVec2 = thisRect.anchoredPosition;
-					tempVec2.x = Anims.EaseOutQuint (animPosX, 0f, animDeltaTime, 0.5f);
+					tempVec2.x = Anim.Quint.Out (animPosX, 0f, animDeltaTime, 0.5f);
 					thisRect.anchoredPosition = tempVec2;
 
 					Vector3 tempVec3;
 					tempVec3 = thisRect.localScale;
-					tempVec3.x = Anims.EaseOutQuint (0f, 1f, animDeltaTime, 0.5f);
+					tempVec3.x = Anim.Quint.Out (0f, 1f, animDeltaTime, 0.5f);
 					thisRect.localScale = tempVec3;
 
 					placeholderText.color = Color.Lerp( new Color (0f, 0f, 0f, 0.3764f), lineColor, animDeltaTime * 2f);
@@ -89,7 +89,7 @@ namespace MaterialUI
 				{
 					Color tempCol;
 					tempCol = thisIm.color;
-					tempCol.a = Anims.EaseOutQuint (1f, 0f, animDeltaTime, 0.5f);
+					tempCol.a = Anim.Quint.Out (1f, 0f, animDeltaTime, 0.5f);
 					thisIm.color = tempCol;
 
 					placeholderText.color = Color.Lerp(lineColor, new Color (0f, 0f, 0f, 0.3764f), animDeltaTime * 2f);

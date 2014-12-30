@@ -30,7 +30,7 @@ namespace MaterialUI
 		public int variableType;
 		public string valueType;
 
-	//	public enum AnimationType{Linear, EaseOutCubed, EaseOutQuint, EaseOutSept, EaseInCubed, EaseInQuint, EaseInSept, EaseInOutCubed, EaseInOutQuint, EaseInOutSept, SoftEaseOutCubed, SoftEaseOutQuint, SoftEaseOutSept};
+	//	public enum AnimationType{Linear, Out, Out, Out, In, In, In, InOut, InOut, InOut, SoftOut, SoftOut, SoftOut};
 		public int animationType;
 		
 		string[] exclusions;

@@ -10,28 +10,29 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace MaterialUI
 {
-	public class SelectionBoxSubscriber : MonoBehaviour
-	{
-		SelectionBoxConfig config;
+    public class SpriteSwapper : MonoBehaviour
+    {
+        public Sprite sprite2x;
+        public Sprite sprite4x;
+		
+        private float scaleFactor;
+		
+        private Image thisImage;
 
-		void OnEnable ()
-		{
-			//	Example of what you can do when an item is selected
-			config = gameObject.GetComponent<SelectionBoxConfig> ();
-			config.ItemPicked += DoThing;
-		}
+	    void Start()
+	    {
+		    thisImage = gameObject.GetComponent<Image>();
 
-		void OnDisable ()
-		{
-			config.ItemPicked -= DoThing;
-		}
-
-		void DoThing (int id)
-		{
-			Debug.Log ("'" + config.listItems[id] + "' picked, ID: " + id);
-		}
-	}
+		    scaleFactor = gameObject.GetComponentInParent<MaterialUIScaler>().scaleFactor;
+			
+		    if (scaleFactor > 2f && sprite4x)
+                thisImage.sprite = sprite4x;
+            else if (scaleFactor > 1f && sprite2x)
+                thisImage.sprite = sprite2x;
+        }
+    }
 }

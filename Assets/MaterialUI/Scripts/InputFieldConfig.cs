@@ -128,28 +128,28 @@ namespace MaterialUI
 				if (animDeltaTime <= animationDuration)
 				{
 					Color tempColor = placeholderText.color;
-					tempColor.r = Anims.EaseOutQuint(placeholderColor.r, activeColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseOutQuint(placeholderColor.g, activeColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseOutQuint(placeholderColor.b, activeColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseOutQuint(placeholderColor.a, activeColor.a, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.Out(placeholderColor.r, activeColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.Out(placeholderColor.g, activeColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.Out(placeholderColor.b, activeColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.Out(placeholderColor.a, activeColor.a, animDeltaTime, animationDuration);
 					placeholderText.color = tempColor;
 
 					Vector3 tempVec3 = placeholderRect.localScale;
-					tempVec3.x = Anims.EaseOutQuint (placeholderScale, 0.75f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out (placeholderScale, 0.75f, animDeltaTime, animationDuration);
 					tempVec3.y =tempVec3.x;
 					tempVec3.z =tempVec3.x;
 					placeholderRect.localScale = tempVec3;
 
 					Vector2 tempVec2 = placeholderRect.pivot;
-					tempVec2.y = Anims.EaseInOutQuint (placeholderPivot, 0f, animDeltaTime, animationDuration);
+					tempVec2.y = Anim.Quint.InOut (placeholderPivot, 0f, animDeltaTime, animationDuration);
 					placeholderRect.pivot = tempVec2;
 
 					tempVec3 = activeLineRect.localScale;
-					tempVec3.x = Anims.EaseOutQuint(0f, 1f, animDeltaTime, animationDuration);
+					tempVec3.x = Anim.Quint.Out(0f, 1f, animDeltaTime, animationDuration);
 					activeLineRect.localScale = tempVec3;
 
 					tempVec2 = activeLineRect.localPosition;
-					tempVec2.x = Anims.EaseOutQuint (activeLinePos, 0f, animDeltaTime, animationDuration);
+					tempVec2.x = Anim.Quint.Out (activeLinePos, 0f, animDeltaTime, animationDuration);
 					activeLineRect.localPosition = tempVec2;
 				}
 				else
@@ -162,27 +162,27 @@ namespace MaterialUI
 				if (animDeltaTime <= 1f)
 				{
 					Color tempColor = placeholderText.color;
-					tempColor.r = Anims.EaseOutQuint(placeholderColor.r, placeholderOffColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anims.EaseOutQuint(placeholderColor.g, placeholderOffColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anims.EaseOutQuint(placeholderColor.b, placeholderOffColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anims.EaseOutQuint(placeholderColor.a, placeholderOffColor.a, animDeltaTime, animationDuration);
+					tempColor.r = Anim.Quint.Out(placeholderColor.r, placeholderOffColor.r, animDeltaTime, animationDuration);
+					tempColor.g = Anim.Quint.Out(placeholderColor.g, placeholderOffColor.g, animDeltaTime, animationDuration);
+					tempColor.b = Anim.Quint.Out(placeholderColor.b, placeholderOffColor.b, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.Out(placeholderColor.a, placeholderOffColor.a, animDeltaTime, animationDuration);
 					placeholderText.color = tempColor;
 					
 					if (inputField.text.Length == 0)
 					{
 						Vector3 tempVec3 = placeholderRect.localScale;
-						tempVec3.x = Anims.EaseInOutQuint (placeholderScale, 1f, animDeltaTime, animationDuration);
+						tempVec3.x = Anim.Quint.InOut (placeholderScale, 1f, animDeltaTime, animationDuration);
 						tempVec3.y =tempVec3.x;
 						tempVec3.z =tempVec3.x;
 						placeholderRect.localScale = tempVec3;
 						
 						Vector2 tempVec2 = placeholderRect.pivot;
-						tempVec2.y = Anims.EaseOutQuint (placeholderPivot, 1f, animDeltaTime, animationDuration);
+						tempVec2.y = Anim.Quint.Out (placeholderPivot, 1f, animDeltaTime, animationDuration);
 						placeholderRect.pivot = tempVec2;
 					}
 
 					tempColor = activeLine.color;
-					tempColor.a = Anims.EaseOutQuint(1f, 0f, animDeltaTime, animationDuration);
+					tempColor.a = Anim.Quint.Out(1f, 0f, animDeltaTime, animationDuration);
 					activeLine.color = tempColor;
 				}
 				else
