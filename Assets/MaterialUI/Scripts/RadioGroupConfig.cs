@@ -30,13 +30,6 @@ namespace MaterialUI
 		{
 			foreach (RadioConfig config in gameObject.GetComponentsInChildren<RadioConfig> ())
 			{
-				config.inkBlotEnabled = inkBlotEnabled;
-				config.autoInkBlotSize = autoInkBlotSize;
-				config.inkBlotSize = inkBlotSize;
-				config.inkBlotSpeed = inkBlotSpeed;
-				config.inkBlotColor = inkBlotColor;
-				config.inkBlotStartAlpha = inkBlotStartAlpha;
-				config.inkBlotEndAlpha = inkBlotEndAlpha;
 				config.animationDuration = animationDuration;
 				config.radioOnColor = radioOnColor;
 

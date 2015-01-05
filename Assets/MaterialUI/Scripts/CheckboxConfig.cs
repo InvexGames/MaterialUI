@@ -16,13 +16,6 @@ namespace MaterialUI
 {
 	public class CheckboxConfig : MonoBehaviour
 	{
-		public bool inkBlotEnabled = true;
-		public bool autoInkBlotSize = true;
-		public int inkBlotSize;
-		public float inkBlotSpeed = 8f;
-		public Color inkBlotColor = Color.black;
-		public float inkBlotStartAlpha = 0.5f;
-		public float inkBlotEndAlpha = 0.3f;
 		public float animationDuration = 0.3f;
 
 		public Image frameImage;
@@ -42,8 +35,6 @@ namespace MaterialUI
 		Vector3 tempVec3;
 
 		int state;
-		
-		InkBlotsControl inkBlotsControl;
 		Toggle toggle;
 
 		void Start ()
@@ -51,44 +42,6 @@ namespace MaterialUI
 			toggle = gameObject.GetComponent <Toggle> ();
 			boxRect = boxImage.gameObject.GetComponent<RectTransform> ();
 			checkRect = checkImage.gameObject.GetComponent<RectTransform> ();
-
-			Setup ();
-		}
-
-		public void Setup ()
-		{
-	//		Pass values to InkBlotsControl
-			if (inkBlotEnabled)
-			{
-				inkBlotsControl = gameObject.AddComponent<InkBlotsControl> ();
-				
-	//			Calculate ink blot size based on RectTransform size
-				if (autoInkBlotSize)
-				{
-					Rect tempRect = gameObject.GetComponent<RectTransform> ().rect;
-					
-					if (tempRect.width > tempRect.height)
-					{
-						inkBlotSize = Mathf.RoundToInt(tempRect.width / 1.5f);
-					}
-					else
-					{
-						inkBlotSize =  Mathf.RoundToInt(tempRect.height / 1.5f);
-					}
-				}
-				
-				inkBlotsControl.inkBlotSize = inkBlotSize;
-				inkBlotsControl.inkBlotSpeed = inkBlotSpeed;
-				inkBlotsControl.inkBlotColor = inkBlotColor;
-				inkBlotsControl.inkBlotStartAlpha = inkBlotStartAlpha;
-				inkBlotsControl.inkBlotEndAlpha = inkBlotEndAlpha;
-				inkBlotsControl.moveTowardCenter = true;
-
-//				inkBlotsControl.TurnOffMask ();
-
-				InkBlots.InitializeInkBlots ();
-				ToggleCheckbox (false);
-			}
 		}
 		
 		public void ToggleCheckbox (bool state)

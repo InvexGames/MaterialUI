@@ -63,6 +63,14 @@ public static class MaterialUIObjects
 		Selection.activeGameObject = theThing;
 	}
 
+	[MenuItem("GameObject/Create Other/MaterialUI/Background", false, 1)]
+	[MenuItem("MaterialUI/Create/Background", false, 1)]
+	static void CreateBackground()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Background.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Background");
+	}
+
 	[MenuItem("GameObject/Create Other/MaterialUI/Panel", false, 1)]
 	[MenuItem("MaterialUI/Create/Panel", false, 1)]
 	static void CreatePanel()
@@ -167,6 +175,47 @@ public static class MaterialUIObjects
 		SetupObject ("Selection Box");
 	}
 
+	[MenuItem("GameObject/Create Other/MaterialUI/Selection Box - Flat", false, 13)]
+	[MenuItem("MaterialUI/Create/Selection Box - Flat", false, 13)]
+	static void CreateSelectionBoxFlat()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/SelectionBox - Flat.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Selection Box - Flat");
+	}
+
+	[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box", false, 13)]
+	[MenuItem("MaterialUI/Create/Dialog Box", false, 13)]
+	static void CreateDialogBox()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/DialogBox - Normal.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Dialog Box");
+	}
+
+	[MenuItem("Component/MaterialUI/Ripple Config")]
+	[MenuItem("MaterialUI/Add Component/Ripple Config")]
+	static void AddRippleConfig()
+	{
+		if (selectedObject)
+		{
+			if (GameObject.Find(selectedObject.name))
+			{
+				selectedObject.AddComponent("RippleConfig");
+			}
+		}
+	}
+
+	[MenuItem("Component/MaterialUI/Shadow Config")]
+	[MenuItem("MaterialUI/Add Component/Shadow Config")]
+	static void AddShadowConfig()
+	{
+		if (selectedObject)
+		{
+			if (GameObject.Find(selectedObject.name))
+			{
+				selectedObject.AddComponent("ShadowConfig");
+			}
+		}
+	}
 
 	[MenuItem("Component/MaterialUI/Shadow Snapper")]
 	[MenuItem("MaterialUI/Add Component/Shadow Snapper")]
@@ -211,9 +260,9 @@ public static class MaterialUIObjects
 		}
 	}
 	
-	[MenuItem("Component/MaterialUI/AnimTrigger")]
-	[MenuItem("MaterialUI/Add Component/AnimTrigger")]
-	static void AddAnimTrigger()
+	[MenuItem("Component/MaterialUI/EZAnim")]
+	[MenuItem("MaterialUI/Add Component/EZAnim")]
+	static void AddEZAnim()
 	{
 		selectedObject = Selection.activeGameObject;
 		
@@ -221,7 +270,7 @@ public static class MaterialUIObjects
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("AnimTrigger");
+				selectedObject.AddComponent("EZAnim");
 			}
 		}
 	}

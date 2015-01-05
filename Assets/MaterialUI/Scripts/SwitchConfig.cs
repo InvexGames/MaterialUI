@@ -16,13 +16,6 @@ namespace MaterialUI
 {
 	public class SwitchConfig : MonoBehaviour
 	{
-		public bool inkBlotEnabled = true;
-		public bool autoInkBlotSize = true;
-		public int inkBlotSize;
-		public float inkBlotSpeed = 8f;
-		public Color inkBlotColor = Color.black;
-		public float inkBlotStartAlpha = 0.5f;
-		public float inkBlotEndAlpha = 0.3f;
 		public Color switchOnColor;
 		public float animationDuration = 0.5f;
 
@@ -45,45 +38,15 @@ namespace MaterialUI
 		
 		int state;
 		
-		InkBlotsControl inkBlotsControl;
+		RippleConfig _rippleConfig;
 		Toggle toggle;
 		
 		void Start ()
 		{
 			toggle = gameObject.GetComponent <Toggle> ();
 			switchRect = switchImage.gameObject.GetComponent<RectTransform> ();
-			
-			if (inkBlotEnabled)
-			{
-				inkBlotsControl = gameObject.AddComponent<InkBlotsControl> ();
-				
-				if (autoInkBlotSize)
-				{
-					Vector2 size = gameObject.GetComponent<RectTransform> ().sizeDelta;
-					
-					if (size.x > size.y)
-					{
-						inkBlotSize = Mathf.RoundToInt(size.x / 1.5f);
-					}
-					else
-					{
-						inkBlotSize =  Mathf.RoundToInt(size.y / 1.5f);
-					}
-				}
-				
-				inkBlotsControl.inkBlotSize = inkBlotSize;
-				inkBlotsControl.inkBlotSpeed = inkBlotSpeed;
-				inkBlotsControl.inkBlotColor = inkBlotColor;
-				inkBlotsControl.inkBlotStartAlpha = inkBlotStartAlpha;
-				inkBlotsControl.inkBlotEndAlpha = inkBlotEndAlpha;
-				inkBlotsControl.moveTowardCenter = true;
-
-				switchOffColor = switchImage.color;
-				switchBackOffColor = switchBackImage.color;
-
-				InkBlots.InitializeInkBlots ();
-				ToggleSwitch (false);
-			}
+			switchBackOffColor = switchBackImage.color;
+			switchOffColor = switchImage.color;
 		}
 		
 		public void ToggleSwitch (bool state)

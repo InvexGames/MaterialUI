@@ -49,45 +49,26 @@ public class ShadowSnap : MonoBehaviour
 			{
 				thisRect = gameObject.GetComponent<RectTransform> ();
 			}
-			
-//			if (targetRect.position != lastPos || targetRect.rect != lastRect)
-//			{
-				thisRect.position = targetRect.position;
-				
-				Vector2 tempVect2;
 
-//				if (thisRect.anchorMin == new Vector2(0.5f, 0.5f) && thisRect.anchorMax == new Vector2(0.5f, 0.5f))
-//				{
-					if (percentage)
-					{
-						tempVect2.x = targetRect.rect.width * xPercent * 0.01f;
-						tempVect2.y = targetRect.rect.height * yPercent * 0.01f;
-					}
-					else
-					{
-						tempVect2.x = targetRect.rect.width + xPadding;
-						tempVect2.y = targetRect.rect.height + yPadding;
-					}
-//				}
-//				else
-//				{
-//					if (percentage)
-//					{
-//						tempVect2.x = targetRect.sizeDelta.x * xPercent * 0.01f;
-//						tempVect2.y = targetRect.sizeDelta.y * yPercent * 0.01f;
-//					}
-//					else
-//					{
-//						tempVect2.x = targetRect.sizeDelta.x + xPadding;
-//						tempVect2.y = targetRect.sizeDelta.y + yPadding;
-//					}
-//				}
+			thisRect.position = targetRect.position;
 				
-				thisRect.sizeDelta = tempVect2;
+			Vector2 tempVect2;
 
-				lastPos = targetRect.position;
-				lastRect = targetRect.rect;
-//			}
+			if (percentage)
+			{
+				tempVect2.x = targetRect.rect.width * xPercent * 0.01f;
+				tempVect2.y = targetRect.rect.height * yPercent * 0.01f;
+			}
+			else
+			{
+				tempVect2.x = targetRect.rect.width + xPadding;
+				tempVect2.y = targetRect.rect.height + yPadding;
+			}
+
+			thisRect.sizeDelta = tempVect2;
+
+			lastPos = targetRect.position;
+			lastRect = targetRect.rect;
 		}
 		else
 		{
@@ -106,36 +87,31 @@ public class ShadowSnap : MonoBehaviour
 			
 			thisRect.position = targetRect.position;
 				
-				Vector2 tempVect2;
-				
-//				if (thisRect.anchorMin == new Vector2(0.5f, 0.5f) && thisRect.anchorMax == new Vector2(0.5f, 0.5f))
-//				{
-					if (percentage)
-					{
-						tempVect2.x = targetRect.rect.width * xPercent * 0.01f;
-						tempVect2.y = targetRect.rect.height * yPercent * 0.01f;
-					}
-					else
-					{
-						tempVect2.x = targetRect.rect.width + xPadding;
-						tempVect2.y = targetRect.rect.height + yPadding;
-					}
-//				}
-//				else
-//				{
-					if (percentage)
-					{
-						tempVect2.x = targetRect.sizeDelta.x * xPercent * 0.01f;
-						tempVect2.y = targetRect.sizeDelta.y * yPercent * 0.01f;
-					}
-					else
-					{
-						tempVect2.x = targetRect.sizeDelta.x + xPadding;
-						tempVect2.y = targetRect.sizeDelta.y + yPadding;
-					}
-//				}
-				
-				thisRect.sizeDelta = tempVect2;
+			Vector2 tempVect2;
+
+			if (percentage)
+			{
+				tempVect2.x = targetRect.rect.width * xPercent * 0.01f;
+				tempVect2.y = targetRect.rect.height * yPercent * 0.01f;
+			}
+			else
+			{
+				tempVect2.x = targetRect.rect.width + xPadding;
+				tempVect2.y = targetRect.rect.height + yPadding;
+			}
+
+			if (percentage)
+			{
+				tempVect2.x = targetRect.sizeDelta.x*xPercent*0.01f;
+				tempVect2.y = targetRect.sizeDelta.y*yPercent*0.01f;
+			}
+			else
+			{
+				tempVect2.x = targetRect.sizeDelta.x + xPadding;
+				tempVect2.y = targetRect.sizeDelta.y + yPadding;
+			}
+
+			thisRect.sizeDelta = tempVect2;
 				
 				lastPos = targetRect.position;
 				lastRect = targetRect.rect;

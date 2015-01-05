@@ -15,7 +15,7 @@ using UnityEngine.UI;
 [ExecuteInEditMode()]
 public class SnapButtonToText : MonoBehaviour
 {
-	[Header("Works best if you save, snap, then save again")]
+	[Header("Works best if you save, then press a key")]
 	public RectTransform buttonLayerRect;
 	public RectTransform textRect;
 

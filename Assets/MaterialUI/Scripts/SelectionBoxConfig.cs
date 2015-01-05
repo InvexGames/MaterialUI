@@ -11,47 +11,49 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Text;
 
 namespace MaterialUI
 {
 	public class SelectionBoxConfig : MonoBehaviour
 	{
-
-		public bool inkBlotEnabled = true;
-		public bool autoInkBlotSize = true;
-		public int inkBlotSize;
-		public float inkBlotSpeed = 8f;
-		public Color inkBlotColor = Color.black;
-		public float inkBlotStartAlpha = 0.5f;
-		public float inkBlotEndAlpha = 0.3f;
-		public bool highlightOnClick = true;
-		public bool highlightOnHover = false;
+		[Header("List item options")]
+		public bool rippleEnabled = true;
+		public int rippleSize;
+		public float rippleSpeed = 8f;
+		public Color rippleColor = Color.black;
+		public float rippleStartAlpha = 0.5f;
+		public float rippleEndAlpha = 0.3f;
+		public enum HighlightActive
+		{
+			Never,
+			Hovered,
+			Clicked
+		}
+		public HighlightActive highlightWhen = HighlightActive.Clicked;
+		public bool moveTowardCenter;
+		public bool toggleMask = true;
 		public bool highlightLastSelected = true;
 		public float animationDuration = 0.75f;
 		public Color expandedListColor = Color.white;
 		private Color contractedListColor;
 		private Color currentColor;
+		[Range(0,3)]
 		public int expandedListShadowLevel = 2;
-		private ButtonConfig buttonConfig;
+		private ShadowConfig shadowConfig;
 		private int contractedNormalShadow;
 		private int contractedHoverShadow;
 
 		[Space(12f)]
-
 		public string[] listItems;
-
-		GameObject[] listItemObjects;
-
-		public enum PopDirection {Popup, Center, Popdown};
-		public PopDirection expandDirection = PopDirection.Center;
+		[Header("List options")]
 		public bool autoMaxItemHeight;
 		public float percentageOfScreenHeight = 50f;
-		[Space(12f)]
 		public int manualMaxItemHeight;
 
-		[Space(12f)]
-
 		public int currentSelection = -1;
+		public enum PopDirection {Popup, Center, Popdown};
+		public PopDirection expandDirection = PopDirection.Center;
 
 		[Space(12f)]
 
@@ -62,14 +64,14 @@ namespace MaterialUI
 		public Image icon;
 		public Image textLine;
 		private float textLineAlpha;
-		
+
+		GameObject[] listItemObjects;
 		float listheight;
 		float listLayerHeight;
 		float listPos;
-		ShadowsControl shadowsControl;
 		private bool hasShadows;
 		private int contractedShadowLevel;
-		InkBlotsControl inkBlotsControl;
+		RippleConfig rippleConfig;
 		Button thisButton;
 		GameObject listItemPrefab;
 		GameObject listItem;
@@ -80,8 +82,6 @@ namespace MaterialUI
 		float originalHeight;
 		float expandedPos;
 		float originalPos;
-
-		
 
 		Vector3 textPos;
 		Vector3 iconPos;
@@ -106,7 +106,7 @@ namespace MaterialUI
 			thisImage = gameObject.GetComponent<Image>();
 			listCanvasGroup = listLayer.GetComponent<CanvasGroup> ();
 			scrollbarCanvasGroup = scrollbar.GetComponent<CanvasGroup> ();
-			buttonConfig = gameObject.GetComponent<ButtonConfig>();
+			shadowConfig = gameObject.GetComponent<ShadowConfig>();
 
 			listItemPrefab = Resources.Load ("MaterialUI/SelectionListItem", typeof(GameObject)) as GameObject;
 			Setup ();
@@ -114,26 +114,11 @@ namespace MaterialUI
 
 		public void Setup ()
 		{
-			if (autoInkBlotSize)
-			{
-				Vector2 size = gameObject.GetComponent<RectTransform> ().sizeDelta;
-				
-				if (size.x > size.y)
-				{
-					inkBlotSize = Mathf.RoundToInt(size.x / 1.5f);
-				}
-				else
-				{
-					inkBlotSize =  Mathf.RoundToInt(size.y / 1.5f);
-				}
-			}
-
-			
 			contractedListColor = thisImage.color;
 			normalColor = expandedListColor;
 
-			contractedNormalShadow = buttonConfig.shadowNormalSize;
-			contractedHoverShadow = buttonConfig.shadowHoverSize;
+			contractedNormalShadow = shadowConfig.shadowNormalSize;
+			contractedHoverShadow = shadowConfig.shadowActiveSize;
 
 			if (textLine)
 				textLineAlpha = textLine.color.a;
@@ -149,25 +134,48 @@ namespace MaterialUI
 				listItem.transform.SetParent(listLayer.transform);
 				listItem.GetComponent<RectTransform>().localScale = new Vector3 (1f, 1f, 1f);
 				listItem.transform.localPosition = new Vector3(listItem.transform.localPosition.x, listItem.transform.localPosition.y, 0f);
+				listItem.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
 				listItem.GetComponentInChildren<Text>().text = listItems[i];
 
 				SelectionListItemConfig tempConfig = listItem.GetComponent<SelectionListItemConfig>();
 				tempConfig.listId = i;
-				tempConfig.inkBlotEnabled = inkBlotEnabled;
-				tempConfig.inkBlotSize = inkBlotSize;
-				tempConfig.inkBlotSpeed = inkBlotSpeed;
-				tempConfig.inkBlotColor = inkBlotColor;
-				tempConfig.inkBlotStartAlpha = inkBlotStartAlpha;
-				tempConfig.inkBlotEndAlpha = inkBlotEndAlpha;
-				tempConfig.highlightOnClick = highlightOnClick;
-				tempConfig.highlightOnHover = highlightOnHover;
+
+				RippleConfig tempRippleConfig = tempConfig.GetComponent<RippleConfig>();
+
+				if (rippleEnabled)
+				{
+					tempRippleConfig.autoSize = false;
+					tempRippleConfig.rippleSize = rippleSize;
+					tempRippleConfig.rippleSpeed = rippleSpeed;
+					tempRippleConfig.rippleColor = rippleColor;
+					tempRippleConfig.rippleStartAlpha = rippleStartAlpha;
+					tempRippleConfig.rippleEndAlpha = rippleEndAlpha;
+					tempRippleConfig.moveTowardCenter = moveTowardCenter;
+					tempRippleConfig.toggleMask = toggleMask;
+				}
+				else
+				{
+					tempRippleConfig.autoSize = false;
+					tempRippleConfig.rippleSize = 0;
+					tempRippleConfig.rippleStartAlpha = 0f;
+					tempRippleConfig.rippleEndAlpha = 0f;
+				}
+
+				if (highlightWhen == HighlightActive.Never)
+					tempRippleConfig.highlightWhen = RippleConfig.HighlightActive.Never;
+				else if (highlightWhen == HighlightActive.Clicked)
+					tempRippleConfig.highlightWhen = RippleConfig.HighlightActive.Clicked;
+				else if (highlightWhen == HighlightActive.Hovered)
+					tempRippleConfig.highlightWhen = RippleConfig.HighlightActive.Hovered;
+
+				tempRippleConfig.Refresh();
 
 				listItem.GetComponent<Image>().color = normalColor;
 
 				listItem.GetComponent<SelectionListItemConfig>().Setup();
 			}
 
-			highlightColor = inkBlotColor;
+			highlightColor = rippleColor;
 			
 			HSBColor highlightColorHSB = HSBColor.FromColor (highlightColor);
 			
@@ -208,28 +216,28 @@ namespace MaterialUI
 
 		public void ExpandList ()
 		{
-			if (gameObject.GetComponent<ShadowsControl>())
+			if (gameObject.GetComponent<ShadowConfig>())
 			{
 				hasShadows = true;
-				if (!shadowsControl)
-					shadowsControl = gameObject.GetComponent<ShadowsControl>();
+				if (!shadowConfig)
+					shadowConfig = gameObject.GetComponent<ShadowConfig>();
 			}
 			else
 			{
 				hasShadows = false;
 			}
 
-			contractedShadowLevel = buttonConfig.shadowNormalSize;
+			contractedShadowLevel = shadowConfig.shadowNormalSize;
 
-			if (!inkBlotsControl)
-				inkBlotsControl = gameObject.GetComponent<InkBlotsControl> ();
+			if (!rippleConfig)
+				rippleConfig = gameObject.GetComponent<RippleConfig> ();
 			if (!thisButton)
 				thisButton = gameObject.GetComponent<Button> ();
 
-			shadowsControl.shadowNormalSize = expandedListShadowLevel;
-			shadowsControl.shadowHoverSize = expandedListShadowLevel;
+			shadowConfig.shadowNormalSize = expandedListShadowLevel;
+			shadowConfig.shadowActiveSize = expandedListShadowLevel;
 			
-			inkBlotsControl.enabled = false;
+			rippleConfig.enabled = false;
 			thisButton.interactable = false;
 
 			icon.enabled = false;
@@ -272,11 +280,11 @@ namespace MaterialUI
 			listLayerHeight = (listItems.Length * 36f) + 16f;
 
 			if (expandDirection == PopDirection.Popup)
-							expandedPos = originalPos + (((listItems.Length * 36f) + 16f) / 2f) - 24f;
-					else if (expandDirection == PopDirection.Popdown)
-							expandedPos = originalPos - (((listItems.Length * 36f) + 16f) / 2f) + 24f;
-					else
-							expandedPos = originalPos;
+				expandedPos = originalPos + (((listItems.Length * 36f) + 16f) / 2f) - 24f;
+			else if (expandDirection == PopDirection.Popdown)
+				expandedPos = originalPos - (((listItems.Length * 36f) + 16f) / 2f) + 24f;
+			else
+				expandedPos = originalPos;
 
 			listLayer.SetActive (true);
 			listCanvasGroup.interactable = true;
@@ -297,17 +305,17 @@ namespace MaterialUI
 
 			if (hasShadows)
 			{
-				shadowsControl.isEnabled = true;
-				shadowsControl.SetShadows(contractedShadowLevel);
+				shadowConfig.isEnabled = true;
+				shadowConfig.SetShadows(contractedShadowLevel);
 			}
 
 			currentColor = thisImage.color;
 
-			inkBlotsControl.enabled = true;
+			rippleConfig.enabled = true;
 			thisButton.interactable = true;
 
-			shadowsControl.shadowNormalSize = contractedNormalShadow;
-			shadowsControl.shadowHoverSize = contractedHoverShadow;
+			shadowConfig.shadowNormalSize = contractedNormalShadow;
+			shadowConfig.shadowActiveSize = contractedHoverShadow;
 
 			listCanvasGroup.interactable = false;
 			listCanvasGroup.blocksRaycasts = false;
@@ -356,13 +364,8 @@ namespace MaterialUI
 					tempVec3.y = Anim.Quint.Out(originalPos, expandedPos, animDeltaTime, animationDuration);
 					thisRect.position = tempVec3;
 
-					// Color list
-					tempColor = thisImage.color;
-					tempColor.r = Anim.Quint.Out(currentColor.r, expandedListColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.Out(currentColor.g, expandedListColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.Out(currentColor.b, expandedListColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.Out(currentColor.a, expandedListColor.a, animDeltaTime, animationDuration);
-					thisImage.color = tempColor;
+					// AnimColor list
+					thisImage.color = Anim.Quint.Out(currentColor, expandedListColor, animDeltaTime, animationDuration); ;
 
 					// Fade text in
 					listCanvasGroup.alpha = Anim.Quint.In (listCanvasAlpha, 1f, animDeltaTime, animationDuration);
@@ -420,13 +423,8 @@ namespace MaterialUI
 					tempVec3.y = Anim.Quint.InOut(expandedPos, originalPos, animDeltaTime, animationDuration);
 					thisRect.position = tempVec3;
 
-					// Color list
-					tempColor = thisImage.color;
-					tempColor.r = Anim.Quint.In(currentColor.r, contractedListColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.In(currentColor.g, contractedListColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.In(currentColor.b, contractedListColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.In(currentColor.a, contractedListColor.a, animDeltaTime, animationDuration);
-					thisImage.color = tempColor;
+					// AnimColor list
+					thisImage.color = Anim.Quint.In(currentColor, contractedListColor, animDeltaTime, animationDuration);
 
 					// Fade text out
 					listCanvasGroup.alpha = Anim.Quint.Out (listCanvasAlpha, 0f, animDeltaTime, animationDuration * 0.6f);

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 4
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12323, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 20 - Text and Detail
+  m_EditorClassIdentifier: 
+  m_Presets:
+  - m_Name: 12% - Dividers
+    m_Color: {r: 1, g: 1, b: 1, a: .121568628}
+  - m_Name: 30% - Disabled/Hint Text
+    m_Color: {r: 1, g: 1, b: 1, a: .301960796}
+  - m_Name: 70% - Secondary Text
+    m_Color: {r: 1, g: 1, b: 1, a: .701960802}
+  - m_Name: 100% - Text/Icons
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Name: 12% - Dividers
+    m_Color: {r: 0, g: 0, b: 0, a: .121568628}
+  - m_Name: 26% - Disabled/Hint Text
+    m_Color: {r: 0, g: 0, b: 0, a: .262745112}
+  - m_Name: 54% - Second Text/Icons
+    m_Color: {r: 0, g: 0, b: 0, a: .541176498}
+  - m_Name: 87% - Text
+    m_Color: {r: 0, g: 0, b: 0, a: .874509811}

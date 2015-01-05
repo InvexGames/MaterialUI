@@ -15,7 +15,7 @@ using System.Collections;
 namespace MaterialUI
 {
     [CustomEditor(typeof(ShadowGen))]
-    class ShadowSnapEditor : Editor {
+    class ShadowGenEditor : Editor {
 
 	    public override void OnInspectorGUI()
 	    {

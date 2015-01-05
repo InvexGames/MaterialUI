@@ -17,20 +17,6 @@ namespace MaterialUI
 	public class RadioConfig : MonoBehaviour
 	{
 		[HideInInspector()]
-		public bool inkBlotEnabled;
-		[HideInInspector()]
-		public bool autoInkBlotSize;
-		[HideInInspector()]
-		public int inkBlotSize;
-		[HideInInspector()]
-		public float inkBlotSpeed;
-		[HideInInspector()]
-		public Color inkBlotColor;
-		[HideInInspector()]
-		public float inkBlotStartAlpha;
-		[HideInInspector()]
-		public float inkBlotEndAlpha;
-		[HideInInspector()]
 		public float animationDuration;
 
 		Color radioOffColor;
@@ -53,7 +39,7 @@ namespace MaterialUI
 		
 		int state;
 		
-		InkBlotsControl inkBlotsControl;
+		RippleConfig _rippleConfig;
 		Toggle toggle;
 		
 		public void Setup ()
@@ -62,37 +48,7 @@ namespace MaterialUI
 			toggle.group = gameObject.GetComponentInParent<ToggleGroup> ();
 
 			dotRect = dotImage.gameObject.GetComponent<RectTransform> ();
-
-			if (inkBlotEnabled)
-			{
-				inkBlotsControl = gameObject.AddComponent<InkBlotsControl> ();
-
-				if (autoInkBlotSize)
-				{
-					Rect tempRect = gameObject.GetComponent<RectTransform> ().rect;
-
-					if (tempRect.width > tempRect.height)
-					{
-						inkBlotSize = Mathf.RoundToInt(tempRect.width / 1.5f);
-					}
-					else
-					{
-						inkBlotSize =  Mathf.RoundToInt(tempRect.height / 1.5f);
-					}
-				}
-				
-				inkBlotsControl.inkBlotSize = inkBlotSize;
-				inkBlotsControl.inkBlotSpeed = inkBlotSpeed;
-				inkBlotsControl.inkBlotColor = inkBlotColor;
-				inkBlotsControl.inkBlotStartAlpha = inkBlotStartAlpha;
-				inkBlotsControl.inkBlotEndAlpha = inkBlotEndAlpha;
-				inkBlotsControl.moveTowardCenter = true;
-
-				radioOffColor = dotImage.color;
-
-				InkBlots.InitializeInkBlots ();
-				ToggleCheckbox (false);
-			}
+			radioOffColor = dotImage.color;
 		}
 
 		public void ToggleCheckbox (bool state)
