@@ -11,7 +11,6 @@
 //	Credit to the 'EventTrigger' script at http://www.cratesmith.com/archives/221, which helped immensely
 
 using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;

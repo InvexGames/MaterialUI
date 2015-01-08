@@ -13,8 +13,10 @@ using System.Collections;
 using UnityEditor;
 
 [ExecuteInEditMode]
-public static class MaterialUIObjects
+public static class MaterialUIEditorTools
 {
+	private static string versionInfo = "MaterialUI v0.2.0";
+
 	static GameObject theThing;
 	static GameObject selectedObject;
 	static bool notCanvas;
@@ -60,6 +62,10 @@ public static class MaterialUIObjects
 		theThing.transform.SetParent(selectedObject.transform);
 		theThing.transform.localPosition = Vector3.zero;
 		theThing.transform.localScale = new Vector3 (1, 1, 1);
+		if (theThing.name == "Background")
+		{
+			theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+		}
 		Selection.activeGameObject = theThing;
 	}
 
@@ -125,6 +131,14 @@ public static class MaterialUIObjects
 	{
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Round Button - Small - Raised.prefab", typeof(GameObject))) as GameObject;
 		SetupObject ("Small Round Button - Raised");
+	}
+
+	[MenuItem("GameObject/Create Other/MaterialUI/Spinny Arrow Button", false, 7)]
+	[MenuItem("MaterialUI/Create/Spinny Arrow Button", false, 7)]
+	static void CreateSpinnyArrowButton()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/SpinnyArrow Button.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Spinny Arrow Button");
 	}
 	
 	[MenuItem("GameObject/Create Other/MaterialUI/Checkbox", false, 8)]
@@ -217,15 +231,15 @@ public static class MaterialUIObjects
 		}
 	}
 
-	[MenuItem("Component/MaterialUI/Shadow Snapper")]
-	[MenuItem("MaterialUI/Add Component/Shadow Snapper")]
-	static void AddShadowSnap()
+	[MenuItem("Component/MaterialUI/Rect Transform Snapper")]
+	[MenuItem("MaterialUI/Add Component/Rect Transform Snapper")]
+	static void AddRectTransformSnap()
 	{
 		if (selectedObject)
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("ShadowSnap");
+				selectedObject.AddComponent("RectTransformSnap");
 			}
 		}
 	}
@@ -273,5 +287,23 @@ public static class MaterialUIObjects
 				selectedObject.AddComponent("EZAnim");
 			}
 		}
+	}
+
+	[MenuItem("MaterialUI/Report a Bug - Request a Feature")]
+	static void Feedback()
+	{
+		Application.OpenURL("https://github.com/InvexGames/MaterialUI/issues");
+	}
+
+	[MenuItem("MaterialUI/Wiki")]
+	static void Wiki()
+	{
+		Application.OpenURL("https://github.com/InvexGames/MaterialUI/wiki");
+	}
+
+	[MenuItem("MaterialUI/Check for Update (current v0.1.52)")]
+	static void About()
+	{
+		Application.OpenURL("https://github.com/InvexGames/MaterialUI");
 	}
 }

@@ -212,6 +212,8 @@ namespace MaterialUI
 			listCanvasGroup.blocksRaycasts = false;
 
 			listCanvasGroup.alpha = 0f;
+
+			listLayer.GetComponent<Image>().color = expandedListColor;
 		}
 
 		public void ExpandList ()
@@ -365,7 +367,7 @@ namespace MaterialUI
 					thisRect.position = tempVec3;
 
 					// AnimColor list
-					thisImage.color = Anim.Quint.Out(currentColor, expandedListColor, animDeltaTime, animationDuration); ;
+					thisImage.color = Anim.Quint.Out(currentColor, expandedListColor, animDeltaTime, animationDuration);
 
 					// Fade text in
 					listCanvasGroup.alpha = Anim.Quint.In (listCanvasAlpha, 1f, animDeltaTime, animationDuration);
@@ -427,7 +429,7 @@ namespace MaterialUI
 					thisImage.color = Anim.Quint.In(currentColor, contractedListColor, animDeltaTime, animationDuration);
 
 					// Fade text out
-					listCanvasGroup.alpha = Anim.Quint.Out (listCanvasAlpha, 0f, animDeltaTime, animationDuration * 0.6f);
+					listCanvasGroup.alpha = Anim.Quint.Out(listCanvasAlpha, 0f, animDeltaTime, animationDuration * 0.6f);
 
 					// Fade scrollbar out
 					if (scrollbarEnabled)

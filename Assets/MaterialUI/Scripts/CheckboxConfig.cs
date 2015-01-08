@@ -19,13 +19,14 @@ namespace MaterialUI
 		public float animationDuration = 0.3f;
 
 		public Image frameImage;
+		public Image circleImage;
 		public Image boxImage;
 		public Image checkImage;
 
-		RectTransform boxRect;
+		RectTransform circleRect;
 		RectTransform checkRect;
 
-		float boxSize;
+		float circleSize;
 		float checkSize;
 
 		float animStartTime;
@@ -40,7 +41,7 @@ namespace MaterialUI
 		void Start ()
 		{
 			toggle = gameObject.GetComponent <Toggle> ();
-			boxRect = boxImage.gameObject.GetComponent<RectTransform> ();
+			circleRect = circleImage.gameObject.GetComponent<RectTransform> ();
 			checkRect = checkImage.gameObject.GetComponent<RectTransform> ();
 		}
 		
@@ -57,16 +58,16 @@ namespace MaterialUI
 			boxImage.enabled = true;
 			checkImage.enabled = true;
 			checkSize = checkRect.localScale.x;
-			boxSize = boxRect.localScale.x;
+			circleSize = circleRect.localScale.x;
 			animStartTime = Time.realtimeSinceStartup;
 			state = 1;
 		}
 
 		void TurnOff ()
 		{
-			frameImage.enabled = true;
+			circleImage.enabled = true;
 			checkSize = checkRect.localScale.x;
-			boxSize = boxRect.localScale.x;
+			circleSize = circleRect.localScale.x;
 			animStartTime = Time.realtimeSinceStartup;
 			state = 2;
 		}
@@ -79,11 +80,11 @@ namespace MaterialUI
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					tempVec3 = boxRect.localScale;
-					tempVec3.x = Anim.Quint.Out(boxSize, 1f, animDeltaTime, animationDuration);
+					tempVec3 = circleRect.localScale;
+					tempVec3.x = Anim.Quint.Out(circleSize, 0f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
-					tempVec3.z = 1f;
-					boxRect.localScale = tempVec3;
+					tempVec3.z = 0f;
+					circleRect.localScale = tempVec3;
 
 					tempVec3 = checkRect.localScale;
 					tempVec3.x = Anim.Quint.In(checkSize, 1f, animDeltaTime, animationDuration);
@@ -93,21 +94,21 @@ namespace MaterialUI
 				}
 				else
 				{
-					boxRect.localScale = new Vector3 (1f, 1f, 1f);
+					circleRect.localScale = new Vector3 (0f, 0f, 0f);
 					checkRect.localScale = new Vector3 (1f, 1f, 1f);
 
-					frameImage.enabled = false;
+					circleImage.enabled = false;
 				}
 			}
 			else if (state == 2)    // Turning off
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					tempVec3 = boxRect.localScale;
-					tempVec3.x = Anim.Quint.In(boxSize, 0f, animDeltaTime, animationDuration);
+					tempVec3 = circleRect.localScale;
+					tempVec3.x = Anim.Quint.In(circleSize, 1f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
 					tempVec3.z = 1f;
-					boxRect.localScale = tempVec3;
+					circleRect.localScale = tempVec3;
 					
 					tempVec3 = checkRect.localScale;
 					tempVec3.x = Anim.Quint.Out(checkSize, 0f, animDeltaTime, animationDuration);
@@ -117,11 +118,11 @@ namespace MaterialUI
 				}
 				else
 				{
-					boxRect.localScale = Vector3.zero;
+					circleRect.localScale = new Vector3(1f, 1f, 1f); ;
 					checkRect.localScale = Vector3.zero;
-					
-					boxImage.enabled = false;
+
 					checkImage.enabled = false;
+					boxImage.enabled = false; 
 				}
 			}
 		}

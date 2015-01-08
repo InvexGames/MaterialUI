@@ -73,7 +73,7 @@ namespace MaterialUI
 						popup.localScale = tempVec3;
 
 						tempVec3 = popup.localPosition;
-						tempVec3.y = Anim.Quint.Out(currentPos, 12f, animDeltaTime, animationDuration);
+						tempVec3.y = Anim.Quint.Out(currentPos, 16f, animDeltaTime, animationDuration);
 						popup.localPosition = tempVec3;
 					}
 				}

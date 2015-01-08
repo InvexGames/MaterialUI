@@ -14,111 +14,57 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-[ExecuteInEditMode()]
-public class ShadowSnap : MonoBehaviour
+namespace MaterialUI
 {
-	public RectTransform targetRect;
-	RectTransform thisRect;
-
-	public float xPadding = 0f;
-	public float yPadding = 0f;
-
-	public bool percentage;
-
-	public float xPercent;
-	public float yPercent;
-
-	public bool snapEveryFrame;
-
-	Rect lastRect;
-	Vector3 lastPos;
-	
-	void Start ()
+	[ExecuteInEditMode()]
+	public class ShadowSnap : MonoBehaviour
 	{
-		if (!thisRect)
-		{
-			thisRect = gameObject.GetComponent<RectTransform> ();
-		}
-	}
+		public RectTransform targetRect;
+		private RectTransform thisRect;
 
-	void LateUpdate ()
-	{
-		if (targetRect)
+		public float xPadding = 0f;
+		public float yPadding = 0f;
+
+		public bool percentage;
+
+		public float xPercent;
+		public float yPercent;
+
+		private Rect lastRect;
+		private Vector3 lastPos;
+
+		private void Start()
 		{
 			if (!thisRect)
 			{
-				thisRect = gameObject.GetComponent<RectTransform> ();
+				thisRect = gameObject.GetComponent<RectTransform>();
 			}
-
-			thisRect.position = targetRect.position;
-				
-			Vector2 tempVect2;
-
-			if (percentage)
-			{
-				tempVect2.x = targetRect.rect.width * xPercent * 0.01f;
-				tempVect2.y = targetRect.rect.height * yPercent * 0.01f;
-			}
-			else
-			{
-				tempVect2.x = targetRect.rect.width + xPadding;
-				tempVect2.y = targetRect.rect.height + yPadding;
-			}
-
-			thisRect.sizeDelta = tempVect2;
-
-			lastPos = targetRect.position;
-			lastRect = targetRect.rect;
 		}
-		else
+
+		private void LateUpdate()
 		{
-			Debug.Log("No target rect! Please attach one.");
-		}
-	}
+			if (targetRect)
+			{
+				if (!thisRect)
+				{
+					thisRect = gameObject.GetComponent<RectTransform>();
+				}
 
-	public void Snap ()
-	{
-		if (targetRect)
-		{
-			if (!thisRect)
-			{
-				thisRect = gameObject.GetComponent<RectTransform> ();
-			}
-			
-			thisRect.position = targetRect.position;
-				
-			Vector2 tempVect2;
+				Vector2 tempVect2;
 
-			if (percentage)
-			{
-				tempVect2.x = targetRect.rect.width * xPercent * 0.01f;
-				tempVect2.y = targetRect.rect.height * yPercent * 0.01f;
-			}
-			else
-			{
-				tempVect2.x = targetRect.rect.width + xPadding;
-				tempVect2.y = targetRect.rect.height + yPadding;
-			}
+				if (percentage)
+				{
+					tempVect2.x = targetRect.sizeDelta.x*xPercent * 0.01f;
+					tempVect2.y = targetRect.sizeDelta.y*yPercent * 0.01f;
+				}
+				else
+				{
+					tempVect2.x = targetRect.sizeDelta.x + xPadding;
+					tempVect2.y = targetRect.sizeDelta.y + yPadding;
+				}
 
-			if (percentage)
-			{
-				tempVect2.x = targetRect.sizeDelta.x*xPercent*0.01f;
-				tempVect2.y = targetRect.sizeDelta.y*yPercent*0.01f;
+				thisRect.sizeDelta = tempVect2;
 			}
-			else
-			{
-				tempVect2.x = targetRect.sizeDelta.x + xPadding;
-				tempVect2.y = targetRect.sizeDelta.y + yPadding;
-			}
-
-			thisRect.sizeDelta = tempVect2;
-				
-				lastPos = targetRect.position;
-				lastRect = targetRect.rect;
-		}
-		else
-		{
-			Debug.Log("No target rect! Please attach one.");
 		}
 	}
 }
