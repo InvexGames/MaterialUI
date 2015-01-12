@@ -16,13 +16,13 @@ namespace MaterialUI
 {
 	public class RadioGroupConfig : MonoBehaviour
 	{
-		public bool inkBlotEnabled = true;
-		public bool autoInkBlotSize = true;
-		public int inkBlotSize;
-		public float inkBlotSpeed = 8f;
-		public Color inkBlotColor = Color.black;
-		public float inkBlotStartAlpha = 0.5f;
-		public float inkBlotEndAlpha = 0.3f;
+		public bool rippleEnabled = true;
+		public bool autoRippleSize = true;
+		public int rippleSize;
+		public float rippleSpeed = 8f;
+		public Color rippleColor = Color.black;
+		public float rippleStartAlpha = 0.5f;
+		public float rippleEndAlpha = 0.3f;
 		public float animationDuration = 0.5f;
 		public Color radioOnColor = Color.black;
 
@@ -34,6 +34,18 @@ namespace MaterialUI
 				config.radioOnColor = radioOnColor;
 
 				config.Setup ();
+			}
+
+			foreach (RippleConfig config in gameObject.GetComponentsInChildren<RippleConfig>())
+			{
+				config.autoSize = autoRippleSize;
+				config.rippleSize = rippleSize;
+				config.rippleSpeed = rippleSpeed;
+				config.rippleColor = rippleColor;
+				config.rippleStartAlpha = rippleStartAlpha;
+				config.rippleEndAlpha = rippleEndAlpha;
+
+				config.Refresh();
 			}
 		}
 	}

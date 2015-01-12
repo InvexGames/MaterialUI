@@ -38,11 +38,16 @@ namespace MaterialUI
 		int state;
 		Toggle toggle;
 
+		private bool hasRipple;
+
 		void Start ()
 		{
 			toggle = gameObject.GetComponent <Toggle> ();
 			circleRect = circleImage.gameObject.GetComponent<RectTransform> ();
 			checkRect = checkImage.gameObject.GetComponent<RectTransform> ();
+
+			if (gameObject.GetComponent<RippleConfig>())
+				hasRipple = true;
 		}
 		
 		public void ToggleCheckbox (bool state)
@@ -55,6 +60,7 @@ namespace MaterialUI
 
 		void TurnOn ()
 		{
+			circleImage.enabled = true;
 			boxImage.enabled = true;
 			checkImage.enabled = true;
 			checkSize = checkRect.localScale.x;
@@ -83,7 +89,7 @@ namespace MaterialUI
 					tempVec3 = circleRect.localScale;
 					tempVec3.x = Anim.Quint.Out(circleSize, 0f, animDeltaTime, animationDuration);
 					tempVec3.y = tempVec3.x;
-					tempVec3.z = 0f;
+					tempVec3.z = 1f;
 					circleRect.localScale = tempVec3;
 
 					tempVec3 = checkRect.localScale;
@@ -98,6 +104,7 @@ namespace MaterialUI
 					checkRect.localScale = new Vector3 (1f, 1f, 1f);
 
 					circleImage.enabled = false;
+					state = 0;
 				}
 			}
 			else if (state == 2)    // Turning off
@@ -122,7 +129,9 @@ namespace MaterialUI
 					checkRect.localScale = Vector3.zero;
 
 					checkImage.enabled = false;
-					boxImage.enabled = false; 
+					boxImage.enabled = false;
+					circleImage.enabled = false;
+					state = 0;
 				}
 			}
 		}

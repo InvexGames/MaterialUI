@@ -54,7 +54,6 @@ namespace MaterialUI
 		{
 			List<string> componentStrings = new List<string>();
 			Component[] components = targetGameObject.GetComponents<Component>();
-			bool isExcluded;
 			foreach(Component component in components)
 			{
 				componentStrings.Add(component.GetType().Name);
@@ -198,7 +197,7 @@ namespace MaterialUI
 
 			EditorGUILayout.Space();
 
-			tempStruct.targetGameObject = (GameObject)EditorGUILayout.ObjectField("Target GameObject", tempStruct.targetGameObject, typeof(GameObject));
+			tempStruct.targetGameObject = (GameObject)EditorGUILayout.ObjectField("Target GameObject", tempStruct.targetGameObject, typeof(GameObject), true);
 
 			if (tempStruct.targetGameObject)
 				tempStruct.targetComponent = StringPopup("Target Component", compStrings, tempStruct.targetComponent);
@@ -347,7 +346,7 @@ namespace MaterialUI
 
 					tempStruct.methodTargetGameObject =
 						(GameObject)
-							EditorGUILayout.ObjectField("Target GameObject", tempStruct.methodTargetGameObject, typeof (GameObject));
+							EditorGUILayout.ObjectField("Target GameObject", tempStruct.methodTargetGameObject, typeof (GameObject), true);
 
 					if (tempStruct.methodTargetGameObject)
 						tempStruct.methodTargetComponent = StringPopup("Target Component", endMethodCompStrings,

@@ -18,17 +18,6 @@ namespace MaterialUI
 	[CustomEditor(typeof(RippleConfig))]
 	class RippleConfigEditor : Editor
 	{
-		void OnEnable()
-		{
-			RippleConfig rippleConfig;
-			GameObject gameObject;
-
-			rippleConfig = (RippleConfig)target;
-			if (rippleConfig != null)
-			{
-				gameObject = (GameObject) rippleConfig.gameObject;
-			}
-		}
 		public override void OnInspectorGUI()
 		{
 			DrawDefaultInspector();

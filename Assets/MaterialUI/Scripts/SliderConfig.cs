@@ -17,7 +17,6 @@ namespace MaterialUI
 {
 	public class SliderConfig : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	{
-		public Color textColor;
 		public bool textHasDecimal;
 		public bool hasPopup = true;
 		public float animationDuration = 0.5f;
@@ -45,7 +44,6 @@ namespace MaterialUI
 			slider = gameObject.GetComponent<Slider> ();
 
 			popup.gameObject.GetComponent<Image> ().color = handle.gameObject.GetComponent<Image> ().color;
-			popupText.color = textColor;
 
 			UpdateText ();
 		}

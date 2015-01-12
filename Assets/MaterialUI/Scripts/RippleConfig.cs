@@ -67,6 +67,11 @@ namespace MaterialUI
 		private float animDeltaTime;
 		private float animationDuration;
 
+		public void Setup()
+		{
+			thisImage = gameObject.GetComponent<Image>();
+		}
+
 		void Awake()
 		{
 			RippleControl.Initialize();

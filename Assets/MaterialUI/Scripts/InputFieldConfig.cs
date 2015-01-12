@@ -18,7 +18,6 @@ namespace MaterialUI
 	public class InputFieldConfig : MonoBehaviour, ISelectHandler, IDeselectHandler
 	{	
 		public Color activeColor = Color.black;
-		[Tooltip("Works best when Input Field is set to 'Multi Line'")]
 		bool dynamicHeight;
 		bool selected;
 		public float animationDuration = 0.75f;
@@ -79,8 +78,6 @@ namespace MaterialUI
 			{
 				dynamicHeight = true;
 			}
-
-//			inputField.
 		}
 
 		public void OnSelect (BaseEventData data)

@@ -15,7 +15,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public static class MaterialUIEditorTools
 {
-	private static string versionInfo = "MaterialUI v0.2.0";
+	private const string versionInfo = "v0.2_RC1";
 
 	static GameObject theThing;
 	static GameObject selectedObject;
@@ -62,10 +62,6 @@ public static class MaterialUIEditorTools
 		theThing.transform.SetParent(selectedObject.transform);
 		theThing.transform.localPosition = Vector3.zero;
 		theThing.transform.localScale = new Vector3 (1, 1, 1);
-		if (theThing.name == "Background")
-		{
-			theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
-		}
 		Selection.activeGameObject = theThing;
 	}
 
@@ -75,6 +71,7 @@ public static class MaterialUIEditorTools
 	{
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Background.prefab", typeof(GameObject))) as GameObject;
 		SetupObject("Background");
+		theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 	}
 
 	[MenuItem("GameObject/Create Other/MaterialUI/Panel", false, 1)]
@@ -197,12 +194,51 @@ public static class MaterialUIEditorTools
 		SetupObject("Selection Box - Flat");
 	}
 
-	[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box", false, 13)]
-	[MenuItem("MaterialUI/Create/Dialog Box", false, 13)]
-	static void CreateDialogBox()
+	[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box - Normal", false, 13)]
+	[MenuItem("MaterialUI/Create/Dialog Box - Normal", false, 13)]
+	static void CreateDialogBoxNormal()
 	{
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/DialogBox - Normal.prefab", typeof(GameObject))) as GameObject;
-		SetupObject("Dialog Box");
+		SetupObject("Dialog Box - Normal");
+		theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+	}
+
+	[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box - Scroll", false, 13)]
+	[MenuItem("MaterialUI/Create/Dialog Box - Scroll", false, 13)]
+	static void CreateDialogBoxScroll()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/DialogBox - Scroll.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Dialog Box - Scroll");
+		theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+	}
+
+	[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box - Simple", false, 13)]
+	[MenuItem("MaterialUI/Create/Dialog Box - Simple", false, 13)]
+	static void CreateDialogBoxSimple()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/DialogBox - Simple.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Dialog Box - Simple");
+		theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+	}
+
+	[MenuItem("GameObject/Create Other/MaterialUI/Nav Drawer", false, 13)]
+	[MenuItem("MaterialUI/Create/Nav Drawer", false, 13)]
+	static void CreateNavDrawer()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Nav Drawer.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Nav Drawer");
+		theThing.GetComponent<RectTransform>().sizeDelta = new Vector2(theThing.GetComponent<RectTransform>().sizeDelta.x, 8f);
+		theThing.GetComponent<RectTransform>().anchoredPosition = new Vector2(-theThing.GetComponent<RectTransform>().sizeDelta.x / 2f, 0f);
+	}
+
+	[MenuItem("GameObject/Create Other/MaterialUI/App Bar", false, 13)]
+	[MenuItem("MaterialUI/Create/App Bar", false, 13)]
+	static void CreateAppBar()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/App Bar.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("App Bar");
+		theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+		theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 	}
 
 	[MenuItem("Component/MaterialUI/Ripple Config")]
@@ -301,9 +337,9 @@ public static class MaterialUIEditorTools
 		Application.OpenURL("https://github.com/InvexGames/MaterialUI/wiki");
 	}
 
-	[MenuItem("MaterialUI/Check for Update (current v0.1.52)")]
+	[MenuItem("MaterialUI/Check for Update (current " + versionInfo + ")")]
 	static void About()
 	{
-		Application.OpenURL("https://github.com/InvexGames/MaterialUI");
+		Application.OpenURL("https://github.com/InvexGames/MaterialUI/releases");
 	}
 }
