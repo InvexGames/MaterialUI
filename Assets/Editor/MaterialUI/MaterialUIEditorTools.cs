@@ -15,7 +15,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public static class MaterialUIEditorTools
 {
-	private const string versionInfo = "v0.2_RC1";
+	private const string versionInfo = "v0.2_RC2";
 
 	static GameObject theThing;
 	static GameObject selectedObject;
@@ -237,6 +237,16 @@ public static class MaterialUIEditorTools
 	{
 		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/App Bar.prefab", typeof(GameObject))) as GameObject;
 		SetupObject("App Bar");
+		theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+		theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+	}
+
+	[MenuItem("GameObject/Create Other/MaterialUI/Screen", false, 13)]
+	[MenuItem("MaterialUI/Create/Screen", false, 13)]
+	static void CreateScreen()
+	{
+		theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Screen.prefab", typeof(GameObject))) as GameObject;
+		SetupObject("Screen");
 		theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 		theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 	}
