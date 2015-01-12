@@ -16,14 +16,18 @@ namespace MaterialUI
 	public class ScreenManager : MonoBehaviour
 	{
 		public ScreenConfig[] screens;
-		private int currentScreen;
+		[HideInInspector]
+		public ScreenConfig currentScreen;
+		[HideInInspector]
+		public ScreenConfig lastScreen;
 
 		public void Set(int index)
 		{
 			screens[index].transform.SetAsLastSibling();
 
-			screens[index].Show(screens[currentScreen]);
-			currentScreen = index;
+			screens[index].Show(currentScreen);
+			lastScreen = currentScreen;
+			currentScreen = screens[index];
 		}
 
 		public void Set(string name)
@@ -36,6 +40,15 @@ namespace MaterialUI
 					return;
 				}
 			}
+		}
+
+		public void Back()
+		{
+			lastScreen.ShowWithoutTransition();
+			currentScreen.Hide();
+			ScreenConfig temp = currentScreen;
+			currentScreen = lastScreen;
+			lastScreen = temp;
 		}
 	}
 }
