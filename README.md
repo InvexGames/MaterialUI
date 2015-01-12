@@ -1,4 +1,4 @@
-![MaterialUI](http://i.imgur.com/3CAgmbL.png)
+![MaterialUI](http://i.imgur.com/zSjViTb.png)
 ==========
 MaterialUI is a UI kit for Unity that follows Google's official Material Design guidelines.
 
