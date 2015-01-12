@@ -1,8 +1,8 @@
 ![MaterialUI](http://i.imgur.com/zSjViTb.png)
+![MaterialUI Demo](http://giant.gfycat.com/CreepyEmotionalElk.gif)
+
 ==========
 MaterialUI is a UI kit for Unity that follows Google's official Material Design guidelines.
-
-![MaterialUI Demo](http://giant.gfycat.com/CreepyEmotionalElk.gif)
 
 [Get started](https://github.com/InvexGames/MaterialUI/wiki/Getting-Started) with MaterialUI!
 
