@@ -1,5 +1,7 @@
-![MaterialUI](http://i.imgur.com/wiLINv2.png) ![MaterialUI Demo](https://raw.githubusercontent.com/InvexGames/MaterialUI/master/Demos/Showcase.gif)
+**MaterialUI**
 ==========
+![MaterialUI Demo](https://raw.githubusercontent.com/InvexGames/MaterialUI/master/Demos/Showcase.gif)
+
 MaterialUI is a UI kit for Unity that follows Google's official Material Design guidelines.
 
 [Get started](https://github.com/InvexGames/MaterialUI/wiki/Getting-Started) with MaterialUI!
