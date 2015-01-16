@@ -101,6 +101,8 @@ namespace MaterialUI
 		[HideInInspector]
 		private float rippleSize;
 
+		[SerializeField] private Vector2 thisScreenSize;
+
 		private ScreenConfig hideScreen;
 
 		void Awake()
@@ -108,8 +110,6 @@ namespace MaterialUI
 			theRectTransform = screenSpace.GetComponent<RectTransform>();
 			theCanvasGroup = screenSpace.GetComponent<CanvasGroup>();
 			screenDimensions = new Vector2(Screen.width, Screen.height);
-
-			theRectTransform.sizeDelta = screenDimensions;
 		}
 
 		public void ShowWithoutTransition()
@@ -128,6 +128,8 @@ namespace MaterialUI
 			if (transitionInType == TransitionType.RippleMask)
 			{
 				currentRipple.position = Input.mousePosition;
+
+				thisScreenSize = new Vector2(theRectTransform.rect.width, theRectTransform.rect.height);
 
 				theRectTransform.anchoredPosition = Vector2.zero;
 				theRectTransform.localScale = new Vector3(1f, 1f, 1f);
@@ -176,6 +178,8 @@ namespace MaterialUI
 		{
 			if (transitionOutType == TransitionType.RippleMask)
 			{
+				thisScreenSize = new Vector2(theRectTransform.rect.width, theRectTransform.rect.height);
+
 				currentRipple.position = Input.mousePosition;
 				rippleSize = screenDimensions.x + screenDimensions.y;
 				currentRipple.sizeDelta = new Vector2(rippleSize, rippleSize);
@@ -226,6 +230,9 @@ namespace MaterialUI
 						tempVector2.x = Anim.Quint.In(0f, rippleSize, animDeltaTime, animationDuration);
 						tempVector2.y = tempVector2.x;
 						currentRipple.sizeDelta = tempVector2;
+
+						theRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, thisScreenSize.x);
+						theRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, thisScreenSize.y);
 					}
 					else
 					{
@@ -257,6 +264,9 @@ namespace MaterialUI
 					{
 						theRectTransform.SetParent(transform);
 						theRectTransform.position = screenSpacePosition;
+
+						theRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, thisScreenSize.x);
+						theRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, thisScreenSize.y);
 					}
 					else
 					{
@@ -295,6 +305,9 @@ namespace MaterialUI
 						tempVector2.x = Anim.Quint.In(rippleSize, 0f, animDeltaTime, animationDuration);
 						tempVector2.y = tempVector2.x;
 						currentRipple.sizeDelta = tempVector2;
+
+						theRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, thisScreenSize.x);
+						theRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, thisScreenSize.y);
 					}
 					else
 					{

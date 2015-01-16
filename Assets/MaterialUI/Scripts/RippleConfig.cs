@@ -101,6 +101,7 @@ namespace MaterialUI
 					worldSpace = true;
 				}
 			}
+
 			Refresh();
 		}
 

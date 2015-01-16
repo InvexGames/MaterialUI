@@ -15,7 +15,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public static class MaterialUIEditorTools
 {
-	private const string versionInfo = "v0.2.0";
+	private const string versionInfo = "v0.2.1";
 
 	static GameObject theThing;
 	static GameObject selectedObject;
@@ -255,6 +255,8 @@ public static class MaterialUIEditorTools
 	[MenuItem("MaterialUI/Add Component/Ripple Config")]
 	static void AddRippleConfig()
 	{
+		selectedObject = Selection.activeGameObject;
+		
 		if (selectedObject)
 		{
 			if (GameObject.Find(selectedObject.name))
@@ -268,6 +270,8 @@ public static class MaterialUIEditorTools
 	[MenuItem("MaterialUI/Add Component/Shadow Config")]
 	static void AddShadowConfig()
 	{
+		selectedObject = Selection.activeGameObject;
+		
 		if (selectedObject)
 		{
 			if (GameObject.Find(selectedObject.name))
@@ -281,6 +285,8 @@ public static class MaterialUIEditorTools
 	[MenuItem("MaterialUI/Add Component/Rect Transform Snapper")]
 	static void AddRectTransformSnap()
 	{
+		selectedObject = Selection.activeGameObject;
+		
 		if (selectedObject)
 		{
 			if (GameObject.Find(selectedObject.name))
