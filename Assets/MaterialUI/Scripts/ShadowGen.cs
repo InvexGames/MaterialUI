@@ -289,7 +289,7 @@ namespace MaterialUI
             MaterialGlobals.shadowSpriteBorder = new Vector4(sourceSprite.border.w + imagePadding, sourceSprite.border.x + imagePadding, sourceSprite.border.y + imagePadding, sourceSprite.border.z + imagePadding);
 
             //		Saves destTex as a PNG in /Assets/MaterialUI/GeneratedShadows
-            System.IO.File.WriteAllBytes(textureFileName, bytes);
+			System.IO.File.WriteAllBytes(textureFileName, bytes);
 
             //		Safety net for the importer
             AssetDatabase.Refresh();

@@ -108,7 +108,7 @@ namespace MaterialUI
 			scrollbarCanvasGroup = scrollbar.GetComponent<CanvasGroup> ();
 			shadowConfig = gameObject.GetComponent<ShadowConfig>();
 
-			listItemPrefab = Resources.Load ("MaterialUI/SelectionListItem", typeof(GameObject)) as GameObject;
+			listItemPrefab = Resources.Load ("SelectionListItem", typeof(GameObject)) as GameObject;
 			Setup ();
 		}
 

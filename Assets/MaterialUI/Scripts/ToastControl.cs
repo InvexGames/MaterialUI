@@ -26,7 +26,7 @@ namespace MaterialUI
 
 		public static void InitToastSystem (Canvas theCanvas)
 		{
-			theToast = Resources.Load ("MaterialUI/Toast", typeof(GameObject)) as GameObject;
+			theToast = Resources.Load ("Toast", typeof(GameObject)) as GameObject;
 			parentCanvas = theCanvas;
 		}
 

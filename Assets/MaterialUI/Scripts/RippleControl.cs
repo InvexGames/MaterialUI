@@ -21,7 +21,7 @@ namespace MaterialUI
 		public static void Initialize ()
 		{
 			if (ripplePrefab == null)
-				ripplePrefab = Resources.Load ("MaterialUI/InkBlot", typeof(GameObject)) as GameObject;
+				ripplePrefab = Resources.Load ("InkBlot", typeof(GameObject)) as GameObject;
 		}
 
 		public static GameObject MakeRipple (Vector3 position, Transform parent, int size, Color color)
