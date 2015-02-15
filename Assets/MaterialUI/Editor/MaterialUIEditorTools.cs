@@ -15,7 +15,7 @@ using UnityEditor;
 [ExecuteInEditMode]
 public static class MaterialUIEditorTools
 {
-	private const string versionInfo = "v0.2.1";
+	private const string versionInfo = "v0.2.2";
 
 	static GameObject theThing;
 	static GameObject selectedObject;
