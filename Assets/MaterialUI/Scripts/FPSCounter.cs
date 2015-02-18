@@ -42,7 +42,7 @@ namespace MaterialUI
 				theText.text = "" + (accum/frames).ToString("f2") + " FPS";
 				if ((accum/frames) < 1)
 				{
-					guiText.text = "";
+					theText.text = "";
 				}
 				timeleft = updateInterval;
 				accum = 0f;
