@@ -261,7 +261,7 @@ public static class MaterialUIEditorTools
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("RippleConfig");
+				selectedObject.AddComponent<RippleConfig>();
 			}
 		}
 	}
@@ -276,7 +276,7 @@ public static class MaterialUIEditorTools
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("ShadowConfig");
+				selectedObject.AddComponent<ShadowConfig>();
 			}
 		}
 	}
@@ -291,7 +291,7 @@ public static class MaterialUIEditorTools
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("RectTransformSnap");
+				selectedObject.AddComponent<RectTransformSnap>();
 			}
 		}
 	}
@@ -306,7 +306,7 @@ public static class MaterialUIEditorTools
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("ShadowGen");
+				selectedObject.AddComponent<ShadowGen>();
 			}
 		}
 	}
@@ -321,7 +321,7 @@ public static class MaterialUIEditorTools
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("Toaster");
+				selectedObject.AddComponent<Toaster>();
 			}
 		}
 	}
@@ -336,7 +336,7 @@ public static class MaterialUIEditorTools
 		{
 			if (GameObject.Find(selectedObject.name))
 			{
-				selectedObject.AddComponent("EZAnim");
+				selectedObject.AddComponent<EZAnim>();
 			}
 		}
 	}

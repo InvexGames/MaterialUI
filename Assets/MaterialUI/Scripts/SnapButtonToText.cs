@@ -47,13 +47,13 @@ public class SnapButtonToText : MonoBehaviour
 
 	IEnumerator SnapEnum()
 	{
-		layoutGroup = buttonLayerRect.gameObject.AddComponent("HorizontalLayoutGroup") as HorizontalLayoutGroup;
+		layoutGroup = buttonLayerRect.gameObject.AddComponent<HorizontalLayoutGroup>() as HorizontalLayoutGroup;
 		layoutGroup.padding = new RectOffset (16, 16, 9, 7);
 		layoutGroup.childAlignment = TextAnchor.MiddleCenter;
 		layoutGroup.childForceExpandWidth = true;
 		layoutGroup.childForceExpandHeight = true;
 
-		sizeFitter = buttonLayerRect.gameObject.AddComponent ("ContentSizeFitter") as ContentSizeFitter;
+		sizeFitter = buttonLayerRect.gameObject.AddComponent<ContentSizeFitter>() as ContentSizeFitter;
 		sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
 		sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
