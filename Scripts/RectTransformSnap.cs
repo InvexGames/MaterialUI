@@ -14,70 +14,73 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-[ExecuteInEditMode()]
-public class RectTransformSnap : MonoBehaviour
+namespace MaterialUI
 {
-	public RectTransform targetRect;
-	RectTransform thisRect;
-
-	public float xPadding = 0f;
-	public float yPadding = 0f;
-
-	public bool percentage;
-
-	public float xPercent;
-	public float yPercent;
-
-	public bool snapEveryFrame;
-	public bool sizeOnly;
-
-	Rect lastRect;
-	Vector3 lastPos;
-	
-	void Start ()
+	[ExecuteInEditMode()]
+	public class RectTransformSnap : MonoBehaviour
 	{
-		if (!thisRect)
-		{
-			thisRect = gameObject.GetComponent<RectTransform> ();
-		}
-	}
+		public RectTransform targetRect;
+		private RectTransform thisRect;
 
-	void LateUpdate ()
-	{
-		if (snapEveryFrame)
-			Snap();
-	}
+		public float xPadding = 0f;
+		public float yPadding = 0f;
 
-	public void Snap ()
-	{
-		if (targetRect)
+		public bool percentage;
+
+		public float xPercent;
+		public float yPercent;
+
+		public bool snapEveryFrame;
+		public bool sizeOnly;
+
+		private Rect lastRect;
+		private Vector3 lastPos;
+
+		private void Start()
 		{
 			if (!thisRect)
 			{
-				thisRect = gameObject.GetComponent<RectTransform> ();
+				thisRect = gameObject.GetComponent<RectTransform>();
 			}
+		}
 
-			if (!sizeOnly)
-				thisRect.position = targetRect.position;
-				
-			Vector2 tempVect2;
+		private void LateUpdate()
+		{
+			if (snapEveryFrame)
+				Snap();
+		}
 
-			if (percentage)
+		public void Snap()
+		{
+			if (targetRect)
 			{
-				tempVect2.x = targetRect.sizeDelta.x*xPercent*0.01f;
-				tempVect2.y = targetRect.sizeDelta.y*yPercent*0.01f;
+				if (!thisRect)
+				{
+					thisRect = gameObject.GetComponent<RectTransform>();
+				}
+
+				if (!sizeOnly)
+					thisRect.position = targetRect.position;
+
+				Vector2 tempVect2;
+
+				if (percentage)
+				{
+					tempVect2.x = targetRect.sizeDelta.x*xPercent*0.01f;
+					tempVect2.y = targetRect.sizeDelta.y*yPercent*0.01f;
+				}
+				else
+				{
+					tempVect2.x = targetRect.sizeDelta.x + xPadding;
+					tempVect2.y = targetRect.sizeDelta.y + yPadding;
+				}
+
+				thisRect.sizeDelta = tempVect2;
 			}
 			else
 			{
-				tempVect2.x = targetRect.sizeDelta.x + xPadding;
-				tempVect2.y = targetRect.sizeDelta.y + yPadding;
+				Debug.Log("No target rect! Please attach one.");
 			}
-
-			thisRect.sizeDelta = tempVect2;
-		}
-		else
-		{
-			Debug.Log("No target rect! Please attach one.");
 		}
 	}
 }

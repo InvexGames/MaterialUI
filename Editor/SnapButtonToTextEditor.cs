@@ -12,18 +12,22 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-[CustomEditor(typeof(SnapButtonToText))]
+namespace MaterialUI
+{
+	[CustomEditor(typeof (SnapButtonToText))]
 
-class SnapButtonToTextEditor : Editor {
-
-	public override void OnInspectorGUI()
+	internal class SnapButtonToTextEditor : Editor
 	{
-		DrawDefaultInspector();
-		SnapButtonToText myTarget = (SnapButtonToText)target;
 
-		if (GUILayout.Button("Snap"))
+		public override void OnInspectorGUI()
 		{
-			myTarget.GetComponent<SnapButtonToText>().Snap();
+			DrawDefaultInspector();
+			SnapButtonToText myTarget = (SnapButtonToText) target;
+
+			if (GUILayout.Button("Snap"))
+			{
+				myTarget.GetComponent<SnapButtonToText>().Snap();
+			}
 		}
 	}
 }

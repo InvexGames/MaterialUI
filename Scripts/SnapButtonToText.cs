@@ -12,87 +12,89 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-[ExecuteInEditMode()]
-public class SnapButtonToText : MonoBehaviour
+namespace MaterialUI
 {
-	[Header("Works best if you save, then press a key")]
-	public RectTransform buttonLayerRect;
-	public RectTransform textRect;
-
-	public bool defaultButtonPadding = true;
-	public Vector2 customPadding;
-
-	RectTransform thisRect;
-	HorizontalLayoutGroup layoutGroup;
-	ContentSizeFitter sizeFitter;
-
-	bool isChanged;
-	
-	public void Snap ()
+	[ExecuteInEditMode()]
+	public class SnapButtonToText : MonoBehaviour
 	{
-		if (!thisRect)
+		[Header("Works best if you save, then press a key")] public RectTransform buttonLayerRect;
+		public RectTransform textRect;
+
+		public bool defaultButtonPadding = true;
+		public Vector2 customPadding;
+
+		private RectTransform thisRect;
+		private HorizontalLayoutGroup layoutGroup;
+		private ContentSizeFitter sizeFitter;
+
+		private bool isChanged;
+
+		public void Snap()
 		{
-			thisRect = gameObject.GetComponent<RectTransform> ();
+			if (!thisRect)
+			{
+				thisRect = gameObject.GetComponent<RectTransform>();
+			}
+
+			if (thisRect && buttonLayerRect && textRect)
+			{
+				StartCoroutine(SnapEnum());
+			}
+			else
+			{
+				Debug.Log("Missing components!");
+			}
 		}
 
-		if (thisRect && buttonLayerRect && textRect)
+		private IEnumerator SnapEnum()
 		{
-			StartCoroutine(SnapEnum());
+			layoutGroup = buttonLayerRect.gameObject.AddComponent<HorizontalLayoutGroup>() as HorizontalLayoutGroup;
+			layoutGroup.padding = new RectOffset(16, 16, 9, 7);
+			layoutGroup.childAlignment = TextAnchor.MiddleCenter;
+			layoutGroup.childForceExpandWidth = true;
+			layoutGroup.childForceExpandHeight = true;
+
+			sizeFitter = buttonLayerRect.gameObject.AddComponent<ContentSizeFitter>() as ContentSizeFitter;
+			sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+			sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+			yield return new WaitForEndOfFrame();
+
+			DestroyImmediate(layoutGroup);
+
+			DestroyImmediate(sizeFitter);
+
+			Vector2 buttonSize = new Vector2(textRect.sizeDelta.x + 24, textRect.sizeDelta.y + 16);
+
+			if (buttonSize.x < 88f)
+				buttonSize.x = 88f;
+
+			if (defaultButtonPadding)
+				thisRect.sizeDelta = new Vector2(buttonSize.x + 32, buttonSize.y + 32);
+			else
+				thisRect.sizeDelta = new Vector2(buttonSize.x + customPadding.x, buttonSize.y + customPadding.y);
+
+			buttonLayerRect.sizeDelta = buttonSize;
+
+			textRect.anchorMin = new Vector2(0.5f, 0.5f);
+			textRect.anchorMax = new Vector2(0.5f, 0.5f);
+			textRect.anchoredPosition = new Vector2(0f, 0f);
+
+			buttonLayerRect.anchorMin = new Vector2(0.5f, 0.5f);
+			buttonLayerRect.anchorMax = new Vector2(0.5f, 0.5f);
+			buttonLayerRect.anchoredPosition = new Vector2(0f, 0f);
+
+			StartCoroutine(DelayedSnap());
 		}
-		else
+
+		private IEnumerator DelayedSnap()
 		{
-			Debug.Log("Missing components!");
+			yield return new WaitForEndOfFrame();
+
+			buttonLayerRect.anchorMin = new Vector2(0f, 0f);
+			buttonLayerRect.anchorMax = new Vector2(1f, 1f);
+
+			buttonLayerRect.sizeDelta = new Vector2(-32f, -32f);
 		}
-	}
-
-	IEnumerator SnapEnum()
-	{
-		layoutGroup = buttonLayerRect.gameObject.AddComponent<HorizontalLayoutGroup>() as HorizontalLayoutGroup;
-		layoutGroup.padding = new RectOffset (16, 16, 9, 7);
-		layoutGroup.childAlignment = TextAnchor.MiddleCenter;
-		layoutGroup.childForceExpandWidth = true;
-		layoutGroup.childForceExpandHeight = true;
-
-		sizeFitter = buttonLayerRect.gameObject.AddComponent<ContentSizeFitter>() as ContentSizeFitter;
-		sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-		sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-		yield return new WaitForEndOfFrame();
-
-		DestroyImmediate (layoutGroup);
-
-		DestroyImmediate (sizeFitter);
-
-		Vector2 buttonSize = new Vector2 (textRect.sizeDelta.x + 24, textRect.sizeDelta.y + 16);
-
-		if (buttonSize.x < 88f)
-			buttonSize.x = 88f;
-
-		if (defaultButtonPadding)
-			thisRect.sizeDelta = new Vector2 (buttonSize.x + 32, buttonSize.y + 32);
-		else
-			thisRect.sizeDelta = new Vector2 (buttonSize.x + customPadding.x, buttonSize.y + customPadding.y);
-
-		buttonLayerRect.sizeDelta = buttonSize;
-
-		textRect.anchorMin = new Vector2 (0.5f, 0.5f);
-		textRect.anchorMax = new Vector2 (0.5f, 0.5f);
-		textRect.anchoredPosition = new Vector2 (0f, 0f);
-
-		buttonLayerRect.anchorMin = new Vector2 (0.5f, 0.5f);
-		buttonLayerRect.anchorMax = new Vector2 (0.5f, 0.5f);
-		buttonLayerRect.anchoredPosition = new Vector2 (0f, 0f);
-
-		StartCoroutine (DelayedSnap());
-	}
-
-	IEnumerator DelayedSnap()
-	{
-		yield return new WaitForEndOfFrame();
-
-		buttonLayerRect.anchorMin = new Vector2 (0f, 0f);
-		buttonLayerRect.anchorMax = new Vector2 (1f, 1f);
-
-		buttonLayerRect.sizeDelta = new Vector2(-32f, -32f);
 	}
 }

@@ -2,21 +2,23 @@
 using System.Collections;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
-public class ColorCopier : MonoBehaviour
+namespace MaterialUI
 {
-	[SerializeField]
-	public Image sourceImage;
-	private Image thisImage;
-
-	void OnEnable ()
+	[ExecuteInEditMode]
+	public class ColorCopier : MonoBehaviour
 	{
-		thisImage = gameObject.GetComponent<Image>();
-	}
+		[SerializeField] public Image sourceImage;
+		private Image thisImage;
 
-	void Update ()
-	{
-		if (sourceImage && thisImage)
-			thisImage.color = sourceImage.color;
+		private void OnEnable()
+		{
+			thisImage = gameObject.GetComponent<Image>();
+		}
+
+		private void Update()
+		{
+			if (sourceImage && thisImage)
+				thisImage.color = sourceImage.color;
+		}
 	}
 }
