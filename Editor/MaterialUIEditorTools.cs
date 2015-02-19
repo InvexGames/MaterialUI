@@ -17,7 +17,7 @@ namespace MaterialUI
 	[ExecuteInEditMode]
 	public static class MaterialUIEditorTools
 	{
-		private const string versionInfo = "v0.2.2";
+		private const string versionInfo = "v0.2.3";
 
 		private static GameObject theThing;
 		private static GameObject selectedObject;
