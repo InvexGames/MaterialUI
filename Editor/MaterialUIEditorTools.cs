@@ -70,7 +70,7 @@ namespace MaterialUI
 			Selection.activeGameObject = theThing;
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Background", false, 1)]
+		[MenuItem("GameObject/MaterialUI/Background", false, 1)]
 		[MenuItem("MaterialUI/Create/Background", false, 1)]
 		private static void CreateBackground()
 		{
@@ -81,7 +81,7 @@ namespace MaterialUI
 			theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Panel", false, 1)]
+		[MenuItem("GameObject/MaterialUI/Panel", false, 1)]
 		[MenuItem("MaterialUI/Create/Panel", false, 1)]
 		private static void CreatePanel()
 		{
@@ -91,8 +91,8 @@ namespace MaterialUI
 			SetupObject("Panel");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Button - Flat", false, 2)]
-		[MenuItem("MaterialUI/Create/Button - Flat", false, 2)]
+		[MenuItem("GameObject/MaterialUI/Button/Text - Flat", false, 2)]
+		[MenuItem("MaterialUI/Create/Button/Text - Flat", false, 2)]
 		private static void CreateButtonFlat()
 		{
 			theThing =
@@ -101,8 +101,8 @@ namespace MaterialUI
 			SetupObject("Button - Flat");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Button - Raised", false, 3)]
-		[MenuItem("MaterialUI/Create/Button - Raised", false, 3)]
+		[MenuItem("GameObject/MaterialUI/Button/Text - Raised", false, 3)]
+		[MenuItem("MaterialUI/Create/Button/Text - Raised", false, 3)]
 		private static void CreateButtonRaised()
 		{
 			theThing =
@@ -111,8 +111,8 @@ namespace MaterialUI
 			SetupObject("Button - Raised");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Round Button - Flat", false, 4)]
-		[MenuItem("MaterialUI/Create/Round Button - Flat", false, 4)]
+		[MenuItem("GameObject/MaterialUI/Button/Round - Flat", false, 4)]
+		[MenuItem("MaterialUI/Create/Button/Round - Flat", false, 4)]
 		private static void CreateRoundButtonFlat()
 		{
 			theThing =
@@ -121,8 +121,8 @@ namespace MaterialUI
 			SetupObject("Round Button - Flat");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Round Button - Raised", false, 5)]
-		[MenuItem("MaterialUI/Create/Round Button - Raised", false, 5)]
+		[MenuItem("GameObject/MaterialUI/Button/Round - Raised", false, 5)]
+		[MenuItem("MaterialUI/Create/Button/Round - Raised", false, 5)]
 		private static void CreateRoundButtonRaised()
 		{
 			theThing =
@@ -132,8 +132,8 @@ namespace MaterialUI
 			SetupObject("Round Button - Raised");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Small Round Button - Flat", false, 6)]
-		[MenuItem("MaterialUI/Create/Small Round Button - Flat", false, 6)]
+		[MenuItem("GameObject/MaterialUI/Button/Small Round - Flat", false, 6)]
+		[MenuItem("MaterialUI/Create/Button/Small Round - Flat", false, 6)]
 		private static void CreateSmallRoundButtonFlat()
 		{
 			theThing =
@@ -143,8 +143,8 @@ namespace MaterialUI
 			SetupObject("Small Round Button - Flat");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Small Round Button - Raised", false, 7)]
-		[MenuItem("MaterialUI/Create/Small Round Button - Raised", false, 7)]
+		[MenuItem("GameObject/MaterialUI/Button/Small Round - Raised", false, 7)]
+		[MenuItem("MaterialUI/Create/Button/Small Round - Raised", false, 7)]
 		private static void CreateSmallRoundButtonRaised()
 		{
 			theThing =
@@ -154,7 +154,7 @@ namespace MaterialUI
 			SetupObject("Small Round Button - Raised");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Spinny Arrow Button", false, 7)]
+		[MenuItem("GameObject/MaterialUI/Spinny Arrow Button", false, 7)]
 		[MenuItem("MaterialUI/Create/Spinny Arrow Button", false, 7)]
 		private static void CreateSpinnyArrowButton()
 		{
@@ -164,7 +164,7 @@ namespace MaterialUI
 			SetupObject("Spinny Arrow Button");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Checkbox", false, 8)]
+		[MenuItem("GameObject/MaterialUI/Checkbox", false, 8)]
 		[MenuItem("MaterialUI/Create/Checkbox", false, 8)]
 		private static void CreateCheckbox()
 		{
@@ -174,7 +174,7 @@ namespace MaterialUI
 			SetupObject("Checkbox");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Radio Buttons", false, 9)]
+		[MenuItem("GameObject/MaterialUI/Radio Buttons", false, 9)]
 		[MenuItem("MaterialUI/Create/Radio Buttons", false, 9)]
 		private static void CreateRadioButtons()
 		{
@@ -184,7 +184,7 @@ namespace MaterialUI
 			SetupObject("Radio Buttons");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Switch", false, 10)]
+		[MenuItem("GameObject/MaterialUI/Switch", false, 10)]
 		[MenuItem("MaterialUI/Create/Switch", false, 10)]
 		private static void CreateSwitch()
 		{
@@ -194,7 +194,7 @@ namespace MaterialUI
 			SetupObject("Switch");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Text Input", false, 11)]
+		[MenuItem("GameObject/MaterialUI/Text Input", false, 11)]
 		[MenuItem("MaterialUI/Create/Text Input", false, 11)]
 		private static void CreateTextInput()
 		{
@@ -204,7 +204,7 @@ namespace MaterialUI
 			SetupObject("Text Input");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Slider", false, 12)]
+		[MenuItem("GameObject/MaterialUI/Slider", false, 12)]
 		[MenuItem("MaterialUI/Create/Slider", false, 12)]
 		private static void CreateSlider()
 		{
@@ -214,8 +214,8 @@ namespace MaterialUI
 			SetupObject("Slider");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Selection Box", false, 13)]
-		[MenuItem("MaterialUI/Create/Selection Box", false, 13)]
+		[MenuItem("GameObject/MaterialUI/Selection Box/Raised", false, 13)]
+		[MenuItem("MaterialUI/Create/Selection Box/Raised", false, 13)]
 		private static void CreateSelectionBox()
 		{
 			theThing =
@@ -224,8 +224,8 @@ namespace MaterialUI
 			SetupObject("Selection Box");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Selection Box - Flat", false, 13)]
-		[MenuItem("MaterialUI/Create/Selection Box - Flat", false, 13)]
+		[MenuItem("GameObject/MaterialUI/Selection Box/Flat", false, 13)]
+		[MenuItem("MaterialUI/Create/Selection Box/Flat", false, 13)]
 		private static void CreateSelectionBoxFlat()
 		{
 			theThing =
@@ -234,8 +234,8 @@ namespace MaterialUI
 			SetupObject("Selection Box - Flat");
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box - Normal", false, 13)]
-		[MenuItem("MaterialUI/Create/Dialog Box - Normal", false, 13)]
+		[MenuItem("GameObject/MaterialUI/Dialog Box/Normal", false, 13)]
+		[MenuItem("MaterialUI/Create/Dialog Box/Normal", false, 13)]
 		private static void CreateDialogBoxNormal()
 		{
 			theThing =
@@ -245,8 +245,8 @@ namespace MaterialUI
 			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box - Scroll", false, 13)]
-		[MenuItem("MaterialUI/Create/Dialog Box - Scroll", false, 13)]
+		[MenuItem("GameObject/MaterialUI/Dialog Box/Scroll", false, 13)]
+		[MenuItem("MaterialUI/Create/Dialog Box/Scroll", false, 13)]
 		private static void CreateDialogBoxScroll()
 		{
 			theThing =
@@ -256,8 +256,8 @@ namespace MaterialUI
 			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Dialog Box - Simple", false, 13)]
-		[MenuItem("MaterialUI/Create/Dialog Box - Simple", false, 13)]
+		[MenuItem("GameObject/MaterialUI/Dialog Box/Simple", false, 13)]
+		[MenuItem("MaterialUI/Create/Dialog Box/Simple", false, 13)]
 		private static void CreateDialogBoxSimple()
 		{
 			theThing =
@@ -267,7 +267,25 @@ namespace MaterialUI
 			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Nav Drawer", false, 13)]
+		[MenuItem("GameObject/MaterialUI/Divider/Light", false, 13)]
+		[MenuItem("MaterialUI/Create/Divider/Light", false, 13)]
+		private static void CreateDividerLight()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Divider - Light.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("Divider");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/Divider/Dark", false, 13)]
+		[MenuItem("MaterialUI/Create/Divider/Dark", false, 13)]
+		private static void CreateDividerDark()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Divider - Dark.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("Divider");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/Nav Drawer", false, 13)]
 		[MenuItem("MaterialUI/Create/Nav Drawer", false, 13)]
 		private static void CreateNavDrawer()
 		{
@@ -280,7 +298,7 @@ namespace MaterialUI
 				new Vector2(-theThing.GetComponent<RectTransform>().sizeDelta.x/2f, 0f);
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/App Bar", false, 13)]
+		[MenuItem("GameObject/MaterialUI/App Bar", false, 13)]
 		[MenuItem("MaterialUI/Create/App Bar", false, 13)]
 		private static void CreateAppBar()
 		{
@@ -292,7 +310,7 @@ namespace MaterialUI
 			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		}
 
-		[MenuItem("GameObject/Create Other/MaterialUI/Screen", false, 13)]
+		[MenuItem("GameObject/MaterialUI/Screen", false, 13)]
 		[MenuItem("MaterialUI/Create/Screen", false, 13)]
 		private static void CreateScreen()
 		{
