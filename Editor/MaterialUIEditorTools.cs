@@ -90,7 +90,17 @@ namespace MaterialUI
 					typeof (GameObject))) as GameObject;
 			SetupObject("Panel");
 		}
-
+		
+		[MenuItem("GameObject/MaterialUI/Text", false, 1)]
+		[MenuItem("MaterialUI/Create/Text", false, 1)]
+		private static void CreateText()
+		{
+			theThing =
+				GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Text.prefab",
+				                                                     typeof (GameObject))) as GameObject;
+			SetupObject("Text");
+		}
+		
 		[MenuItem("GameObject/MaterialUI/Button/Text - Flat", false, 2)]
 		[MenuItem("MaterialUI/Create/Button/Text - Flat", false, 2)]
 		private static void CreateButtonFlat()
