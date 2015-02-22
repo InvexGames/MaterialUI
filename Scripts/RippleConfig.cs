@@ -8,6 +8,7 @@
 //	See the License for the specific language governing permissions and
 //	limitations under the License.
 
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -31,6 +32,9 @@ namespace MaterialUI
 		public float rippleStartAlpha = 0.5f;
 		[HideInInspector()]
 		public float rippleEndAlpha = 0.3f;
+
+		private LayoutGroup[] groups;
+		private bool[] groupBools;
 
 		[SerializeField()]
 		public enum HighlightActive
@@ -66,6 +70,8 @@ namespace MaterialUI
 		private float animStartTime;
 		private float animDeltaTime;
 		private float animationDuration;
+
+		private Rect sizeReferenceRect;
 
 		public void Setup()
 		{
@@ -109,20 +115,16 @@ namespace MaterialUI
 		{
 			if (autoSize)
 			{
-				Rect tempRect = gameObject.GetComponent<RectTransform>().rect;
-
-				if (tempRect.width > tempRect.height)
-				{
-					rippleSize = Mathf.RoundToInt(tempRect.width);
-				}
-				else
-				{
-					rippleSize = Mathf.RoundToInt(tempRect.height);
-				}
-
-				rippleSize = Mathf.RoundToInt(rippleSize * sizePercentage / 100f);
+				StartCoroutine(GetRect());
 			}
+			else
+			{
+				RefreshContinued();
+			}
+		}
 
+		private void RefreshContinued()
+		{
 			normalColor = thisImage.color;
 
 			if (highlightWhen != HighlightActive.Never)
@@ -292,6 +294,49 @@ namespace MaterialUI
 			{
 				thisMask.enabled = false;
 			}
+		}
+
+		IEnumerator GetRect()
+		{
+			Rect tempRect2 = gameObject.GetComponent<RectTransform>().rect;
+
+			if (tempRect2 != new Rect(0, 0, 0, 0))
+			{
+				sizeReferenceRect = tempRect2;
+			}
+			else
+			{
+				GameObject sizeRefGameObject = new GameObject("SizeRefGameObject");
+				RectTransform sizeRefRectTransform = sizeRefGameObject.AddComponent<RectTransform>();
+
+				sizeRefRectTransform.SetParent(transform);
+
+				sizeRefRectTransform.localScale = new Vector3(1f, 1f, 1f);
+				sizeRefRectTransform.anchorMax = new Vector2(1f, 1f);
+				sizeRefRectTransform.anchorMin = new Vector2(0f, 0f);
+
+				sizeRefRectTransform.anchoredPosition = Vector2.zero;
+				sizeRefRectTransform.sizeDelta = Vector2.zero;
+
+				yield return new WaitForEndOfFrame();
+
+				sizeReferenceRect = sizeRefRectTransform.rect;
+
+				Destroy(sizeRefGameObject);
+			}
+
+			if (sizeReferenceRect.width > sizeReferenceRect.height)
+			{
+				rippleSize = Mathf.RoundToInt(sizeReferenceRect.width);
+			}
+			else
+			{
+				rippleSize = Mathf.RoundToInt(sizeReferenceRect.height);
+			}
+
+			rippleSize = Mathf.RoundToInt(rippleSize * sizePercentage / 100f);
+
+			RefreshContinued();
 		}
 	}
 }
