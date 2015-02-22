@@ -20,13 +20,6 @@ namespace MaterialUI
 	[CustomEditor(typeof(ScreenConfig))]
 	class ScreenConfigEditor : Editor
 	{
-		private ScreenConfig screenConfig;
-
-		void OnEnable()
-		{
-			screenConfig = (ScreenConfig) target;
-		}
-
 		public override void OnInspectorGUI()
 		{
 			DrawDefaultInspector();
