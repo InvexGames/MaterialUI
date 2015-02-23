@@ -167,7 +167,7 @@ MonoBehaviour:
   rippleColor: {r: 0, g: 0, b: 0, a: 1}
   rippleStartAlpha: .5
   rippleEndAlpha: .300000012
-  highlightWhen: 2
+  highlightWhen: 0
   moveTowardCenter: 0
   toggleMask: 1
 --- !u!222 &22200000

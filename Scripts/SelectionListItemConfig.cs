@@ -24,6 +24,7 @@ namespace MaterialUI
 		public void Setup()
 		{
 			selectionBoxConfig = gameObject.GetComponentInParent<SelectionBoxConfig> ();
+			gameObject.GetComponent<RippleConfig>().highlightWhen = RippleConfig.HighlightActive.Never;
 		}
 
 		public void SelectMe ()

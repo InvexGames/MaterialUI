@@ -652,7 +652,7 @@ MonoBehaviour:
   xPercent: 0
   yPercent: 0
   snapEveryFrame: 1
-  sizeOnly: 1
+  sizeOnly: 0
 --- !u!114 &11491916
 MonoBehaviour:
   m_ObjectHideFlags: 1

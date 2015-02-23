@@ -500,7 +500,7 @@ MonoBehaviour:
   rippleStartAlpha: .5
   rippleEndAlpha: .300000012
   highlightWhen: 2
-  moveTowardCenter: 0
+  moveTowardCenter: 1
   toggleMask: 1
   highlightLastSelected: 1
   animationDuration: .75
@@ -509,6 +509,13 @@ MonoBehaviour:
   listItems:
   - A
   - B
+  - C
+  - C
+  - C
+  - C
+  - C
+  - C
+  - C
   - C
   autoMaxItemHeight: 1
   percentageOfScreenHeight: 50
@@ -560,7 +567,7 @@ MonoBehaviour:
   xPercent: 0
   yPercent: 0
   snapEveryFrame: 1
-  sizeOnly: 1
+  sizeOnly: 0
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -819,7 +826,7 @@ MonoBehaviour:
   rippleStartAlpha: .5
   rippleEndAlpha: .300000012
   highlightWhen: 2
-  moveTowardCenter: 0
+  moveTowardCenter: 1
   toggleMask: 1
 --- !u!114 &11419432
 MonoBehaviour:

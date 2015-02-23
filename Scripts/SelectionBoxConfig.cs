@@ -480,7 +480,7 @@ namespace MaterialUI
 				ItemPicked (selectionId);
 
 			if (highlightLastSelected)
-				listItemObjects [selectionId].GetComponent<Image> ().color = highlightColor;
+				listItemObjects[selectionId].GetComponent<Image>().color = highlightColor;
 		}
 	}
 }
