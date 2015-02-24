@@ -10,7 +10,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace MaterialUI
 {
@@ -45,7 +44,7 @@ namespace MaterialUI
 			checkRect = checkImage.gameObject.GetComponent<RectTransform> ();
 		}
 		
-		public void ToggleCheckbox (bool state)
+		public void ToggleCheckbox ()
 		{
 			if (toggle.isOn)
 				TurnOn ();

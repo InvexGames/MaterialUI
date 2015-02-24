@@ -258,7 +258,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11400016}
         m_MethodName: ToggleCheckbox
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 3f3334054a355be4997dc733db9c3958, type: 3}
   sprite2x: {fileID: 21300000, guid: b4fee573fce156040baa97f840d90109, type: 3}
   sprite4x: {fileID: 21300000, guid: 49517d041509e374cbfca199e9db1fee, type: 3}
 --- !u!114 &11408886
@@ -438,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 037023c4f8a42184a9180eda840a70bd, type: 3}
   sprite2x: {fileID: 21300000, guid: f7880f10fa85bc440984e254c63542b6, type: 3}
   sprite4x: {fileID: 21300000, guid: d313ee217ff7aa2459b625a2894971e4, type: 3}
 --- !u!114 &11482864
@@ -451,6 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 7e2968e4581f9204eba630f1163762ee, type: 3}
   sprite2x: {fileID: 21300000, guid: ae059a119c1ce364295449a3085f6940, type: 3}
   sprite4x: {fileID: 21300000, guid: 3376eb52cbd2198428788217ec2bcb55, type: 3}
 --- !u!114 &11482866
@@ -464,6 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 00b1538cb3b6db54c89ad47f5f4ac856, type: 3}
   sprite2x: {fileID: 21300000, guid: ce8c4df3bbabfca49ac9601e2052f291, type: 3}
   sprite4x: {fileID: 21300000, guid: e5242b3823abc37439c68571f3e6bbda, type: 3}
 --- !u!114 &11482868
@@ -477,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 04da04de09fee1047a18fa84f27304c6, type: 3}
   sprite2x: {fileID: 21300000, guid: bdbaa7061fa4c0c45b66ed26ff53f425, type: 3}
   sprite4x: {fileID: 21300000, guid: cf5842f9e2ade1d4390407eb2b4f627c, type: 3}
 --- !u!114 &11492974

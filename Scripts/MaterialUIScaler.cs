@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace MaterialUI
 {
+	[ExecuteInEditMode]
 	public class MaterialUIScaler : MonoBehaviour
 	{
 		private Vector2 referenceResolution;
@@ -13,9 +14,10 @@ namespace MaterialUI
 
 		private CanvasScaler scaler;
 
-		public void Awake()
+		public void Update()
 		{
-			scaler = gameObject.GetComponent<CanvasScaler>();
+			if (!scaler)
+				scaler = gameObject.GetComponent<CanvasScaler>();
 
 			if (scaler.uiScaleMode == CanvasScaler.ScaleMode.ScaleWithScreenSize)
 			{

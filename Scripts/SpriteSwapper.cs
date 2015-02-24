@@ -14,8 +14,10 @@ using UnityEngine.UI;
 
 namespace MaterialUI
 {
+	[ExecuteInEditMode]
     public class SpriteSwapper : MonoBehaviour
-    {
+	{
+		public Sprite sprite1x;
         public Sprite sprite2x;
         public Sprite sprite4x;
 		
@@ -23,17 +25,32 @@ namespace MaterialUI
 		
         private Image thisImage;
 
-	    void Start()
-	    {
-		    if (gameObject.GetComponentInParent<MaterialUIScaler>())
-		    {
-				thisImage = gameObject.GetComponent<Image>();
-				scaleFactor = gameObject.GetComponentInParent<MaterialUIScaler>().scaleFactor;
+		private MaterialUIScaler scaler;
 
-				if (scaleFactor > 2f && sprite4x)
-					thisImage.sprite = sprite4x;
-				else if (scaleFactor > 1f && sprite2x)
-					thisImage.sprite = sprite2x;
+	    void Update()
+	    {
+		    if (!thisImage)
+		    {
+			    thisImage = gameObject.GetComponent<Image>();
+		    }
+
+		    if (!scaler)
+		    {
+			    scaler = gameObject.GetComponentInParent<Canvas>().GetComponent<MaterialUIScaler>();
+		    }
+		    else
+		    {
+				if (scaleFactor != scaler.scaleFactor)
+			    {
+					scaleFactor = scaler.scaleFactor;
+
+				    if (scaleFactor > 2f && sprite4x)
+					    thisImage.sprite = sprite4x;
+				    else if (scaleFactor > 1f && sprite2x)
+					    thisImage.sprite = sprite2x;
+				    else
+					    thisImage.sprite = sprite1x;
+			    }
 		    }
         }
     }

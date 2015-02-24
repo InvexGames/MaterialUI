@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 925c7f2845cf85045b592992d742cf0b, type: 3}
   sprite2x: {fileID: 21300000, guid: d8e46d9c4c30ef643a82a2f3d6c9795f, type: 3}
   sprite4x: {fileID: 21300000, guid: b4a65d9f0ce3a7748aaf7dbfc8aaf25c, type: 3}
 --- !u!114 &11491888
@@ -877,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 925c7f2845cf85045b592992d742cf0b, type: 3}
   sprite2x: {fileID: 21300000, guid: d8e46d9c4c30ef643a82a2f3d6c9795f, type: 3}
   sprite4x: {fileID: 21300000, guid: b4a65d9f0ce3a7748aaf7dbfc8aaf25c, type: 3}
 --- !u!114 &11491938
@@ -890,6 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9242969ab3c7f540abb7f880e43c080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1x: {fileID: 21300000, guid: 9478457eb99b8af4e8e44baf26f8b723, type: 3}
   sprite2x: {fileID: 21300000, guid: f05a90943d342434b82539b491c49ba2, type: 3}
   sprite4x: {fileID: 21300000, guid: 56732ed5fceed894a98b4e4dce748fae, type: 3}
 --- !u!222 &22223572
