@@ -510,13 +510,6 @@ MonoBehaviour:
   - A
   - B
   - C
-  - C
-  - C
-  - C
-  - C
-  - C
-  - C
-  - C
   autoMaxItemHeight: 1
   percentageOfScreenHeight: 50
   manualMaxItemHeight: 0
