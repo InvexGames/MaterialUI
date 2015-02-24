@@ -17,8 +17,6 @@ namespace MaterialUI
 	[ExecuteInEditMode]
 	public static class MaterialUIEditorTools
 	{
-		private const string versionInfo = "v0.2.4";
-
 		private static GameObject theThing;
 		private static GameObject selectedObject;
 		private static bool notCanvas;
@@ -434,7 +432,7 @@ namespace MaterialUI
 			Application.OpenURL("https://github.com/InvexGames/MaterialUI/wiki");
 		}
 
-		[MenuItem("MaterialUI/Check for Update (current " + versionInfo + ")")]
+		[MenuItem("MaterialUI/Check for Update (current v" + MaterialUIVersion.currentVersion + ")")]
 		private static void About()
 		{
 			Application.OpenURL("https://github.com/InvexGames/MaterialUI/releases");
