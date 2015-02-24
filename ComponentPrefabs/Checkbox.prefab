@@ -69,8 +69,8 @@ GameObject:
   - 222: {fileID: 22200006}
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400014}
-  - 114: {fileID: 11400016}
   - 114: {fileID: 11454830}
+  - 114: {fileID: 11400016}
   - 114: {fileID: 11482862}
   - 114: {fileID: 11442952}
   m_Layer: 5

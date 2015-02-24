@@ -7,6 +7,7 @@ namespace MaterialUI
 	[ExecuteInEditMode]
 	public class ColorCopier : MonoBehaviour
 	{
+		[Header("Image color driven by Source Image color")]
 		[SerializeField] public Image sourceImage;
 		private Image thisImage;
 

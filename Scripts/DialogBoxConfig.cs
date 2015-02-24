@@ -17,15 +17,16 @@ namespace MaterialUI
 {
 	public class DialogBoxConfig : MonoBehaviour
 	{
-		public bool darkenBackground = true;
-		public bool canClickBackgroundToCancel = false;
+		[SerializeField] private bool darkenBackground = true;
+		[SerializeField] private bool canClickBackgroundToCancel = false;
+		[SerializeField] private float animationDuration = 1f;
+		[Space(10)]
+		public RectTransform backgroundTransform;
 
 		private int state;
 		private float animStartTime;
 		private float animDeltaTime;
-		private float animationDuration = 1f;
 		private RectTransform thisRectTransform;
-		public RectTransform backgroundTransform;
 		private CanvasGroup backroundCanvasGroup;
 
 		private float currentBackgroundAlpha;

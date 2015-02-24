@@ -17,22 +17,18 @@ namespace MaterialUI
 	{
 		public float animationDuration = 0.3f;
 
-		public Image frameImage;
-		public Image circleImage;
-		public Image boxImage;
-		public Image checkImage;
+		[SerializeField] private Image circleImage;
+		[SerializeField] private Image boxImage;
+		[SerializeField] private Image checkImage;
 
-		RectTransform circleRect;
-		RectTransform checkRect;
+		private RectTransform circleRect;
+		private RectTransform checkRect;
 
-		float circleSize;
-		float checkSize;
+		private float circleSize;
+		private float checkSize;
 
-		float animStartTime;
-		float animDeltaTime;
-
-		Vector2 tempVec2;
-		Vector3 tempVec3;
+		private float animStartTime;
+		private float animDeltaTime;
 
 		int state;
 		Toggle toggle;
@@ -52,7 +48,7 @@ namespace MaterialUI
 				TurnOff ();
 		}
 
-		void TurnOn ()
+		public void TurnOn()
 		{
 			circleImage.enabled = true;
 			boxImage.enabled = true;
@@ -63,7 +59,7 @@ namespace MaterialUI
 			state = 1;
 		}
 
-		void TurnOff ()
+		public void TurnOff()
 		{
 			circleImage.enabled = true;
 			checkSize = checkRect.localScale.x;
@@ -80,17 +76,17 @@ namespace MaterialUI
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					tempVec3 = circleRect.localScale;
-					tempVec3.x = Anim.Quint.Out(circleSize, 0f, animDeltaTime, animationDuration);
-					tempVec3.y = tempVec3.x;
-					tempVec3.z = 1f;
-					circleRect.localScale = tempVec3;
+					Vector3 newLocalScale = circleRect.localScale;
+					newLocalScale.x = Anim.Quint.Out(circleSize, 0f, animDeltaTime, animationDuration);
+					newLocalScale.y = newLocalScale.x;
+					newLocalScale.z = 1f;
+					circleRect.localScale = newLocalScale;
 
-					tempVec3 = checkRect.localScale;
-					tempVec3.x = Anim.Quint.In(checkSize, 1f, animDeltaTime, animationDuration);
-					tempVec3.y = tempVec3.x;
-					tempVec3.z = 1f;
-					checkRect.localScale = tempVec3;
+					newLocalScale = checkRect.localScale;
+					newLocalScale.x = Anim.Quint.In(checkSize, 1f, animDeltaTime, animationDuration);
+					newLocalScale.y = newLocalScale.x;
+					newLocalScale.z = 1f;
+					checkRect.localScale = newLocalScale;
 				}
 				else
 				{
@@ -105,17 +101,17 @@ namespace MaterialUI
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					tempVec3 = circleRect.localScale;
-					tempVec3.x = Anim.Quint.In(circleSize, 1f, animDeltaTime, animationDuration);
-					tempVec3.y = tempVec3.x;
-					tempVec3.z = 1f;
-					circleRect.localScale = tempVec3;
-					
-					tempVec3 = checkRect.localScale;
-					tempVec3.x = Anim.Quint.Out(checkSize, 0f, animDeltaTime, animationDuration);
-					tempVec3.y = tempVec3.x;
-					tempVec3.z = 1f;
-					checkRect.localScale = tempVec3;
+					Vector3 newLocalScale = circleRect.localScale;
+					newLocalScale.x = Anim.Quint.In(circleSize, 1f, animDeltaTime, animationDuration);
+					newLocalScale.y = newLocalScale.x;
+					newLocalScale.z = 1f;
+					circleRect.localScale = newLocalScale;
+
+					newLocalScale = checkRect.localScale;
+					newLocalScale.x = Anim.Quint.Out(checkSize, 0f, animDeltaTime, animationDuration);
+					newLocalScale.y = newLocalScale.x;
+					newLocalScale.z = 1f;
+					checkRect.localScale = newLocalScale;
 				}
 				else
 				{
