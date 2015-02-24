@@ -100,6 +100,8 @@ namespace MaterialUI
 		public delegate void PickItem (int itemId);
 		public PickItem ItemPicked;
 
+		private Transform parentTransform;
+
 		void Start ()
 		{
 			thisRect = gameObject.GetComponent<RectTransform> ();
@@ -203,8 +205,7 @@ namespace MaterialUI
 				highlightColor.a = 0.2f;
 
 			originalHeight = thisRect.sizeDelta.y;
-			originalPos = thisRect.position.y;
-
+			parentTransform = transform.parent;
 
 
 			listLayer.SetActive (false);
@@ -218,6 +219,8 @@ namespace MaterialUI
 
 		public void ExpandList ()
 		{
+			originalPos = parentTransform.position.y;
+
 			if (gameObject.GetComponent<ShadowConfig>())
 			{
 				hasShadows = true;

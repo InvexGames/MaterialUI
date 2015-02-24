@@ -34,8 +34,6 @@ namespace MaterialUI
 		private Color tempColor;
 		private Material tempMaterial;
 
-		private bool skipSet;
-
 		void Start ()
 		{
 			activeList = new bool[theStructs.Count];
@@ -175,8 +173,6 @@ namespace MaterialUI
 					tempStruct = theStructs[i];
 
 					tempStruct.animDeltaTime = Time.realtimeSinceStartup - tempStruct.animStartTime;
-
-					skipSet = false;
 
 					if (tempStruct.animDeltaTime < tempStruct.animationDuration)
 					{

@@ -38,16 +38,11 @@ namespace MaterialUI
 		int state;
 		Toggle toggle;
 
-		private bool hasRipple;
-
 		void Start ()
 		{
 			toggle = gameObject.GetComponent <Toggle> ();
 			circleRect = circleImage.gameObject.GetComponent<RectTransform> ();
 			checkRect = checkImage.gameObject.GetComponent<RectTransform> ();
-
-			if (gameObject.GetComponent<RippleConfig>())
-				hasRipple = true;
 		}
 		
 		public void ToggleCheckbox (bool state)

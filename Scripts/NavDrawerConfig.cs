@@ -34,7 +34,6 @@ namespace MaterialUI
 		private float animStartTime;
 		private float animDeltaTime;
 		public float animationDuration = 0.5f;
-		private float animTargetPosition;
 
 		private Vector2 currentPos;
 		private float currentBackgroundAlpha;
@@ -67,7 +66,6 @@ namespace MaterialUI
 
 		public void Open()
 		{
-			animTargetPosition = maxPosition;
 			currentPos = thisRectTransform.anchoredPosition;
 			currentBackgroundAlpha = backgroundCanvasGroup.alpha;
 			currentShadowAlpha = shadowCanvasGroup.alpha;
@@ -78,7 +76,6 @@ namespace MaterialUI
 
 		public void Close ()
 		{
-			animTargetPosition = minPosition;
 			currentPos = thisRectTransform.anchoredPosition;
 			currentBackgroundAlpha = backgroundCanvasGroup.alpha;
 			currentShadowAlpha = shadowCanvasGroup.alpha;
