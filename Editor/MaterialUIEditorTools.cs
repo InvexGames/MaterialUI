@@ -318,6 +318,18 @@ namespace MaterialUI
 			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		}
 
+		[MenuItem("GameObject/MaterialUI/Screen Manager", false, 13)]
+		[MenuItem("MaterialUI/Create/Screen Manager", false, 13)]
+		private static void CreateScreenManager()
+		{
+			theThing =
+				GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/ScreenManager.prefab",
+					typeof(GameObject))) as GameObject;
+			SetupObject("Screen Manager");
+			theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
 		[MenuItem("GameObject/MaterialUI/Screen", false, 13)]
 		[MenuItem("MaterialUI/Create/Screen", false, 13)]
 		private static void CreateScreen()
