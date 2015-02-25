@@ -100,6 +100,7 @@ namespace MaterialUI
 		public delegate void PickItem (int itemId);
 		public PickItem ItemPicked;
 
+
 		void Start ()
 		{
 			thisRect = gameObject.GetComponent<RectTransform> ();
@@ -203,10 +204,8 @@ namespace MaterialUI
 				highlightColor.a = 0.2f;
 
 			originalHeight = thisRect.sizeDelta.y;
-			originalPos = thisRect.position.y;
-
-
-
+			originalPos = thisRect.anchoredPosition.y;
+            
 			listLayer.SetActive (false);
 			listCanvasGroup.interactable = false;
 			listCanvasGroup.blocksRaycasts = false;
@@ -362,9 +361,9 @@ namespace MaterialUI
 					listLayer.GetComponent<RectTransform>().sizeDelta = tempVec2;
 					
 					// Make list move
-					Vector3 tempVec3 = thisRect.position;
+					Vector3 tempVec3 = thisRect.anchoredPosition;
 					tempVec3.y = Anim.Quint.Out(originalPos, expandedPos, animDeltaTime, animationDuration);
-					thisRect.position = tempVec3;
+					thisRect.anchoredPosition = tempVec3;
 
 					// AnimColor list
 					thisImage.color = Anim.Quint.Out(currentColor, expandedListColor, animDeltaTime, animationDuration);
@@ -421,9 +420,9 @@ namespace MaterialUI
 					listLayer.GetComponent<RectTransform>().sizeDelta = tempVec2;
 					
 					// Make list move
-					Vector3 tempVec3 = thisRect.position;
+                    Vector3 tempVec3 = thisRect.anchoredPosition;
 					tempVec3.y = Anim.Quint.InOut(expandedPos, originalPos, animDeltaTime, animationDuration);
-					thisRect.position = tempVec3;
+					thisRect.anchoredPosition = tempVec3;
 
 					// AnimColor list
 					thisImage.color = Anim.Quint.In(currentColor, contractedListColor, animDeltaTime, animationDuration);
