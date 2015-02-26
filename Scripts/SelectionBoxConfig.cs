@@ -283,9 +283,9 @@ namespace MaterialUI
 			listLayerHeight = (listItems.Length * 36f) + 16f;
 
 			if (expandDirection == PopDirection.Popup)
-				expandedPos = originalPos + (((listItems.Length * 36f) + 16f) / 2f) - 24f;
+				expandedPos = originalPos + (listheight / 2f) - 24f;
 			else if (expandDirection == PopDirection.Popdown)
-				expandedPos = originalPos - (((listItems.Length * 36f) + 16f) / 2f) + 24f;
+				expandedPos = originalPos - (listheight / 2f) + 24f;
 			else
 				expandedPos = originalPos;
 
