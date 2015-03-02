@@ -109,7 +109,7 @@ namespace MaterialUI
 				}
 
 				rippleConfig.enabled = true;
-				checkBoxToggler.interactable = true;
+				checkBoxToggler.theToggle.interactable = true;
 
 				ToggleSwitch(true);
 			}
@@ -124,7 +124,7 @@ namespace MaterialUI
 					switchText.color = swichDisabledColor;
 
 				rippleConfig.enabled = false;
-				checkBoxToggler.interactable = false;
+				checkBoxToggler.theToggle.interactable = false;
 			}
 		}
 
