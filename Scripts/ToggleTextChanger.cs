@@ -9,21 +9,23 @@
 //	limitations under the License.
 
 using UnityEngine;
-using System.Collections;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace MaterialUI
+[ExecuteInEditMode]
+public class ToggleTextChanger : MonoBehaviour
 {
-	public class CheckBoxToggler : MonoBehaviour, IPointerClickHandler
-	{
-		public Toggle theToggle;
-		public bool interactable;
+	private Text thisText;
 
-		public void OnPointerClick (PointerEventData data)
-		{
-			if (interactable)
-				theToggle.isOn = !theToggle.isOn;
-		}
+	public string onText;
+	public string offText;
+
+	void Awake ()
+	{
+		thisText = gameObject.GetComponent<Text>();
+	}
+
+	public void ToggleText(bool isToggledOn)
+	{
+		thisText.text = isToggledOn ? onText : offText;
 	}
 }

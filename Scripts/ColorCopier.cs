@@ -10,6 +10,7 @@ namespace MaterialUI
 		[Header("Image color driven by Source Image color")]
 		[SerializeField] public Image sourceImage;
 		private Image thisImage;
+		private Color lastColor;
 
 		private void OnEnable()
 		{
@@ -19,7 +20,13 @@ namespace MaterialUI
 		private void Update()
 		{
 			if (sourceImage && thisImage)
-				thisImage.color = sourceImage.color;
+			{
+				if (sourceImage.color != lastColor)
+				{
+					thisImage.color = sourceImage.color;
+					lastColor = sourceImage.color;
+				}
+			}
 		}
 	}
 }
