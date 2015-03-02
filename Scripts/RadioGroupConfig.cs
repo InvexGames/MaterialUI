@@ -25,6 +25,8 @@ namespace MaterialUI
 		public float rippleEndAlpha = 0.3f;
 		public float animationDuration = 0.5f;
 		public Color radioOnColor = Color.black;
+		public Color radioDisabledColor;
+		public bool changeTextColor = true;
 
 		void Start ()
 		{
@@ -32,6 +34,8 @@ namespace MaterialUI
 			{
 				config.animationDuration = animationDuration;
 				config.radioOnColor = radioOnColor;
+				config.radioDisabledColor = radioDisabledColor;
+				config.changeTextColor = changeTextColor;
 
 				config.Setup ();
 			}
@@ -46,6 +50,14 @@ namespace MaterialUI
 				config.rippleEndAlpha = rippleEndAlpha;
 
 				config.Refresh();
+			}
+		}
+
+		public void ToggleInteractivity(bool isInteractable)
+		{
+			foreach (RadioConfig config in gameObject.GetComponentsInChildren<RadioConfig>())
+			{
+				config.ToggleInteractivity(isInteractable);
 			}
 		}
 	}

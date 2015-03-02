@@ -17,11 +17,17 @@ namespace MaterialUI
 	public class SwitchConfig : MonoBehaviour
 	{
 		public Color switchOnColor;
+		public Color swichDisabledColor;
 		public float animationDuration = 0.5f;
+		public bool changeTextColor = true;
 
 		public Image switchImage;
 		public Image switchBackImage;
 		RectTransform switchRect;
+
+		[SerializeField] private Text switchText;
+
+		[SerializeField] private CheckBoxToggler checkBoxToggler;
 
 		Color switchOffColor;
 		Color switchBackOffColor;
@@ -35,10 +41,12 @@ namespace MaterialUI
 		float animDeltaTime;
 		
 		Vector3 tempVec3;
+
+		private Color normalTextColor;
 		
 		int state;
 		
-		RippleConfig _rippleConfig;
+		RippleConfig rippleConfig;
 		Toggle toggle;
 		
 		void Start ()
@@ -47,6 +55,8 @@ namespace MaterialUI
 			switchRect = switchImage.gameObject.GetComponent<RectTransform> ();
 			switchBackOffColor = switchBackImage.color;
 			switchOffColor = switchImage.color;
+			rippleConfig = gameObject.GetComponent<RippleConfig>();
+			normalTextColor = switchText.color;
 		}
 		
 		public void ToggleSwitch (bool state)
@@ -74,7 +84,50 @@ namespace MaterialUI
 			animStartTime = Time.realtimeSinceStartup;
 			state = 2;
 		}
-		
+
+		public void ToggleInteractivity(bool isEnabled)
+		{
+			if (isEnabled)
+			{
+				toggle.interactable = true;
+
+				if (toggle.isOn)
+				{
+					switchImage.color = switchOnColor;
+					switchBackImage.color = new Color(switchOnColor.r, switchOnColor.g, switchOnColor.b, 0.5f);
+					if (changeTextColor)
+						switchText.color = switchOnColor;
+					else
+						switchText.color = switchOffColor;
+				}
+				else
+				{
+					switchImage.color = switchOffColor;
+					switchBackImage.color = switchBackOffColor;
+					if (changeTextColor)
+						switchText.color = switchOffColor;
+				}
+
+				rippleConfig.enabled = true;
+				checkBoxToggler.interactable = true;
+
+				ToggleSwitch(true);
+			}
+			else
+			{
+				toggle.interactable = false;
+
+				switchImage.color = swichDisabledColor;
+				switchBackImage.color = new Color(swichDisabledColor.r, swichDisabledColor.g, swichDisabledColor.b, 0.5f);
+				normalTextColor = switchText.color;
+				if (changeTextColor)
+					switchText.color = swichDisabledColor;
+
+				rippleConfig.enabled = false;
+				checkBoxToggler.interactable = false;
+			}
+		}
+
 		void Update ()
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;

@@ -22,6 +22,15 @@ namespace MaterialUI
 		Color radioOffColor;
 		[HideInInspector()]
 		public Color radioOnColor;
+		[HideInInspector()]
+		public Color radioDisabledColor;
+
+		[HideInInspector]
+		public bool changeTextColor;
+
+		[SerializeField] private Text radioText;
+
+		[SerializeField] private CheckBoxToggler radioToggler;
 
 		public Image dotImage;
 		public Image ringImage;
@@ -49,6 +58,8 @@ namespace MaterialUI
 
 			dotRect = dotImage.gameObject.GetComponent<RectTransform> ();
 			radioOffColor = dotImage.color;
+
+			_rippleConfig = gameObject.GetComponent<RippleConfig>();
 		}
 
 		public void ToggleCheckbox (bool state)
@@ -75,7 +86,47 @@ namespace MaterialUI
 			animStartTime = Time.realtimeSinceStartup;
 			state = 2;
 		}
-		
+
+		public void ToggleInteractivity(bool isEnabled)
+		{
+			if (isEnabled)
+			{
+				toggle.interactable = true;
+
+				if (toggle.isOn)
+				{
+					dotImage.color = radioOnColor;
+					ringImage.color = radioOnColor;
+					if (changeTextColor)
+						radioText.color = radioOnColor;
+				}
+				else
+				{
+					dotImage.color = radioOffColor;
+					ringImage.color = radioOffColor;
+					if (changeTextColor)
+						radioText.color = radioOffColor;
+				}
+
+				_rippleConfig.enabled = true;
+				radioToggler.interactable = true;
+
+				ToggleCheckbox(true);
+			}
+			else
+			{
+				toggle.interactable = false;
+
+				dotImage.color = radioDisabledColor;
+				ringImage.color = radioDisabledColor;
+				if (changeTextColor)
+					radioText.color = radioDisabledColor;
+
+				_rippleConfig.enabled = false;
+				radioToggler.interactable = false;
+			}
+		}
+
 		void Update ()
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;
@@ -97,12 +148,16 @@ namespace MaterialUI
 					tempColor.a = Anim.Quint.Out (color.a, radioOnColor.a, animDeltaTime, animationDuration);
 					dotImage.color = tempColor;
 					ringImage.color = tempColor;
+					if (changeTextColor)
+						radioText.color = tempColor;
 				}
 				else
 				{
 					dotRect.localScale = new Vector3 (1f, 1f, 1f);
 					dotImage.color = radioOnColor;
 					ringImage.color = radioOnColor;
+
+					state = 0;
 				}
 			}
 			else if (state == 2)	// Turning off
@@ -122,6 +177,8 @@ namespace MaterialUI
 					tempColor.a = Anim.Quint.Out (color.a, radioOffColor.a, animDeltaTime, animationDuration);
 					dotImage.color = tempColor;
 					ringImage.color = tempColor;
+					if (changeTextColor)
+						radioText.color = tempColor;
 				}
 				else
 				{
@@ -129,6 +186,8 @@ namespace MaterialUI
 					dotImage.color = radioOffColor;
 					ringImage.color = radioOffColor;
 					dotImage.enabled = false;
+
+					state = 0;
 				}
 			}
 		}
