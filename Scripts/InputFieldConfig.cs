@@ -22,11 +22,11 @@ namespace MaterialUI
 		bool selected;
 		public float animationDuration = 0.75f;
 
-		public RectTransform parentRect;
-		public Text placeholderText;
-		public Text inputText;
-		public Text displayText;
-		public Image activeLine;
+		[SerializeField] private RectTransform parentRect;
+		[SerializeField] private Text placeholderText;
+		[SerializeField] private Text inputText;
+		[SerializeField] private Text displayText;
+		[SerializeField] private Image activeLine;
 
 		RectTransform textRect;
 		RectTransform displayTextRect;
@@ -51,14 +51,17 @@ namespace MaterialUI
 
 		int state;
 
+		void Awake()  //  Get references
+		{
+			inputField = gameObject.GetComponent<InputField>();
+			activeLineRect = activeLine.GetComponent<RectTransform>();
+			placeholderRect = placeholderText.GetComponent<RectTransform>();
+			textRect = inputText.GetComponent<RectTransform>();
+			displayTextRect = displayText.GetComponent<RectTransform>();
+		}
+
 		void Start ()
 		{
-			inputField = gameObject.GetComponent<InputField> ();
-			activeLineRect = activeLine.GetComponent<RectTransform> ();
-			placeholderRect = placeholderText.GetComponent<RectTransform> ();
-			textRect = inputText.GetComponent<RectTransform> ();
-			displayTextRect = displayText.GetComponent<RectTransform> ();
-
 			activeLineRect.sizeDelta = new Vector2 (placeholderRect.rect.width, activeLineRect.sizeDelta.y);
 
 			inputText.font = displayText.font;

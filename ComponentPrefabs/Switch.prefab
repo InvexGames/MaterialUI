@@ -219,7 +219,7 @@ MonoBehaviour:
   switchOnColor: {r: 1, g: 1, b: 1, a: 1}
   swichDisabledColor: {r: .227941155, g: .227941155, b: .227941155, a: 1}
   animationDuration: .5
-  changeTextColor: 1
+  changeTextColor: 0
   switchImage: {fileID: 11400012}
   switchBackImage: {fileID: 11400022}
   switchText: {fileID: 11400002}

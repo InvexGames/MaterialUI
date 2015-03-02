@@ -10,24 +10,40 @@
 
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
 
 namespace MaterialUI
 {
 	[CustomEditor(typeof (SnapButtonToText))]
 
-	internal class SnapButtonToTextEditor : Editor
+	public class SnapButtonToTextEditor : Editor
 	{
+		private SnapButtonToText snapper;
+		private SnapButtonToText myTarget;
+
+		void OnEnable()
+		{
+			EditorApplication.update += UpdateSnapper;
+			myTarget = (SnapButtonToText)target;
+			snapper = myTarget.GetComponent<SnapButtonToText>();
+		}
+
+		void OnDisable()
+		{
+			EditorApplication.update -= UpdateSnapper;
+		}
 
 		public override void OnInspectorGUI()
 		{
 			DrawDefaultInspector();
-			SnapButtonToText myTarget = (SnapButtonToText) target;
-
 			if (GUILayout.Button("Snap"))
 			{
-				myTarget.GetComponent<SnapButtonToText>().Snap();
+				snapper.Snap();
 			}
+		}
+
+		public void UpdateSnapper()
+		{
+			snapper.Update();
 		}
 	}
 }
