@@ -13,71 +13,89 @@ using UnityEngine.UI;
 
 namespace MaterialUI
 {
+	[ExecuteInEditMode]
 	public class CheckboxConfig : MonoBehaviour
 	{
-		[Header("Options")]
+		[HideInInspector]
 		public float animationDuration = 0.5f;
 
-		public Color offColor;
+		[HideInInspector]
 		public Color onColor;
+		[HideInInspector]
+		public Color offColor;
+		[HideInInspector]
 		public Color disabledColor;
 
+		[HideInInspector]
 		public bool changeTextColor;
 
-		[Header("References")]
+		[HideInInspector]
+		public Color textNormalColor;
+		[HideInInspector]
+		public Color textDisabledColor;
+
+		[HideInInspector]
+		public bool changeRippleColor;
+
+
+		[HideInInspector]
 		[SerializeField] private Image checkImage;
+		[HideInInspector]
 		[SerializeField] private Image frameImage;
-		[SerializeField] private CheckboxFillerControl fillerControl;
-		[SerializeField] private Text checkboxText;
-		[SerializeField] private RippleConfig rippleConfig;
+		[HideInInspector]
+		[SerializeField] private Text text;
 
-		private Image fillerLeftImage;
-		private Image fillerRightImage;
-		private Image fillerTopImage;
-		private Image fillerBottomImage;
-
-		private RectTransform checkRect;
-		
-		private RectTransform fillerLeftRect;
-		private RectTransform fillerRightRect;
-		private RectTransform fillerTopRect;
-		private RectTransform fillerBottomRect;
-
+		private RectTransform checkRectTransform;
+		private CanvasGroup frameCanvasGroup;
 		private CheckBoxToggler checkBoxToggler;
+		private RippleConfig rippleConfig;
 
-		private float checkSize;
-		private float fillerSize;
+		Toggle toggle;
+
+		private bool lastToggleInteractableState;
+		private bool lastToggleState;
+
+		private float currentCheckSize;
 		private Color currentColor;
-		private Color normalTextColor;
+		private Color currentTextColor;
+		private float currentFrameAlpha;
 
+		private Vector3 tempVector3;
+		private Color tempColor;
+
+		private int state;
 		private float animStartTime;
 		private float animDeltaTime;
 
-		int state;
-		Toggle toggle;
-
-		void Awake ()
+		void OnEnable()
 		{
 			//	Set references
-			toggle = gameObject.GetComponent <Toggle> ();
-			checkRect = checkImage.gameObject.GetComponent<RectTransform>();
-
-			fillerLeftImage = fillerControl.fillers[0];
-			fillerRightImage = fillerControl.fillers[1];
-			fillerTopImage = fillerControl.fillers[2];
-			fillerBottomImage = fillerControl.fillers[3];
-
-			fillerLeftRect = fillerLeftImage.GetComponent<RectTransform>();
-			fillerRightRect = fillerRightImage.GetComponent<RectTransform>();
-			fillerTopRect = fillerTopImage.GetComponent<RectTransform>();
-			fillerBottomRect = fillerBottomImage.GetComponent<RectTransform>();
-
-			checkBoxToggler = checkboxText.GetComponent<CheckBoxToggler>();
+			toggle = gameObject.GetComponent<Toggle>();
+			checkRectTransform = checkImage.GetComponent<RectTransform>();
+			frameCanvasGroup = frameImage.GetComponent<CanvasGroup>();
+			checkBoxToggler = text.GetComponent<CheckBoxToggler>();
+			rippleConfig = gameObject.GetComponent<RippleConfig>();
 		}
 
 		void Start()
 		{
-			ToggleCheckbox();
+			lastToggleInteractableState = toggle.interactable;
+
+			if (lastToggleInteractableState)
+			{
+				if (lastToggleState != toggle.isOn)
+				{
+					lastToggleState = toggle.isOn;
+
+					if (lastToggleState)
+						TurnOnSilent();
+					else
+						TurnOffSilent();
+				}
+			}
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = frameImage.color;
 		}
 
 		public void ToggleCheckbox ()
@@ -90,165 +108,184 @@ namespace MaterialUI
 
 		public void TurnOn()
 		{
-			checkSize = checkRect.localScale.x;
-			fillerSize = fillerLeftRect.sizeDelta.x;
+			checkImage.enabled = true;
+
+			currentCheckSize = checkRectTransform.localScale.x;
 			currentColor = frameImage.color;
+			currentTextColor = text.color;
+			currentFrameAlpha = frameCanvasGroup.alpha;
 
 			animStartTime = Time.realtimeSinceStartup;
 			state = 1;
 		}
 
+		private void TurnOnSilent()
+		{
+			checkImage.enabled = true;
+			checkRectTransform.localScale = new Vector3(1f, 1f, 1f);
+			frameImage.color = onColor;
+			frameCanvasGroup.alpha = 0f;
+
+			if (changeTextColor)
+				text.color = onColor;
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = onColor;
+
+			frameImage.enabled = false;
+		}
+
 		public void TurnOff()
 		{
-			checkSize = checkRect.localScale.x;
-			fillerSize = fillerLeftRect.sizeDelta.x;
+			frameImage.enabled = true;
+
+			currentCheckSize = checkRectTransform.localScale.x;
 			currentColor = frameImage.color;
+			currentTextColor = text.color;
+			currentFrameAlpha = frameCanvasGroup.alpha;
 
 			animStartTime = Time.realtimeSinceStartup;
 			state = 2;
 		}
 
-		public void ToggleInteractivity( bool isEnabled)
+		private void TurnOffSilent()
 		{
-			if (isEnabled)
+			frameImage.enabled = true;
+			checkRectTransform.localScale = new Vector3(0f, 0f, 1f);
+			frameImage.color = offColor;
+			frameCanvasGroup.alpha = 1f;
+
+			if (changeTextColor)
+				text.color = textNormalColor;
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = offColor;
+
+			checkImage.enabled = false;
+		}
+
+		private void EnableCheckbox()
+		{
+			Debug.Log("Enabling Checkbox");
+
+			if (toggle.isOn)
 			{
-				toggle.interactable = true;
-
-				if (toggle.isOn)
-				{
-					frameImage.color = onColor;
-					if (changeTextColor)
-						checkboxText.color = onColor;
-				}
+				frameImage.color = onColor;
+				if (changeTextColor)
+					text.color = onColor;
 				else
-				{
-					frameImage.color = offColor;
-					if (changeTextColor)
-						checkboxText.color = offColor;
-				}
-
-				rippleConfig.enabled = true;
-				checkBoxToggler.interactable = true;
-
-				ToggleCheckbox();
+					text.color = textNormalColor;
 			}
 			else
 			{
-				toggle.interactable = false;
-
-				frameImage.color = disabledColor;
-				if (changeTextColor)
-					checkboxText.color = disabledColor;
-
-				rippleConfig.enabled = false;
-				checkBoxToggler.interactable = false;
+				frameImage.color = offColor;
+				text.color = textNormalColor;
 			}
+
+			checkBoxToggler.enabled = true;
+			rippleConfig.enabled = true;
 		}
 
-		void Update ()
+		private void DisableCheckbox()
+		{
+			Debug.Log("Disabling Checkbox");
+
+			frameImage.color = disabledColor;
+			text.color = disabledColor;
+
+			checkBoxToggler.enabled = false;
+			rippleConfig.enabled = false;
+		}
+
+		void Update()
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;
 
-			if (state == 1)  //  Turning on
+			if (state == 1)
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					Vector3 tempVector3 = checkRect.localScale;
-					tempVector3.x = Anim.Quint.Out(checkSize, 1f, animDeltaTime - (animationDuration / 2f), animationDuration);
-					tempVector3.y = tempVector3.x;
-					checkRect.localScale = tempVector3;
+					checkRectTransform.localScale = Anim.Overshoot(new Vector3(currentCheckSize, currentCheckSize, 1f), new Vector3(1f, 1f, 1f), animDeltaTime, animationDuration);
+					frameImage.color = Anim.Quint.SoftOut(currentColor, onColor, animDeltaTime, animationDuration);
+					frameCanvasGroup.alpha = Anim.Cube.SoftOut(currentFrameAlpha, 0f, animDeltaTime, animationDuration);
 
-					if (toggle.interactable)
-					{
-						Color tempColor = frameImage.color;
-						tempColor.r = Anim.Linear(currentColor.r, onColor.r, animDeltaTime, animationDuration);
-						tempColor.g = Anim.Linear(currentColor.g, onColor.g, animDeltaTime, animationDuration);
-						tempColor.b = Anim.Linear(currentColor.b, onColor.b, animDeltaTime, animationDuration);
-						frameImage.color = tempColor;
-						if (changeTextColor)
-							checkboxText.color = tempColor;
-					}
+					if (changeTextColor)
+						text.color = Anim.Quint.SoftOut(currentTextColor, onColor, animDeltaTime, animationDuration);
 
-					if (animDeltaTime <= animationDuration/2f)
-					{
-						Vector2 tempVector2 = fillerLeftRect.sizeDelta;
-						tempVector2.x = Anim.Quint.Out(fillerSize, 8f, animDeltaTime, animationDuration / 2f);
-						fillerLeftRect.sizeDelta = tempVector2;
-						fillerRightRect.sizeDelta = tempVector2;
-
-						Vector2 anotherTempVector2 = fillerTopRect.sizeDelta;
-						anotherTempVector2.y = tempVector2.x;
-						fillerTopRect.sizeDelta = anotherTempVector2;
-						fillerBottomRect.sizeDelta = anotherTempVector2;
-					}
-					else
-					{
-						Vector2 tempVector2 = fillerLeftRect.sizeDelta;
-						tempVector2.x = Anim.Quint.Out(8f, 1f, animDeltaTime  - (animationDuration / 2f), animationDuration);
-						fillerLeftRect.sizeDelta = tempVector2;
-						fillerRightRect.sizeDelta = tempVector2;
-
-						Vector2 anotherTempVector2 = fillerTopRect.sizeDelta;
-						anotherTempVector2.y = tempVector2.x;
-						fillerTopRect.sizeDelta = anotherTempVector2;
-						fillerBottomRect.sizeDelta = anotherTempVector2;
-					}
-
+					if (changeRippleColor)
+						rippleConfig.rippleColor = frameImage.color;
 				}
 				else
 				{
+					checkRectTransform.localScale = new Vector3(1f, 1f, 1f);
+					frameImage.color = onColor;
+					frameCanvasGroup.alpha = 0f;
+
+					if (changeTextColor)
+						text.color = onColor;
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = onColor;
+
+					frameImage.enabled = false;
 					state = 0;
 				}
 			}
-			else if (state == 2)  //  Turning off
+			else if (state == 2)
 			{
-				if (animDeltaTime <= animationDuration)
+				if (animDeltaTime <= animationDuration * 0.75f)
 				{
-					Vector3 tempVector3 = checkRect.localScale;
-					tempVector3.x = Anim.Quint.Out(checkSize, 0f, animDeltaTime, animationDuration / 2f);
-					tempVector3.y = tempVector3.x;
-					checkRect.localScale = tempVector3;
+					checkRectTransform.localScale = Anim.Sept.InOut(new Vector3(currentCheckSize, currentCheckSize, 1f), new Vector3(0f, 0f, 1f), animDeltaTime, animationDuration * 0.75f);
+					frameImage.color = Anim.Sept.InOut(currentColor, offColor, animDeltaTime, animationDuration * 0.75f);
+					frameCanvasGroup.alpha = Anim.Sept.InOut(currentFrameAlpha, 1f, animDeltaTime, animationDuration * 0.75f);
 
-					if (toggle.interactable)
-					{
-						Color tempColor = frameImage.color;
-						tempColor.r = Anim.Linear(currentColor.r, offColor.r, animDeltaTime, animationDuration);
-						tempColor.g = Anim.Linear(currentColor.g, offColor.g, animDeltaTime, animationDuration);
-						tempColor.b = Anim.Linear(currentColor.b, offColor.b, animDeltaTime, animationDuration);
-						frameImage.color = tempColor;
-						if (changeTextColor)
-							checkboxText.color = tempColor;
-					}
+					if (changeTextColor)
+						text.color = Anim.Quint.SoftOut(currentTextColor, textNormalColor, animDeltaTime, animationDuration * 0.75f);
 
-					if (animDeltaTime <= animationDuration / 2f)
-					{
-						Vector2 tempVector2 = fillerLeftRect.sizeDelta;
-						tempVector2.x = Anim.Quint.Out(fillerSize, 8f, animDeltaTime, animationDuration / 2f);
-						fillerLeftRect.sizeDelta = tempVector2;
-						fillerRightRect.sizeDelta = tempVector2;
-
-						Vector2 anotherTempVector2 = fillerTopRect.sizeDelta;
-						anotherTempVector2.y = tempVector2.x;
-						fillerTopRect.sizeDelta = anotherTempVector2;
-						fillerBottomRect.sizeDelta = anotherTempVector2;
-					}
-					else
-					{
-						Vector2 tempVector2 = fillerLeftRect.sizeDelta;
-						tempVector2.x = Anim.Quint.Out(8f, 2f, animDeltaTime - (animationDuration / 2f), animationDuration);
-						fillerLeftRect.sizeDelta = tempVector2;
-						fillerRightRect.sizeDelta = tempVector2;
-
-						Vector2 anotherTempVector2 = fillerTopRect.sizeDelta;
-						anotherTempVector2.y = tempVector2.x;
-						fillerTopRect.sizeDelta = anotherTempVector2;
-						fillerBottomRect.sizeDelta = anotherTempVector2;
-					}
+					if (changeRippleColor)
+						rippleConfig.rippleColor = frameImage.color;
 				}
 				else
 				{
+					checkRectTransform.localScale = new Vector3(0f, 0f, 1f);
+					frameImage.color = offColor;
+					frameCanvasGroup.alpha = 1f;
+					
+					if (changeTextColor)
+						text.color = textNormalColor;
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = offColor;
+
+					checkImage.enabled = false;
 					state = 0;
 				}
+			}
+
+			if (lastToggleInteractableState != toggle.interactable)
+			{
+				lastToggleInteractableState = toggle.interactable;
+
+				if (lastToggleInteractableState)
+					EnableCheckbox();
+				else
+					DisableCheckbox();
+			}
+
+			if (!Application.isPlaying)
+			{
+				if (lastToggleState != toggle.isOn)
+				{
+					lastToggleState = toggle.isOn;
+
+					if (lastToggleState)
+						TurnOnSilent();
+					else
+						TurnOffSilent();
+				}
+
+				if (changeRippleColor)
+					rippleConfig.rippleColor = frameImage.color;
 			}
 		}
 	}
