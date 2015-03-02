@@ -18,11 +18,10 @@ namespace MaterialUI
 	public class CheckBoxToggler : MonoBehaviour, IPointerClickHandler
 	{
 		public Toggle theToggle;
-		public bool interactable;
 
 		public void OnPointerClick (PointerEventData data)
 		{
-			if (interactable)
+			if (theToggle.interactable)
 				theToggle.isOn = !theToggle.isOn;
 		}
 	}

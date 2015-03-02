@@ -109,7 +109,7 @@ namespace MaterialUI
 				}
 
 				_rippleConfig.enabled = true;
-				radioToggler.interactable = true;
+				radioToggler.theToggle.interactable = true;
 
 				ToggleCheckbox(true);
 			}
@@ -123,7 +123,7 @@ namespace MaterialUI
 					radioText.color = radioDisabledColor;
 
 				_rippleConfig.enabled = false;
-				radioToggler.interactable = false;
+				radioToggler.theToggle.interactable = false;
 			}
 		}
 
