@@ -13,185 +13,257 @@ using UnityEngine.UI;
 
 namespace MaterialUI
 {
+	[ExecuteInEditMode]
 	public class SwitchConfig : MonoBehaviour
 	{
-		public Color switchOnColor;
-		public Color swichDisabledColor;
 		public float animationDuration = 0.5f;
-		public bool changeTextColor = true;
 
-		public Image switchImage;
-		public Image switchBackImage;
-		RectTransform switchRect;
+		public Color onColor;
+		public Color offColor;
+		public Color disabledColor;
 
-		[SerializeField] private Text switchText;
+		public Color backOffColor;
+		public Color backDisabledColor;
 
-		[SerializeField] private CheckBoxToggler checkBoxToggler;
+		public bool changeTextColor;
 
-		Color switchOffColor;
-		Color switchBackOffColor;
+		public Color textNormalColor;
+		public Color textDisabledColor;
 
-		Color color;
-		Color color2;
+		public bool changeRippleColor;
 
-		float switchPos;
-		
-		float animStartTime;
-		float animDeltaTime;
-		
-		Vector3 tempVec3;
 
-		private Color normalTextColor;
-		
-		int state;
-		
-		RippleConfig rippleConfig;
+		[SerializeField] private Image switchImage;
+		[SerializeField] private Image backImage;
+		[SerializeField] private Text text;
+
+		private RectTransform switchRectTransform;
+		private CheckBoxToggler checkBoxToggler;
+		private RippleConfig rippleConfig;
+
 		Toggle toggle;
-		
-		void Start ()
+
+		private bool lastToggleInteractableState;
+		private bool lastToggleState;
+
+		private float currentSwitchPosition;
+		private Color currentColor;
+		private Color currentBackColor;
+		private Color currentTextColor;
+
+		private int state;
+		private float animStartTime;
+		private float animDeltaTime;
+
+		void OnEnable()
 		{
-			toggle = gameObject.GetComponent <Toggle> ();
-			switchRect = switchImage.gameObject.GetComponent<RectTransform> ();
-			switchBackOffColor = switchBackImage.color;
-			switchOffColor = switchImage.color;
+			//	Set references
+			toggle = gameObject.GetComponent<Toggle>();
+			switchRectTransform = switchImage.GetComponent<RectTransform>();
+			checkBoxToggler = text.GetComponent<CheckBoxToggler>();
 			rippleConfig = gameObject.GetComponent<RippleConfig>();
-			normalTextColor = switchText.color;
 		}
-		
-		public void ToggleSwitch (bool state)
+
+		void Start()
+		{
+			lastToggleInteractableState = toggle.interactable;
+
+			if (lastToggleInteractableState)
+			{
+				if (lastToggleState != toggle.isOn)
+				{
+					lastToggleState = toggle.isOn;
+
+					if (lastToggleState)
+						TurnOnSilent();
+					else
+						TurnOffSilent();
+				}
+			}
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = backImage.color;
+		}
+
+		public void ToggleSwitch ()
 		{
 			if (toggle.isOn)
 				TurnOn ();
 			else
 				TurnOff ();
 		}
-		
-		void TurnOn ()
+
+		public void TurnOn()
 		{
-			switchPos = switchRect.localPosition.x;
-			color = switchImage.color;
-			color2 = switchBackImage.color;
+			currentSwitchPosition = switchRectTransform.anchoredPosition.x;
+			currentColor = switchImage.color;
+			currentBackColor = backImage.color;
+			currentTextColor = text.color;
+
 			animStartTime = Time.realtimeSinceStartup;
 			state = 1;
 		}
-		
-		void TurnOff ()
+
+		private void TurnOnSilent()
 		{
-			switchPos = switchRect.localPosition.x;
-			color = switchImage.color;
-			color2 = switchBackImage.color;
+			if (switchRectTransform.anchoredPosition != new Vector2(8f, 0f))
+				switchRectTransform.anchoredPosition = new Vector2(8f, 0f);
+
+			switchImage.color = onColor;
+			backImage.color = onColor;
+
+			if (changeTextColor)
+				text.color = onColor;
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = onColor;
+		}
+
+		public void TurnOff()
+		{
+			currentSwitchPosition = switchRectTransform.anchoredPosition.x;
+			currentColor = switchImage.color;
+			currentBackColor = backImage.color;
+			currentTextColor = text.color;
+
 			animStartTime = Time.realtimeSinceStartup;
 			state = 2;
 		}
 
-		public void ToggleInteractivity(bool isEnabled)
+		private void TurnOffSilent()
 		{
-			if (isEnabled)
+			backImage.enabled = true;
+			if (switchRectTransform.anchoredPosition != new Vector2(-8f, 0f))
+				switchRectTransform.anchoredPosition = new Vector2(-8f, 0f);
+
+			switchImage.color = offColor;
+			backImage.color = backOffColor;
+
+			if (changeTextColor)
+				text.color = textNormalColor;
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = backOffColor;
+		}
+
+		private void EnableSwitch()
+		{
+			if (toggle.isOn)
 			{
-				toggle.interactable = true;
-
-				if (toggle.isOn)
-				{
-					switchImage.color = switchOnColor;
-					switchBackImage.color = new Color(switchOnColor.r, switchOnColor.g, switchOnColor.b, 0.5f);
-					if (changeTextColor)
-						switchText.color = switchOnColor;
-					else
-						switchText.color = switchOffColor;
-				}
+				switchImage.color = onColor;
+				backImage.color = onColor;
+				if (changeTextColor)
+					text.color = onColor;
 				else
-				{
-					switchImage.color = switchOffColor;
-					switchBackImage.color = switchBackOffColor;
-					if (changeTextColor)
-						switchText.color = switchOffColor;
-				}
-
-				rippleConfig.enabled = true;
-				checkBoxToggler.interactable = true;
-
-				ToggleSwitch(true);
+					text.color = textNormalColor;
 			}
 			else
 			{
-				toggle.interactable = false;
-
-				switchImage.color = swichDisabledColor;
-				switchBackImage.color = new Color(swichDisabledColor.r, swichDisabledColor.g, swichDisabledColor.b, 0.5f);
-				normalTextColor = switchText.color;
-				if (changeTextColor)
-					switchText.color = swichDisabledColor;
-
-				rippleConfig.enabled = false;
-				checkBoxToggler.interactable = false;
+				switchImage.color = offColor;
+				backImage.color = backOffColor;
+				text.color = textNormalColor;
 			}
+
+			checkBoxToggler.enabled = true;
+			rippleConfig.enabled = true;
 		}
 
-		void Update ()
+		private void DisableSwitch()
+		{
+			switchImage.color = disabledColor;
+			backImage.color = backDisabledColor;
+			text.color = disabledColor;
+
+			checkBoxToggler.enabled = false;
+			rippleConfig.enabled = false;
+		}
+
+		void Update()
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;
-			
-			if (state == 1)	// Turning on
+
+			if (state == 1)
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					tempVec3 = switchRect.localPosition;
-					tempVec3.x = Anim.Quint.InOut(switchPos, 8f, animDeltaTime, animationDuration);
-					tempVec3.z = 1f;
-					switchRect.localPosition = tempVec3;
+					switchRectTransform.anchoredPosition = Anim.Quint.SoftOut(new Vector2(currentSwitchPosition, 0f), new Vector2(8f, 0f), animDeltaTime, animationDuration);
+					switchImage.color = Anim.Quint.SoftOut(currentColor, onColor, animDeltaTime, animationDuration);
+					backImage.color = Anim.Quint.SoftOut(currentBackColor, onColor, animDeltaTime, animationDuration);
 
-					Color tempColor = switchImage.color;
-					tempColor.r = Anim.Quint.InOut(color.r, switchOnColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.InOut(color.g, switchOnColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.InOut(color.b, switchOnColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.InOut(color.a, switchOnColor.a, animDeltaTime, animationDuration);
-					switchImage.color = tempColor;
+					if (changeTextColor)
+						text.color = Anim.Quint.SoftOut(currentTextColor, onColor, animDeltaTime, animationDuration);
 
-					tempColor = switchBackImage.color;
-					tempColor.r = Anim.Quint.InOut(color2.r, switchOnColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.InOut(color2.g, switchOnColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.InOut(color2.b, switchOnColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.InOut(color2.a, 0.5f, animDeltaTime, animationDuration);
-					switchBackImage.color = tempColor;
+					if (changeRippleColor)
+						rippleConfig.rippleColor = switchImage.color;
 				}
 				else
 				{
-					switchRect.localPosition = new Vector3 (8f, 0f, 0f);
-					switchImage.color = switchOnColor;
-					switchBackImage.color = new Color (switchOnColor.r, switchOnColor.g, switchOnColor.b, 0.5f);
+					switchRectTransform.anchoredPosition = new Vector2(8f, 0f);
+					switchImage.color = onColor;
+					backImage.color = onColor;
+
+					if (changeTextColor)
+						text.color = onColor;
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = onColor;
 					state = 0;
 				}
 			}
-			else if (state == 2)	// Turning off
+			else if (state == 2)
 			{
-				if (animDeltaTime <= animationDuration)
+				if (animDeltaTime <= animationDuration * 0.75f)
 				{
-					tempVec3 = switchRect.localPosition;
-					tempVec3.x = Anim.Quint.InOut(switchPos, -8f, animDeltaTime, animationDuration);
-					tempVec3.z = 1f;
-					switchRect.localPosition = tempVec3;
-					
-					Color tempColor = switchImage.color;
-					tempColor.r = Anim.Quint.InOut(color.r, switchOffColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.InOut(color.g, switchOffColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.InOut(color.b, switchOffColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.InOut(color.a, switchOffColor.a, animDeltaTime, animationDuration);
-					switchImage.color = tempColor;
-					
-					tempColor = switchBackImage.color;
-					tempColor.r = Anim.Quint.InOut(color2.r, switchBackOffColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.InOut(color2.g, switchBackOffColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.InOut(color2.b, switchBackOffColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.InOut(color2.a, 0.5f, animDeltaTime, animationDuration);
-					switchBackImage.color = tempColor;
+					switchRectTransform.anchoredPosition = Anim.Quint.SoftOut(new Vector2(currentSwitchPosition, 0f), new Vector2(-8f, 0f), animDeltaTime, animationDuration);
+					switchImage.color = Anim.Sept.InOut(currentColor, offColor, animDeltaTime, animationDuration * 0.75f);
+					backImage.color = Anim.Sept.InOut(currentBackColor, backOffColor, animDeltaTime, animationDuration * 0.75f);
+
+					if (changeTextColor)
+						text.color = Anim.Quint.SoftOut(currentTextColor, textNormalColor, animDeltaTime, animationDuration * 0.75f);
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = switchImage.color;
 				}
 				else
 				{
-					switchRect.localPosition = new Vector3 (-8f, 0f, 0f);
-					switchImage.color = switchOffColor;
-					switchBackImage.color = new Color (switchBackOffColor.r, switchBackOffColor.g, switchBackOffColor.b, 0.5f);
+					switchRectTransform.anchoredPosition = new Vector2(-8f, 0f);
+
+					switchImage.color = offColor;
+					backImage.color = backOffColor;
+					
+					if (changeTextColor)
+						text.color = textNormalColor;
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = backOffColor;
 					state = 0;
 				}
+			}
+
+			if (lastToggleInteractableState != toggle.interactable)
+			{
+				lastToggleInteractableState = toggle.interactable;
+
+				if (lastToggleInteractableState)
+					EnableSwitch();
+				else
+					DisableSwitch();
+			}
+
+			if (!Application.isPlaying)
+			{
+				if (lastToggleState != toggle.isOn)
+				{
+					lastToggleState = toggle.isOn;
+
+					if (lastToggleState)
+						TurnOnSilent();
+					else
+						TurnOffSilent();
+				}
+
+				if (changeRippleColor)
+					rippleConfig.rippleColor = switchImage.color;
 			}
 		}
 	}

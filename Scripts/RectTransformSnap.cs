@@ -34,9 +34,8 @@ namespace MaterialUI
 		public bool sizeOnly;
 
 		private Rect lastRect;
-		private Vector3 lastPos;
 
-		private void Start()
+		private void OnEnable ()
 		{
 			if (!thisRect)
 			{
@@ -54,28 +53,28 @@ namespace MaterialUI
 		{
 			if (targetRect)
 			{
-				if (!thisRect)
+				if (lastRect != new Rect(targetRect.position.x, targetRect.position.y, targetRect.sizeDelta.x, targetRect.sizeDelta.y))
 				{
-					thisRect = gameObject.GetComponent<RectTransform>();
+					lastRect = new Rect(targetRect.position.x, targetRect.position.y, targetRect.sizeDelta.x, targetRect.sizeDelta.y);
+
+					if (!sizeOnly)
+						thisRect.position = targetRect.position;
+
+					Vector2 tempVect2;
+
+					if (percentage)
+					{
+						tempVect2.x = targetRect.sizeDelta.x*xPercent*0.01f;
+						tempVect2.y = targetRect.sizeDelta.y*yPercent*0.01f;
+					}
+					else
+					{
+						tempVect2.x = targetRect.sizeDelta.x + xPadding;
+						tempVect2.y = targetRect.sizeDelta.y + yPadding;
+					}
+
+					thisRect.sizeDelta = tempVect2;
 				}
-
-				if (!sizeOnly)
-					thisRect.position = targetRect.position;
-
-				Vector2 tempVect2;
-
-				if (percentage)
-				{
-					tempVect2.x = targetRect.sizeDelta.x*xPercent*0.01f;
-					tempVect2.y = targetRect.sizeDelta.y*yPercent*0.01f;
-				}
-				else
-				{
-					tempVect2.x = targetRect.sizeDelta.x + xPadding;
-					tempVect2.y = targetRect.sizeDelta.y + yPadding;
-				}
-
-				thisRect.sizeDelta = tempVect2;
 			}
 			else
 			{

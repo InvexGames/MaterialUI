@@ -63,6 +63,7 @@ namespace MaterialUI
 			dotRectTransform = dotImage.GetComponent<RectTransform>();
 			checkBoxToggler = text.GetComponent<CheckBoxToggler>();
 			rippleConfig = gameObject.GetComponent<RippleConfig>();
+			toggle.group = toggleGroup;
 		}
 
 		void Start()
