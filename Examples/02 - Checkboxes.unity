@@ -1662,7 +1662,7 @@ MonoBehaviour:
   onColor: {r: 1, g: .596078455, b: 0, a: 1}
   offColor: {r: 0, g: 0, b: 0, a: .541176498}
   disabledColor: {r: 0, g: 0, b: 0, a: .262745112}
-  changeTextColor: 0
+  changeTextColor: 1
   textNormalColor: {r: 0, g: 0, b: 0, a: .541176498}
   textDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   changeRippleColor: 1

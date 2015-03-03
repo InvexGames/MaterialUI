@@ -9,57 +9,81 @@
 //	limitations under the License.
 
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 namespace MaterialUI
 {
+	[ExecuteInEditMode]
 	public class RadioConfig : MonoBehaviour
 	{
-		[HideInInspector()]
-		public float animationDuration;
+		public float animationDuration = 0.5f;
 
-		Color radioOffColor;
-		[HideInInspector()]
-		public Color radioOnColor;
-		[HideInInspector()]
-		public Color radioDisabledColor;
+		public Color onColor;
+		public Color offColor;
+		public Color disabledColor;
 
-		[HideInInspector]
 		public bool changeTextColor;
 
-		[SerializeField] private Text radioText;
+		public Color textNormalColor;
+		public Color textDisabledColor;
 
-		[SerializeField] private CheckBoxToggler radioToggler;
+		public bool changeRippleColor;
 
-		public Image dotImage;
-		public Image ringImage;
-		
-		RectTransform dotRect;
 
-		float dotSize;
-		Color color;
-		
-		float animStartTime;
-		float animDeltaTime;
+		[SerializeField] private Image dotImage;
+		[SerializeField] private Image ringImage;
+		[SerializeField] private Text text;
 
-		Vector3 tempVec3;
-		Color tempColor;
+		private RectTransform dotRectTransform;
+		private CheckBoxToggler checkBoxToggler;
+		private RippleConfig rippleConfig;
+
+		private Toggle toggle;
+		private ToggleGroup toggleGroup;
+
+		private bool lastToggleInteractableState;
+		private bool lastToggleState;
+
+		private float currentDotSize;
+		private Color currentColor;
+		private Color currentTextColor;
+
+		private Vector3 tempVector3;
+		private Color tempColor;
+
+		private int state;
+		private float animStartTime;
+		private float animDeltaTime;
 		
-		int state;
-		
-		RippleConfig _rippleConfig;
-		Toggle toggle;
-		
-		public void Setup ()
+		public void OnEnable ()
 		{
-			toggle = gameObject.GetComponent<Toggle> ();
-			toggle.group = gameObject.GetComponentInParent<ToggleGroup> ();
+			//	Set references
+			toggle = gameObject.GetComponent<Toggle>();
+			toggleGroup = gameObject.GetComponent<RectTransform>().parent.GetComponent<ToggleGroup>();
+			dotRectTransform = dotImage.GetComponent<RectTransform>();
+			checkBoxToggler = text.GetComponent<CheckBoxToggler>();
+			rippleConfig = gameObject.GetComponent<RippleConfig>();
+		}
 
-			dotRect = dotImage.gameObject.GetComponent<RectTransform> ();
-			radioOffColor = dotImage.color;
+		void Start()
+		{
+			lastToggleInteractableState = toggle.interactable;
 
-			_rippleConfig = gameObject.GetComponent<RippleConfig>();
+			if (lastToggleInteractableState)
+			{
+				if (lastToggleState != toggle.isOn)
+				{
+					lastToggleState = toggle.isOn;
+
+					if (lastToggleState)
+						TurnOnSilent();
+					else
+						TurnOffSilent();
+				}
+			}
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = ringImage.color;
 		}
 
 		public void ToggleCheckbox (bool state)
@@ -73,58 +97,81 @@ namespace MaterialUI
 		void TurnOn ()
 		{
 			dotImage.enabled = true;
-			color = dotImage.color;
-			dotSize = dotRect.localScale.x;
+
+			currentDotSize = dotRectTransform.localScale.x;
+			currentColor = ringImage.color;
+			currentTextColor = text.color;
+
 			animStartTime = Time.realtimeSinceStartup;
 			state = 1;
+		}
+
+		private void TurnOnSilent()
+		{
+			dotImage.enabled = true;
+			if (dotRectTransform.localScale != new Vector3(1f, 1f, 1f))
+				dotRectTransform.localScale = new Vector3(1f, 1f, 1f);
+			ringImage.color = onColor;
+
+			if (changeTextColor)
+				text.color = onColor;
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = onColor;
 		}
 		
 		void TurnOff ()
 		{
-			dotSize = dotRect.localScale.x;
-			color = dotImage.color;
+			currentDotSize = dotRectTransform.localScale.x;
+			currentColor = ringImage.color;
+			currentTextColor = text.color;
+
 			animStartTime = Time.realtimeSinceStartup;
 			state = 2;
 		}
 
-		public void ToggleInteractivity(bool isEnabled)
+		private void TurnOffSilent()
 		{
-			if (isEnabled)
+			if (dotRectTransform.localScale != new Vector3(0f, 0f, 1f))
+				dotRectTransform.localScale = new Vector3(0f, 0f, 1f);
+			ringImage.color = offColor;
+
+			if (changeTextColor)
+				text.color = textNormalColor;
+
+			if (changeRippleColor)
+				rippleConfig.rippleColor = offColor;
+
+			dotImage.enabled = false;
+		}
+
+		private void EnableRadioButton()
+		{
+			if (toggle.isOn)
 			{
-				toggle.interactable = true;
-
-				if (toggle.isOn)
-				{
-					dotImage.color = radioOnColor;
-					ringImage.color = radioOnColor;
-					if (changeTextColor)
-						radioText.color = radioOnColor;
-				}
+				ringImage.color = onColor;
+				if (changeTextColor)
+					text.color = onColor;
 				else
-				{
-					dotImage.color = radioOffColor;
-					ringImage.color = radioOffColor;
-					if (changeTextColor)
-						radioText.color = radioOffColor;
-				}
-
-				_rippleConfig.enabled = true;
-				radioToggler.interactable = true;
-
-				ToggleCheckbox(true);
+					text.color = textNormalColor;
 			}
 			else
 			{
-				toggle.interactable = false;
-
-				dotImage.color = radioDisabledColor;
-				ringImage.color = radioDisabledColor;
-				if (changeTextColor)
-					radioText.color = radioDisabledColor;
-
-				_rippleConfig.enabled = false;
-				radioToggler.interactable = false;
+				ringImage.color = offColor;
+				text.color = textNormalColor;
 			}
+
+			checkBoxToggler.enabled = true;
+			rippleConfig.enabled = true;
+		}
+
+		private void DisableRadioButton()
+		{
+			ringImage.color = disabledColor;
+			text.color = disabledColor;
+
+			checkBoxToggler.enabled = false;
+			rippleConfig.enabled = false;
 		}
 
 		void Update ()
@@ -135,27 +182,25 @@ namespace MaterialUI
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					tempVec3 = dotRect.localScale;
-					tempVec3.x = Anim.Quint.Out(dotSize, 1f, animDeltaTime, animationDuration);
-					tempVec3.y = tempVec3.x;
-					tempVec3.z = 1f;
-					dotRect.localScale = tempVec3;
+					dotRectTransform.localScale = Anim.Overshoot(new Vector3(currentDotSize, currentDotSize, 1f), new Vector3(1f, 1f, 1f), animDeltaTime, animationDuration);
+					ringImage.color = Anim.Quint.SoftOut(currentColor, onColor, animDeltaTime, animationDuration);
 
-					tempColor = dotImage.color;
-					tempColor.r = Anim.Quint.Out (color.r, radioOnColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.Out (color.g, radioOnColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.Out (color.b, radioOnColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.Out (color.a, radioOnColor.a, animDeltaTime, animationDuration);
-					dotImage.color = tempColor;
-					ringImage.color = tempColor;
 					if (changeTextColor)
-						radioText.color = tempColor;
+						text.color = Anim.Quint.SoftOut(currentTextColor, onColor, animDeltaTime, animationDuration);
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = ringImage.color;
 				}
 				else
 				{
-					dotRect.localScale = new Vector3 (1f, 1f, 1f);
-					dotImage.color = radioOnColor;
-					ringImage.color = radioOnColor;
+					dotRectTransform.localScale = new Vector3(1f, 1f, 1f);
+					ringImage.color = onColor;
+
+					if (changeTextColor)
+						text.color = onColor;
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = onColor;
 
 					state = 0;
 				}
@@ -164,31 +209,56 @@ namespace MaterialUI
 			{
 				if (animDeltaTime <= animationDuration)
 				{
-					tempVec3 = dotRect.localScale;
-					tempVec3.x = Anim.Quint.Out(dotSize, 0f, animDeltaTime, animationDuration);
-					tempVec3.y = tempVec3.x;
-					tempVec3.z = 1f;
-					dotRect.localScale = tempVec3;
-					
-					tempColor = dotImage.color;
-					tempColor.r = Anim.Quint.Out (color.r, radioOffColor.r, animDeltaTime, animationDuration);
-					tempColor.g = Anim.Quint.Out (color.g, radioOffColor.g, animDeltaTime, animationDuration);
-					tempColor.b = Anim.Quint.Out (color.b, radioOffColor.b, animDeltaTime, animationDuration);
-					tempColor.a = Anim.Quint.Out (color.a, radioOffColor.a, animDeltaTime, animationDuration);
-					dotImage.color = tempColor;
-					ringImage.color = tempColor;
+					dotRectTransform.localScale = Anim.Sept.InOut(new Vector3(currentDotSize, currentDotSize, 1f), new Vector3(0f, 0f, 1f), animDeltaTime, animationDuration * 0.75f);
+					ringImage.color = Anim.Sept.InOut(currentColor, offColor, animDeltaTime, animationDuration * 0.75f);
+
 					if (changeTextColor)
-						radioText.color = tempColor;
+						text.color = Anim.Quint.SoftOut(currentTextColor, textNormalColor, animDeltaTime, animationDuration * 0.75f);
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = ringImage.color;
 				}
 				else
 				{
-					dotRect.localScale = Vector3.zero;
-					dotImage.color = radioOffColor;
-					ringImage.color = radioOffColor;
-					dotImage.enabled = false;
+					dotRectTransform.localScale = new Vector3(0f, 0f, 1f);
+					ringImage.color = offColor;
 
+					if (changeTextColor)
+						text.color = textNormalColor;
+
+					if (changeRippleColor)
+						rippleConfig.rippleColor = offColor;
+
+					dotImage.enabled = false;
 					state = 0;
 				}
+			}
+
+
+			if (lastToggleInteractableState != toggle.interactable)
+			{
+				lastToggleInteractableState = toggle.interactable;
+
+				if (lastToggleInteractableState)
+					EnableRadioButton();
+				else
+					DisableRadioButton();
+			}
+
+			if (!Application.isPlaying)
+			{
+				if (lastToggleState != toggle.isOn)
+				{
+					lastToggleState = toggle.isOn;
+
+					if (lastToggleState)
+						TurnOnSilent();
+					else
+						TurnOffSilent();
+				}
+
+				if (changeRippleColor)
+					rippleConfig.rippleColor = ringImage.color;
 			}
 		}
 	}

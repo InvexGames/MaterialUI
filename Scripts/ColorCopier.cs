@@ -20,7 +20,7 @@ namespace MaterialUI
 			thisText = gameObject.GetComponent<Text>();
 		}
 
-		private void Update()
+		private void LateUpdate()
 		{
 			if (sourceImage)
 			{

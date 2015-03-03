@@ -8,6 +8,7 @@
 //	See the License for the specific language governing permissions and
 //	limitations under the License.
 
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -122,7 +123,8 @@ namespace MaterialUI
 		private void TurnOnSilent()
 		{
 			checkImage.enabled = true;
-			checkRectTransform.localScale = new Vector3(1f, 1f, 1f);
+			if (checkRectTransform.localScale != new Vector3(1f, 1f, 1f))
+				checkRectTransform.localScale = new Vector3(1f, 1f, 1f);
 			frameImage.color = onColor;
 			frameCanvasGroup.alpha = 0f;
 
@@ -151,7 +153,8 @@ namespace MaterialUI
 		private void TurnOffSilent()
 		{
 			frameImage.enabled = true;
-			checkRectTransform.localScale = new Vector3(0f, 0f, 1f);
+			if (checkRectTransform.localScale != new Vector3(0f, 0f, 1f))
+				checkRectTransform.localScale = new Vector3(0f, 0f, 1f);
 			frameImage.color = offColor;
 			frameCanvasGroup.alpha = 1f;
 
@@ -166,8 +169,6 @@ namespace MaterialUI
 
 		private void EnableCheckbox()
 		{
-			Debug.Log("Enabling Checkbox");
-
 			if (toggle.isOn)
 			{
 				frameImage.color = onColor;
@@ -188,8 +189,6 @@ namespace MaterialUI
 
 		private void DisableCheckbox()
 		{
-			Debug.Log("Disabling Checkbox");
-
 			frameImage.color = disabledColor;
 			text.color = disabledColor;
 
