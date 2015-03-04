@@ -1611,6 +1611,8 @@ MonoBehaviour:
   m_selectedValue1Text: {fileID: 2128076494}
   m_selectedValue2Text: {fileID: 127691636}
   m_radioButtonsParent: {fileID: 1959725842}
+  m_radioButtonDraftPrefab: {fileID: 167362, guid: ceeaec551ad0f4fa794b21f9dee5fefd,
+    type: 2}
   m_selectedValue3Text: {fileID: 526204045}
 --- !u!1 &435691792
 GameObject:

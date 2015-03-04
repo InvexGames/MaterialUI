@@ -35,6 +35,7 @@ public class Example04 : MonoBehaviour
 	#region group2
 	[SerializeField] private Text m_selectedValue2Text;
 	[SerializeField] private GameObject m_radioButtonsParent;
+	[SerializeField] private GameObject m_radioButtonDraftPrefab;
 
 	void Start()
 	{
@@ -51,11 +52,10 @@ public class Example04 : MonoBehaviour
 			return;
 		}
 
-		GameObject instance = GameObject.Instantiate(m_radioButtonsParent.transform.GetChild(0).gameObject) as GameObject;
+		GameObject instance = GameObject.Instantiate(m_radioButtonDraftPrefab) as GameObject;
 		instance.transform.SetParent(m_radioButtonsParent.transform);
+		instance.SetActive(true);
 		instance.GetComponentInChildren<Text>().text = Random.Range(0, 1000).ToString();
-		//instance.GetComponentInChildren<RadioConfig>().Setup();
-		instance.GetComponentInChildren<Toggle>().isOn = false;
 
 		addToggleListener(instance.GetComponentInChildren<Toggle>());
 	}
