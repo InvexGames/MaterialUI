@@ -293,6 +293,125 @@ namespace MaterialUI
 			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		}
 
+		[MenuItem("GameObject/MaterialUI/List/ListView", false, 13)]
+		[MenuItem("MaterialUI/Create/List/ListView", false, 13)]
+		private static void CreateListView()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/ListView.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("ListView");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Single-line item/Text only", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Single-line item/Text only", false, 13)]
+		private static void CreateListItemSingle()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Single.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Single-line item/Text with icon", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Single-line item/Text with icon", false, 13)]
+		private static void CreateListItemSingleIcon()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Single Icon.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Single-line item/Text with avatar", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Single-line item/Text with avatar", false, 13)]
+		private static void CreateListItemSingleAvatar()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Single Avatar.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Single-line item/Text with icon and avatar", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Single-line item/Text Only", false, 13)]
+		private static void CreateListItemSingleIconAvatar()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Single Icon Avatar.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Double-line item/Text only", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Double-line item/Text only", false, 13)]
+		private static void CreateListItemDouble()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Double.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Double-line item/Text with icon", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Double-line item/Text with icon", false, 13)]
+		private static void CreateListItemDoubleIcon()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Double Icon.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Double-line item/Text with avatar", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Double-line item/Text with avatar", false, 13)]
+		private static void CreateListItemDoubleAvatar()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Double Avatar.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Double-line item/Text with icon and avatar", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Double-line item/Text Only", false, 13)]
+		private static void CreateListItemDoubleIconAvatar()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Double Icon Avatar.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Triple-line item/Text only", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Triple-line item/Text only", false, 13)]
+		private static void CreateListItemTriple()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Triple.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Triple-line item/Text with icon", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Triple-line item/Text with icon", false, 13)]
+		private static void CreateListItemTripleIcon()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Triple Icon.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Triple-line item/Text with avatar", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Triple-line item/Text with avatar", false, 13)]
+		private static void CreateListItemTripleAvatar()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Triple Avatar.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+		[MenuItem("GameObject/MaterialUI/List/Triple-line item/Text with icon and avatar", false, 13)]
+		[MenuItem("MaterialUI/Create/List/Triple-line item/Text Only", false, 13)]
+		private static void CreateListItemTripleIconAvatar()
+		{
+			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/List Item Triple Icon Avatar.prefab", typeof(GameObject))) as GameObject;
+			SetupObject("List Item");
+			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		}
+
+
+
 		[MenuItem("GameObject/MaterialUI/Nav Drawer", false, 13)]
 		[MenuItem("MaterialUI/Create/Nav Drawer", false, 13)]
 		private static void CreateNavDrawer()
