@@ -3704,7 +3704,6 @@ GameObject:
   - 224: {fileID: 892637870}
   - 222: {fileID: 892637874}
   - 114: {fileID: 892637873}
-  - 114: {fileID: 892637872}
   - 114: {fileID: 892637875}
   m_Layer: 5
   m_Name: Icon
@@ -3730,19 +3729,6 @@ RectTransform:
   m_AnchoredPosition: {x: -8.64999485, y: 0}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &892637872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 892637869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba2584491db7aa43acc43f51c4394d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceImage: {fileID: 1206875619}
-  sourceText: {fileID: 0}
 --- !u!114 &892637873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,7 +3741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: .541176498}
+  m_Color: {r: .894117653, g: .223529413, b: .20784314, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -6964,7 +6950,6 @@ GameObject:
   - 224: {fileID: 1882653484}
   - 222: {fileID: 1882653488}
   - 114: {fileID: 1882653487}
-  - 114: {fileID: 1882653486}
   - 114: {fileID: 1882653489}
   m_Layer: 5
   m_Name: Icon
@@ -6990,19 +6975,6 @@ RectTransform:
   m_AnchoredPosition: {x: -8.64999485, y: 0}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &1882653486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1882653483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba2584491db7aa43acc43f51c4394d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceImage: {fileID: 341983116}
-  sourceText: {fileID: 0}
 --- !u!114 &1882653487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7015,7 +6987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: .541176498}
+  m_Color: {r: .117647059, g: .529411793, b: .894117653, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -7107,7 +7079,6 @@ GameObject:
   - 224: {fileID: 1943952128}
   - 222: {fileID: 1943952132}
   - 114: {fileID: 1943952131}
-  - 114: {fileID: 1943952130}
   - 114: {fileID: 1943952133}
   m_Layer: 5
   m_Name: Icon
@@ -7133,19 +7104,6 @@ RectTransform:
   m_AnchoredPosition: {x: -8.64999485, y: 0}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &1943952130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1943952127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba2584491db7aa43acc43f51c4394d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceImage: {fileID: 1229533434}
-  sourceText: {fileID: 0}
 --- !u!114 &1943952131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7158,7 +7116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: .541176498}
+  m_Color: {r: .262745112, g: .627451003, b: .278431386, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
