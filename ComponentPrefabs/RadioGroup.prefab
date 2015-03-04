@@ -524,7 +524,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11435094}
   toggleTransition: 0
   graphic: {fileID: 0}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 11400002}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11435148}
   toggleTransition: 0
   graphic: {fileID: 0}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 11400002}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11464220}
   toggleTransition: 0
   graphic: {fileID: 0}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 11400002}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1834,4 +1834,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
-  m_IsExploded: 1
