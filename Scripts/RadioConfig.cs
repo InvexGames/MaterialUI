@@ -112,13 +112,17 @@ namespace MaterialUI
 			dotImage.enabled = true;
 			if (dotRectTransform.localScale != new Vector3(1f, 1f, 1f))
 				dotRectTransform.localScale = new Vector3(1f, 1f, 1f);
-			ringImage.color = onColor;
 
-			if (changeTextColor)
-				text.color = onColor;
+			if (lastToggleInteractableState)
+			{
+				ringImage.color = onColor;
 
-			if (changeRippleColor)
-				rippleConfig.rippleColor = onColor;
+				if (changeTextColor)
+					text.color = onColor;
+
+				if (changeRippleColor)
+					rippleConfig.rippleColor = onColor;
+			}
 		}
 		
 		void TurnOff ()
@@ -135,13 +139,17 @@ namespace MaterialUI
 		{
 			if (dotRectTransform.localScale != new Vector3(0f, 0f, 1f))
 				dotRectTransform.localScale = new Vector3(0f, 0f, 1f);
-			ringImage.color = offColor;
 
-			if (changeTextColor)
-				text.color = textNormalColor;
+			if (lastToggleInteractableState)
+			{
+				ringImage.color = offColor;
 
-			if (changeRippleColor)
-				rippleConfig.rippleColor = offColor;
+				if (changeTextColor)
+					text.color = textNormalColor;
+
+				if (changeRippleColor)
+					rippleConfig.rippleColor = offColor;
+			}
 
 			dotImage.enabled = false;
 		}

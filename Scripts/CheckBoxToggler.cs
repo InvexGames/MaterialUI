@@ -9,7 +9,6 @@
 //	limitations under the License.
 
 using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -18,6 +17,7 @@ namespace MaterialUI
 	public class CheckBoxToggler : MonoBehaviour, IPointerClickHandler
 	{
 		public Toggle theToggle;
+		[HideInInspector]
 		public bool interactable;
 
 		public void OnPointerClick (PointerEventData data)

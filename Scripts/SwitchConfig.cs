@@ -109,14 +109,17 @@ namespace MaterialUI
 			if (switchRectTransform.anchoredPosition != new Vector2(8f, 0f))
 				switchRectTransform.anchoredPosition = new Vector2(8f, 0f);
 
-			switchImage.color = onColor;
-			backImage.color = onColor;
+			if (lastToggleInteractableState)
+			{
+				switchImage.color = onColor;
+				backImage.color = onColor;
 
-			if (changeTextColor)
-				text.color = onColor;
+				if (changeTextColor)
+					text.color = onColor;
 
-			if (changeRippleColor)
-				rippleConfig.rippleColor = onColor;
+				if (changeRippleColor)
+					rippleConfig.rippleColor = onColor;
+			}
 		}
 
 		public void TurnOff()
@@ -136,14 +139,17 @@ namespace MaterialUI
 			if (switchRectTransform.anchoredPosition != new Vector2(-8f, 0f))
 				switchRectTransform.anchoredPosition = new Vector2(-8f, 0f);
 
-			switchImage.color = offColor;
-			backImage.color = backOffColor;
+			if (lastToggleInteractableState)
+			{
+				switchImage.color = offColor;
+				backImage.color = backOffColor;
 
-			if (changeTextColor)
-				text.color = textNormalColor;
+				if (changeTextColor)
+					text.color = textNormalColor;
 
-			if (changeRippleColor)
-				rippleConfig.rippleColor = backOffColor;
+				if (changeRippleColor)
+					rippleConfig.rippleColor = backOffColor;
+			}
 		}
 
 		private void EnableSwitch()
