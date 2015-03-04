@@ -125,14 +125,19 @@ namespace MaterialUI
 			checkImage.enabled = true;
 			if (checkRectTransform.localScale != new Vector3(1f, 1f, 1f))
 				checkRectTransform.localScale = new Vector3(1f, 1f, 1f);
-			frameImage.color = onColor;
+			
 			frameCanvasGroup.alpha = 0f;
 
-			if (changeTextColor)
-				text.color = onColor;
+			if (lastToggleInteractableState)
+			{
 
-			if (changeRippleColor)
-				rippleConfig.rippleColor = onColor;
+				frameImage.color = onColor;
+				if (changeTextColor)
+					text.color = onColor;
+
+				if (changeRippleColor)
+					rippleConfig.rippleColor = onColor;
+			}
 
 			frameImage.enabled = false;
 		}
@@ -155,14 +160,18 @@ namespace MaterialUI
 			frameImage.enabled = true;
 			if (checkRectTransform.localScale != new Vector3(0f, 0f, 1f))
 				checkRectTransform.localScale = new Vector3(0f, 0f, 1f);
-			frameImage.color = offColor;
+			
 			frameCanvasGroup.alpha = 1f;
 
-			if (changeTextColor)
-				text.color = textNormalColor;
+			if (lastToggleInteractableState)
+			{
+				frameImage.color = offColor;
+				if (changeTextColor)
+					text.color = textNormalColor;
 
-			if (changeRippleColor)
-				rippleConfig.rippleColor = offColor;
+				if (changeRippleColor)
+					rippleConfig.rippleColor = offColor;
+			}
 
 			checkImage.enabled = false;
 		}
