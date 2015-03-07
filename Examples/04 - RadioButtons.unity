@@ -966,7 +966,7 @@ MonoBehaviour:
   sizePercentage: 75
   rippleSize: 0
   rippleSpeed: 6
-  rippleColor: {r: 0, g: 0, b: 0, a: 1}
+  rippleColor: {r: .129411772, g: .588235319, b: .952941179, a: 1}
   rippleStartAlpha: .400000006
   rippleEndAlpha: .200000003
   highlightWhen: 2
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .933333337, g: .933333337, b: .933333337, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 925c7f2845cf85045b592992d742cf0b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2807,7 +2807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: .874509811}
+  m_Color: {r: .956862748, g: .262745112, b: .211764708, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: fbe3c09b43ce4304e86e7496c81bb9ed, type: 3}
     m_FontSize: 14
@@ -6549,7 +6549,7 @@ MonoBehaviour:
   sizePercentage: 75
   rippleSize: 0
   rippleSpeed: 6
-  rippleColor: {r: 0, g: 0, b: 0, a: 1}
+  rippleColor: {r: .956862748, g: .262745112, b: .211764708, a: 1}
   rippleStartAlpha: .400000006
   rippleEndAlpha: .200000003
   highlightWhen: 2
@@ -6634,7 +6634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .933333337, g: .933333337, b: .933333337, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 925c7f2845cf85045b592992d742cf0b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -7827,7 +7827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: .874509811}
+  m_Color: {r: .129411772, g: .588235319, b: .952941179, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: fbe3c09b43ce4304e86e7496c81bb9ed, type: 3}
     m_FontSize: 14
