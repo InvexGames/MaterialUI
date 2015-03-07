@@ -113,6 +113,8 @@ MonoBehaviour:
   highlightWhen: 2
   moveTowardCenter: 1
   toggleMask: 1
+  dontRippleOnScroll: 1
+  scrollDelayCheckTime: .0500000007
 --- !u!114 &11420962
 MonoBehaviour:
   m_ObjectHideFlags: 1

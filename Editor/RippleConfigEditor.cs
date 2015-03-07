@@ -59,6 +59,15 @@ namespace MaterialUI
 			prop = serializedObject.FindProperty("toggleMask");
 			EditorGUILayout.PropertyField(prop, true, new GUILayoutOption[0]);
 
+			prop = serializedObject.FindProperty("dontRippleOnScroll");
+			EditorGUILayout.PropertyField(prop, true, new GUILayoutOption[0]);
+
+			if (prop.boolValue)
+			{
+				prop = serializedObject.FindProperty("scrollDelayCheckTime");
+				EditorGUILayout.PropertyField(prop, true, new GUILayoutOption[0]);
+			}
+
 			serializedObject.ApplyModifiedProperties();
 		}
 	}
