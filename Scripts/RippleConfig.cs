@@ -56,6 +56,7 @@ namespace MaterialUI
 		[HideInInspector] public bool dontRippleOnScroll;
 		[HideInInspector] public float scrollDelayCheckTime = 0.05f;
 
+		private bool hasLifted;
 		private Vector2 mousePos;
 
 		private RippleAnim currentRippleAnim;
@@ -257,6 +258,8 @@ namespace MaterialUI
 				animStartTime = Time.realtimeSinceStartup;
 				state = 2;
 			}
+
+			hasLifted = true;
 		}
 
 		public void OnPointerExit (PointerEventData data)
@@ -277,6 +280,8 @@ namespace MaterialUI
 				animStartTime = Time.realtimeSinceStartup;
 				state = 2;
 			}
+
+			hasLifted = true;
 		}
 
 		private void MakeInkBlot (Vector3 pos)
@@ -297,9 +302,19 @@ namespace MaterialUI
 			if (dontRippleOnScroll)
 			{
 				mousePos = Input.mousePosition;
+				hasLifted = false;
 				yield return new WaitForSeconds(scrollDelayCheckTime);
 				if (mousePos.x == Input.mousePosition.x && mousePos.y == Input.mousePosition.y)
+				{
 					MakeInkBlot(pos);
+					yield return new WaitForSeconds(scrollDelayCheckTime * 2f);
+					if (hasLifted)
+					{
+						if (currentRippleAnim)
+							currentRippleAnim.ClearRipple();
+					}
+				}
+
 			}
 			else
 			{
