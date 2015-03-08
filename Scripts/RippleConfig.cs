@@ -53,6 +53,12 @@ namespace MaterialUI
 		[HideInInspector()]
 		public bool toggleMask = true;
 
+		[HideInInspector] public bool dontRippleOnScroll;
+		[HideInInspector] public float scrollDelayCheckTime = 0.05f;
+
+		private bool hasLifted;
+		private Vector2 mousePos;
+
 		private RippleAnim currentRippleAnim;
 		private Mask thisMask;
 		private Canvas theCanvas;
@@ -219,9 +225,9 @@ namespace MaterialUI
 		public void OnPointerDown (PointerEventData data)
 		{
 			if (worldSpace)
-				MakeInkBlot (theCamera.ScreenToWorldPoint(new Vector3 (data.position.x, data.position.y, Vector3.Distance(theCamera.transform.position, transform.position) - Mathf.Sqrt(Vector2.Distance(data.position, new Vector2(Screen.width / 2f, Screen.height / 2f))))));
+				StartCoroutine(DragCheck(theCamera.ScreenToWorldPoint(new Vector3 (data.position.x, data.position.y, Vector3.Distance(theCamera.transform.position, transform.position) - Mathf.Sqrt(Vector2.Distance(data.position, new Vector2(Screen.width / 2f, Screen.height / 2f)))))));
 			else
-				MakeInkBlot (data.position);
+				StartCoroutine(DragCheck (data.position));
 
 			if (thisMask && toggleMask)
 				thisMask.enabled = true;
@@ -252,6 +258,8 @@ namespace MaterialUI
 				animStartTime = Time.realtimeSinceStartup;
 				state = 2;
 			}
+
+			hasLifted = true;
 		}
 
 		public void OnPointerExit (PointerEventData data)
@@ -272,6 +280,8 @@ namespace MaterialUI
 				animStartTime = Time.realtimeSinceStartup;
 				state = 2;
 			}
+
+			hasLifted = true;
 		}
 
 		private void MakeInkBlot (Vector3 pos)
@@ -286,7 +296,32 @@ namespace MaterialUI
 			else
 				currentRippleAnim = RippleControl.MakeRipple (pos, transform, rippleSize, rippleSpeed, rippleStartAlpha, rippleEndAlpha, rippleColor).GetComponent<RippleAnim>();
 		}
-		
+
+		IEnumerator DragCheck(Vector3 pos)
+		{
+			if (dontRippleOnScroll)
+			{
+				mousePos = Input.mousePosition;
+				hasLifted = false;
+				yield return new WaitForSeconds(scrollDelayCheckTime);
+				if (mousePos.x == Input.mousePosition.x && mousePos.y == Input.mousePosition.y)
+				{
+					MakeInkBlot(pos);
+					yield return new WaitForSeconds(scrollDelayCheckTime * 2f);
+					if (hasLifted)
+					{
+						if (currentRippleAnim)
+							currentRippleAnim.ClearRipple();
+					}
+				}
+
+			}
+			else
+			{
+				MakeInkBlot(pos);
+			}
+		}
+
 		IEnumerator DelayedMaskCheck()
 		{
 			yield return new WaitForSeconds(1f);

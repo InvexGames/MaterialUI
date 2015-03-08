@@ -8,6 +8,8 @@
 //	See the License for the specific language governing permissions and
 //	limitations under the License.
 
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,7 +61,7 @@ namespace MaterialUI
 		{
 			//	Set references
 			toggle = gameObject.GetComponent<Toggle>();
-			toggleGroup = gameObject.GetComponent<RectTransform>().parent.GetComponent<RectTransform>().parent.GetComponent<ToggleGroup>();
+			toggleGroup = gameObject.GetComponent<RectTransform>().parent.parent.GetComponent<ToggleGroup>();
 			dotRectTransform = dotImage.GetComponent<RectTransform>();
 			checkBoxToggler = text.GetComponent<CheckBoxToggler>();
 			rippleConfig = gameObject.GetComponent<RippleConfig>();
