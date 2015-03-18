@@ -300,7 +300,6 @@ namespace MaterialUI
 			theThing = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/List Item/ListView.prefab", typeof(GameObject))) as GameObject;
 			SetupObject("ListView");
 			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-			theThing.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 			theThing.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 		}
 
