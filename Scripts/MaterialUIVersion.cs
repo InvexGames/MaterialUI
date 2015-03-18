@@ -3,5 +3,5 @@ using System.Collections;
 
 public static class MaterialUIVersion
 {
-	public const string currentVersion = "0.2.5";
+	public const string currentVersion = "0.2.6";
 }
