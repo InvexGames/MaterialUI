@@ -11,6 +11,7 @@ GameObject:
   - 222: {fileID: 22200000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400646}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -167,7 +168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Switch
+  m_Text: Switch Off
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,6 +214,18 @@ MonoBehaviour:
       - m_Target: {fileID: 11400008}
         m_MethodName: ToggleSwitch
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400646}
+        m_MethodName: ToggleText
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -352,6 +365,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11400646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa426bcca4f956042be28bfa0345eed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onText: Switch On
+  offText: Switch Off
 --- !u!114 &11411680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,6 +433,8 @@ MonoBehaviour:
   highlightWhen: 0
   moveTowardCenter: 1
   toggleMask: 0
+  dontRippleOnScroll: 0
+  scrollDelayCheckTime: .0500000007
 --- !u!114 &11461350
 MonoBehaviour:
   m_ObjectHideFlags: 1
