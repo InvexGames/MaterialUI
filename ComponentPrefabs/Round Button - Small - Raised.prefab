@@ -364,6 +364,8 @@ MonoBehaviour:
   highlightWhen: 0
   moveTowardCenter: 1
   toggleMask: 0
+  dontRippleOnScroll: 0
+  scrollDelayCheckTime: .0500000007
 --- !u!114 &11446074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -597,7 +599,7 @@ CanvasGroup:
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 0
+  m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!225 &22575556
@@ -622,4 +624,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100012}
   m_IsPrefabParent: 1
-  m_IsExploded: 1
