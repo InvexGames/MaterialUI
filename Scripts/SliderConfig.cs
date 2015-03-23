@@ -29,6 +29,7 @@ namespace MaterialUI
         public RectTransform handle;
 		public RectTransform popup;
 		public Text popupText;
+		public Text valueText;
         public Image fill;
 
 		private Slider slider;
@@ -60,7 +61,7 @@ namespace MaterialUI
             handleImage = handle.GetComponent<Image>();
             canvasGroup = gameObject.GetComponent<CanvasGroup>();
 
-			UpdateText ();
+			UpdateText();
 		}
 
         //  This is triggered from toggling the 'interactable' bool on the Slider component
@@ -69,7 +70,7 @@ namespace MaterialUI
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
 
-            fill.color = enabledColor;
+			fill.color = enabledColor;
         }
 
         //  This is triggered from toggling the 'interactable' bool on the Slider component
@@ -78,7 +79,7 @@ namespace MaterialUI
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
 
-            fill.color = disabledColor;
+			fill.color = disabledColor;
         }
 
 		void Update ()
@@ -159,31 +160,31 @@ namespace MaterialUI
             //  If in edit mode, update the fill color to either the enabledColor or Disabled color, depending if the slider is enabled or not
             if (!Application.isPlaying)
             {
-                if (slider.interactable)
-                {
-                    if (fill.color != enabledColor)
-                        fill.color = enabledColor;
-                }
-                else
-                {
-                   if (fill.color != disabledColor)
-                       fill.color = disabledColor;
-                }
+				if (slider.interactable)
+				{
+					if (fill.color != enabledColor)
+						fill.color = enabledColor;
+				}
+				else
+				{
+					if (fill.color != disabledColor)
+						fill.color = disabledColor;
+				}
             }
             
             //  If the 'interactable' bool on the Slider has been changed, enable or disable the SliderConfig accordingly
             if (slider.interactable != lastInteractableState)
             {
-                lastInteractableState = slider.interactable;
+				lastInteractableState = slider.interactable;
 
-                if (slider.interactable)
-                {
-                    EnableSlider();
-                }
-                else
-                {
-                    DisableSlider();
-                }
+				if (slider.interactable)
+				{
+					EnableSlider();
+				}
+				else
+				{
+					DisableSlider();
+				}
             }
 		}
 
@@ -191,9 +192,20 @@ namespace MaterialUI
 		public void UpdateText ()
 		{
 			if (textHasDecimal)
+			{
 				popupText.text = slider.value.ToString("0.0");
+
+				if (valueText)
+					valueText.text = slider.value.ToString("0.00");
+			}
 			else
-				popupText.text = slider.value.ToString("0");
+			{
+				string tempText = slider.value.ToString("0");
+				popupText.text = tempText;
+
+				if (valueText)
+					valueText.text = tempText;
+			}
 		}
 
         public void OnPointerDown (PointerEventData data)

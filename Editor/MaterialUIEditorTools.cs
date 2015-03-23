@@ -212,13 +212,33 @@ namespace MaterialUI
 			SetupObject("Text Input");
 		}
 
-		[MenuItem("GameObject/MaterialUI/Slider", false, 12)]
-		[MenuItem("MaterialUI/Create/Slider", false, 12)]
+		[MenuItem("GameObject/MaterialUI/Slider/Slider", false, 12)]
+		[MenuItem("MaterialUI/Create/Slider/Slider", false, 12)]
 		private static void CreateSlider()
 		{
 			theThing =
 				GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Slider.prefab",
 					typeof (GameObject))) as GameObject;
+			SetupObject("Slider");
+		}
+
+		[MenuItem("GameObject/MaterialUI/Slider/Slider with text", false, 12)]
+		[MenuItem("MaterialUI/Create/Slider/Slider with text", false, 12)]
+		private static void CreateSliderLabel()
+		{
+			theThing =
+				GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Slider_label.prefab",
+					typeof(GameObject))) as GameObject;
+			SetupObject("Slider");
+		}
+
+		[MenuItem("GameObject/MaterialUI/Slider/Slider with text and value", false, 12)]
+		[MenuItem("MaterialUI/Create/Slider/Slider with text and value", false, 12)]
+		private static void CreateSliderLabelValue()
+		{
+			theThing =
+				GameObject.Instantiate(AssetDatabase.LoadAssetAtPath("Assets/MaterialUI/ComponentPrefabs/Slider_label_value.prefab",
+					typeof(GameObject))) as GameObject;
 			SetupObject("Slider");
 		}
 
