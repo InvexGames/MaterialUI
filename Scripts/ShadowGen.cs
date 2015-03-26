@@ -288,8 +288,12 @@ namespace MaterialUI
             //		Tells the texture importer to automatically import the images (PNG) as sprites
             MaterialGlobals.shadowSpriteBorder = new Vector4(sourceSprite.border.w + imagePadding, sourceSprite.border.x + imagePadding, sourceSprite.border.y + imagePadding, sourceSprite.border.z + imagePadding);
 
+			#if !UNITY_WEBPLAYER
+
             //		Saves destTex as a PNG in /Assets/MaterialUI/GeneratedShadows
 			System.IO.File.WriteAllBytes(textureFileName, bytes);
+
+			#endif
 
             //		Safety net for the importer
             AssetDatabase.Refresh();
