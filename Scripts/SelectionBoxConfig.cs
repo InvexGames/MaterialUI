@@ -113,6 +113,18 @@ namespace MaterialUI
 			Setup ();
 		}
 
+		public void RefreshList()
+		{
+			foreach (GameObject go in listItemObjects)
+			{
+				Destroy(go);
+			}
+
+			listLayer.SetActive(true);
+
+			Setup();
+		}
+
 		public void Setup ()
 		{
 			contractedListColor = thisImage.color;
