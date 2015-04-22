@@ -133,10 +133,10 @@ namespace MaterialUI
 
 		public void OnDrag(PointerEventData data)
 		{
-			tempVector2 = thisRectTransform.position;
+			tempVector2 = thisRectTransform.anchoredPosition;
 			tempVector2.x += data.delta.x;
 
-			thisRectTransform.position = tempVector2;
+			thisRectTransform.anchoredPosition = tempVector2;
 
 			backgroundCanvasGroup.alpha = 1 - (maxPosition - thisRectTransform.anchoredPosition.x) / (maxPosition - minPosition);
 			shadowCanvasGroup.alpha = 1 - (maxPosition - thisRectTransform.anchoredPosition.x) / ((maxPosition - minPosition) * 2);
