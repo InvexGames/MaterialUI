@@ -53,7 +53,10 @@ namespace MaterialUI
 			if (finalSize.x < 96f)
 				finalSize.x = 96f;
 
-			buttonRectTransform.sizeDelta = finalSize;
+			if (buttonRectTransform)
+			{
+				buttonRectTransform.sizeDelta = finalSize;
+			}
 		}
 	}
 }
