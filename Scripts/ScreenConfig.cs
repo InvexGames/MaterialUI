@@ -66,7 +66,9 @@ namespace MaterialUI
 		public float fadeOutEndValue = 0f;
 
 		[HideInInspector]
-		private int state;
+		private enum AnimationState { Stationary, TransitioningIn, TransitioningOut }
+		[HideInInspector]
+		private AnimationState state;
 		[HideInInspector]
 		private float animStartTime;
 		[HideInInspector]
@@ -127,6 +129,7 @@ namespace MaterialUI
 		{
 			if (transitionInType == TransitionType.RippleMask)
 			{
+                currentRipple.gameObject.SetActive(true);
 				currentRipple.position = Input.mousePosition;
 
 				thisScreenSize = new Vector2(theRectTransform.rect.width, theRectTransform.rect.height);
@@ -166,7 +169,7 @@ namespace MaterialUI
 			screenSpace.SetActive(true);
 
 			animStartTime = Time.realtimeSinceStartup;
-			state = 1;
+			state = AnimationState.TransitioningIn;
 		}
 
 		public void HideWithoutTransition()
@@ -180,6 +183,7 @@ namespace MaterialUI
 			{
 				thisScreenSize = new Vector2(theRectTransform.rect.width, theRectTransform.rect.height);
 
+                currentRipple.gameObject.SetActive(true);
 				currentRipple.position = Input.mousePosition;
 				rippleSize = screenDimensions.x + screenDimensions.y;
 				currentRipple.sizeDelta = new Vector2(rippleSize, rippleSize);
@@ -213,14 +217,14 @@ namespace MaterialUI
 			}
 
 			animStartTime = Time.realtimeSinceStartup;
-			state = 2;
+			state = AnimationState.TransitioningOut;
 		}
 
 		void Update()
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;
 
-			if (state == 1)
+			if (state == AnimationState.TransitioningIn)
 			{
 				if (animDeltaTime <= animationDuration)
 				{
@@ -292,10 +296,10 @@ namespace MaterialUI
 						hideScreen = null;
 					}
 
-					state = 0;
+					state = AnimationState.Stationary;
 				}
 			}
-			else if (state == 2)
+			else if (state == AnimationState.TransitioningOut)
 			{
 				if (animDeltaTime <= animationDuration)
 				{
@@ -335,10 +339,11 @@ namespace MaterialUI
 				}
 				else
 				{
+                    currentRipple.gameObject.SetActive(false);
 					theRectTransform.SetParent(transform);
 					theRectTransform.position = screenSpacePosition;
 					screenSpace.SetActive(false);
-					state = 0;
+					state = AnimationState.Stationary;
 				}
 			}
 		}
