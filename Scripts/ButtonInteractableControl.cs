@@ -20,38 +20,66 @@ namespace MaterialUI
 		private CanvasGroup canvasGroup;
 		private Button button;
 
+		private CanvasGroup CanvasGroup
+		{
+			get
+			{
+				if (canvasGroup == null)
+				{
+					canvasGroup = gameObject.GetComponent<CanvasGroup>();
+				}
+				return canvasGroup;
+			}
+		}
+
+		private Button Button
+		{
+			get
+			{
+				if (button == null)
+				{
+					button = gameObject.GetComponent<Button>();
+				}
+				return button;
+			}
+		}
+
 		private bool lastInteractableState;
 
 		[SerializeField] private CanvasGroup shadows;
 
 		private void OnEnable()
 		{
-			canvasGroup = gameObject.GetComponent<CanvasGroup>();
-			button = gameObject.GetComponent<Button>();
+			UpdateInteractableState(Button.interactable);
 		}
 
 		void Update()
 		{
-			if (lastInteractableState != button.interactable)
+			if (lastInteractableState != Button.interactable)
 			{
-				lastInteractableState = button.interactable;
+				UpdateInteractableState(Button.interactable);
+			}
+		}
 
-				if (lastInteractableState)
-				{
-					canvasGroup.alpha = 1f;
-					canvasGroup.blocksRaycasts = true;
+		private void UpdateInteractableState(bool interactable)
+		{
+			lastInteractableState = interactable;
 
-					if (shadows)
-						shadows.alpha = 1f;
-				}
-				else
-				{
-					canvasGroup.alpha = 0.5f;
-					canvasGroup.blocksRaycasts = false;
+			if (lastInteractableState)
+			{
+				CanvasGroup.alpha = 1f;
+				CanvasGroup.blocksRaycasts = true;
 
-					if (shadows)
-						shadows.alpha = 0f;
-				}
+				if (shadows)
+					shadows.alpha = 1f;
+			}
+			else
+			{
+				CanvasGroup.alpha = 0.5f;
+				CanvasGroup.blocksRaycasts = false;
+
+				if (shadows)
+					shadows.alpha = 0f;
 			}
 		}
 	}
