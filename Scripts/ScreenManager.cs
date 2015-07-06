@@ -23,6 +23,12 @@ namespace MaterialUI
 
 		public void Set(int index)
 		{
+			// Prevent transitions on screens that are already in the process of transitioning in or out.
+			if (currentScreen && currentScreen.CurrentState != ScreenConfig.AnimationState.Stationary)
+			{
+				return;
+			}
+
 			screens[index].transform.SetAsLastSibling();
 
 			screens[index].Show(currentScreen);
