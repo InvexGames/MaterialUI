@@ -21,6 +21,18 @@ namespace MaterialUI
 
 		private RectTransform thisRectTransform;
 
+		private RectTransform ThisRectTransform
+		{
+			get
+			{
+				if (thisRectTransform == null)
+				{
+					thisRectTransform = gameObject.GetComponent<RectTransform>();
+				}
+				return thisRectTransform;
+			}
+		}
+
 		private Vector2 textSize;
 
 		[SerializeField] private Vector2 basePadding = new Vector2(30f, 18f);
@@ -28,18 +40,13 @@ namespace MaterialUI
 		[SerializeField] private Vector2 buttonPadding = new Vector2(32f, 32f);
 		private Vector2 finalSize;
 
-		void OnEnable()
-		{
-			thisRectTransform = gameObject.GetComponent<RectTransform>();
-		}
-
 		public void Update()
 		{
 			if (!snapEveryFrame) return;
 
-			if (thisRectTransform.sizeDelta != textSize)
+			if (ThisRectTransform.sizeDelta != textSize)
 			{
-				textSize = thisRectTransform.sizeDelta;
+				textSize = ThisRectTransform.sizeDelta;
 				Snap();
 			}
 		}
@@ -53,7 +60,10 @@ namespace MaterialUI
 			if (finalSize.x < 96f)
 				finalSize.x = 96f;
 
-			buttonRectTransform.sizeDelta = finalSize;
+			if (buttonRectTransform)
+			{
+				buttonRectTransform.sizeDelta = finalSize;
+			}
 		}
 	}
 }

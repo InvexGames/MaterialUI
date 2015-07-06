@@ -32,6 +32,11 @@ namespace MaterialUI
 
 		public string screenName;
 
+		/// <summary>
+		/// Event fired when the screen has completed it's transition in
+		/// </summary>
+		public EventHandler TransitionInComplete;
+
 		[HideInInspector]
 		[SerializeField]
 		public TransitionType transitionInType;
@@ -66,7 +71,9 @@ namespace MaterialUI
 		public float fadeOutEndValue = 0f;
 
 		[HideInInspector]
-		private int state;
+		public enum AnimationState { Stationary, TransitioningIn, TransitioningOut }
+		[HideInInspector]
+		private AnimationState state;
 		[HideInInspector]
 		private float animStartTime;
 		[HideInInspector]
@@ -105,6 +112,14 @@ namespace MaterialUI
 
 		private ScreenConfig hideScreen;
 
+		public AnimationState CurrentState
+		{
+			get
+			{
+				return state;
+			}
+		}
+
 		void Awake()
 		{
 			theRectTransform = screenSpace.GetComponent<RectTransform>();
@@ -127,6 +142,7 @@ namespace MaterialUI
 		{
 			if (transitionInType == TransitionType.RippleMask)
 			{
+				currentRipple.gameObject.SetActive(true);
 				currentRipple.position = Input.mousePosition;
 
 				thisScreenSize = new Vector2(theRectTransform.rect.width, theRectTransform.rect.height);
@@ -166,7 +182,7 @@ namespace MaterialUI
 			screenSpace.SetActive(true);
 
 			animStartTime = Time.realtimeSinceStartup;
-			state = 1;
+			state = AnimationState.TransitioningIn;
 		}
 
 		public void HideWithoutTransition()
@@ -180,6 +196,7 @@ namespace MaterialUI
 			{
 				thisScreenSize = new Vector2(theRectTransform.rect.width, theRectTransform.rect.height);
 
+				currentRipple.gameObject.SetActive(true);
 				currentRipple.position = Input.mousePosition;
 				rippleSize = screenDimensions.x + screenDimensions.y;
 				currentRipple.sizeDelta = new Vector2(rippleSize, rippleSize);
@@ -213,14 +230,14 @@ namespace MaterialUI
 			}
 
 			animStartTime = Time.realtimeSinceStartup;
-			state = 2;
+			state = AnimationState.TransitioningOut;
 		}
 
 		void Update()
 		{
 			animDeltaTime = Time.realtimeSinceStartup - animStartTime;
 
-			if (state == 1)
+			if (state == AnimationState.TransitioningIn)
 			{
 				if (animDeltaTime <= animationDuration)
 				{
@@ -292,10 +309,14 @@ namespace MaterialUI
 						hideScreen = null;
 					}
 
-					state = 0;
+					state = AnimationState.Stationary;
+					if(TransitionInComplete != null)
+					{
+						TransitionInComplete(this, new EventArgs());
+					}
 				}
 			}
-			else if (state == 2)
+			else if (state == AnimationState.TransitioningOut)
 			{
 				if (animDeltaTime <= animationDuration)
 				{
@@ -335,10 +356,11 @@ namespace MaterialUI
 				}
 				else
 				{
+					currentRipple.gameObject.SetActive(false);
 					theRectTransform.SetParent(transform);
 					theRectTransform.position = screenSpacePosition;
 					screenSpace.SetActive(false);
-					state = 0;
+					state = AnimationState.Stationary;
 				}
 			}
 		}
