@@ -4,10 +4,8 @@
 
 MaterialUI is a UI kit for Unity that follows Google's official Material Design guidelines.
 
-***NOTICE:*** As of May 2015, MaterialUI has been moved to a private repo, where it will <b>continue to be worked on and have features added</b>, in preperation for an official release on the Unity Asset Store. I'd like to thank all who have showed enthusiasm in the project, and hope that they check it out once it's released. This repo is now depricated, and will be removed once the first official release is on the Asset Store.
+Please note that this package is outdated and is no longer worked on nor supported. You can find the [shiny new version of MaterialUI on the Unity Asset Store](https://www.assetstore.unity3d.com/en/#!/content/51870), which is better, faster, and more feature-packed!
 
-[Get started](https://github.com/InvexGames/MaterialUI/wiki/Getting-Started) with MaterialUI!
+I'd advise only using this for learning purposes, as it probably won't work well with recent Unity versions.
 
-Please see the [wiki](https://github.com/InvexGames/MaterialUI/wiki) and the [forum](http://forum.unity3d.com/threads/materialui-a-unity-4-6-ui-kit-that-follows-googles-material-design-guidelines.284500/) for more information.
-
-Also, feel free to ask me anything! - materialUI@invexgames.com
+You can contact me at materialUI@invexgames.com, but providing support for this package isn't my top priority.
